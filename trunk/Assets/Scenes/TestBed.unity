@@ -971,6 +971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 356121c73e55d3843b07ae963f0b26ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mDefaultTile: {fileID: 100000, guid: 7271e3fc5ae138a4c821627ecb42ab98, type: 2}
   mEnemyLayer: {fileID: 946971459}
   mFloorLayer: {fileID: 1767642122}
   mWallLayer: {fileID: 95740015}

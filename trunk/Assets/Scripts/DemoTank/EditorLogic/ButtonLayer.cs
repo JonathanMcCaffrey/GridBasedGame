@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class ButtonLayer : MonoBehaviour {
-
+	
 	public static ButtonLayer instance = null;
 	void Awake() {
 		if (instance) {

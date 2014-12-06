@@ -94,39 +94,19 @@ public class PlayerControls : MonoBehaviour {
 			}
 			if (mPlayer.transform.position.x < mInputList [1].x) {
 				rigidbody2D.AddForce (new Vector2 (Time.deltaTime * FORCE, 0), ForceMode2D.Force);
-				//mPlayer.transform.position = Globals.Add(mPlayer.transform.position, Time.deltaTime * SPEED, 0);
 				mPlayerBase.transform.rotation = Quaternion.Euler (0, 0, -90);
-				if (mPlayer.transform.position.x >= mInputList [1].x) {
-					//	RemovePoint ();
-					//	return;
-				}
 			}
 			if (mPlayer.transform.position.x > mInputList [1].x) {
-				//mPlayer.transform.position = Globals.Add(mPlayer.transform.position, -Time.deltaTime * SPEED, 0);
 				rigidbody2D.AddForce (new Vector2 (-Time.deltaTime * FORCE, 0), ForceMode2D.Force);
 				mPlayerBase.transform.rotation = Quaternion.Euler (0, 0, 90);
-				if (mPlayer.transform.position.x <= mInputList [1].x) {
-					//	RemovePoint();
-					//	return;
-				}
 			}
 			if (mPlayer.transform.position.y < mInputList [1].y) {
-				//mPlayer.transform.position = Globals.Add(mPlayer.transform.position, 0, Time.deltaTime * SPEED);
 				rigidbody2D.AddForce (new Vector2 (0, Time.deltaTime * FORCE), ForceMode2D.Force);
 				mPlayerBase.transform.rotation = Quaternion.Euler (0, 0, 0);
-				if (mPlayer.transform.position.y >= mInputList [1].y) {
-					//	RemovePoint();
-					//		return;
-				}
 			}
 			if (mPlayer.transform.position.y > mInputList [1].y) {
-				//mPlayer.transform.position = Globals.Add(mPlayer.transform.position, 0, -Time.deltaTime * SPEED);
 				rigidbody2D.AddForce (new Vector2 (0, -Time.deltaTime * FORCE), ForceMode2D.Force);
 				mPlayerBase.transform.rotation = Quaternion.Euler (0, 0, 180);
-				if (mPlayer.transform.position.y <= mInputList [1].y) {
-					//		RemovePoint();
-					//	return;
-				}
 			}
 		}
 	}

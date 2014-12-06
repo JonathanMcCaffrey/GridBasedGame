@@ -1,17 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Runtime.Serialization;
-using System.Xml.Serialization;
-using System.Runtime.Serialization.Formatters;
-using System.Xml;
 using System;
 
- 
+
 public class Tile : MonoBehaviour {
-
+	
 	public static string TexturePath = "Textures/DemoTank/";
-
-
+	
+	
 	public enum EditorType { Tile, Button };
 	public enum CollidableType { Floor, Wall, Damage, Bullet, Enemy, Player, Breakable };
 	
@@ -35,7 +32,6 @@ public class Tile : MonoBehaviour {
 		TileToGrid ();
 		
 		string textureName = GetComponent<SpriteRenderer> ().sprite.texture.name;
-
 	}
 	
 	public void OnDrawGizmos () {
@@ -45,17 +41,28 @@ public class Tile : MonoBehaviour {
 	public TileData GenerateData() {
 		return new TileData (this);
 	}
+	
+	void OnMouseDown() {
+		if (Editor.instance.mIsOn) {
+			if (this.mEditorType != EditorType.Button) {
+				Destroy (this.gameObject);
+			}
+		}
+	}
 }
 [Serializable]
 public class TileData {
-	Vector2 position;
-	string textureName;
-	Tile.CollidableType collidableType;
+	public float mX;
+	public float mY;
+	public string mTextureName;
+	public Tile.CollidableType mCollidableType;
 	
 	public TileData(Tile aTile) {
-		position = new Vector2 (aTile.gameObject.transform.position.x, aTile.gameObject.transform.position.y);
-		textureName = Tile.TexturePath + aTile.GetComponent<SpriteRenderer> ().sprite.texture.name;
-		collidableType = aTile.mCollidableType;
+		mX = aTile.gameObject.transform.position.x;
+		mY = aTile.gameObject.transform.position.y;
+		
+		mTextureName = Tile.TexturePath + aTile.GetComponent<SpriteRenderer> ().sprite.texture.name;
+		mCollidableType = aTile.mCollidableType;
 	}
 }
 
