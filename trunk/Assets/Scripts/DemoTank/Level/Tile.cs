@@ -2,10 +2,16 @@
 using System.Collections;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
+using System.Runtime.Serialization.Formatters;
 using System.Xml;
+using System;
 
+ 
 public class Tile : MonoBehaviour {
-	
+
+	public static string TexturePath = "Textures/DemoTank/";
+
+
 	public enum EditorType { Tile, Button };
 	public enum CollidableType { Floor, Wall, Damage, Bullet, Enemy, Player, Breakable };
 	
@@ -14,9 +20,9 @@ public class Tile : MonoBehaviour {
 	
 	float mGridSize = 50.0f;
 	
-
 	public KeyCode mHotKey = KeyCode.None;
-
+	
+	
 	void TileToGrid () {
 		mGridSize = GetComponent<BoxCollider2D> ().size.x;
 		if (mEditorType == EditorType.Tile) {
@@ -27,40 +33,29 @@ public class Tile : MonoBehaviour {
 	
 	public void Start() {
 		TileToGrid ();
+		
+		string textureName = GetComponent<SpriteRenderer> ().sprite.texture.name;
+
 	}
 	
 	public void OnDrawGizmos () {
-		TileToGrid ();
-		
+		TileToGrid ();	
 	}
 	
-	void Update () {
-		
-	}
-	
-	public string Save() {
-
-		System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder ();
-
-		using (XmlWriter writer = XmlWriter.Create(stringBuilder)) {
-			
-			writer.WriteElementString ("Position", this.gameObject.transform.position.ToString ());
-			writer.WriteElementString ("Scale", this.gameObject.transform.localScale.ToString());
-			writer.WriteElementString ("FileName", GetComponent<SpriteRenderer> ().sprite.texture.name);
-		
-		}
-
-		return stringBuilder.ToString();
-
-	}
-	
-	public void Load(XmlReader data) {
-	/*	using(XmlReader xmlReader = XmlReader.Create(data)) {
-			string position = xmlReader.ReadElementString("Position");
-			string scale = xmlReader.ReadElementString("Scale");
-			string fileName = xmlReader.ReadElementString("FileName");
-
-
-		}*/
+	public TileData GenerateData() {
+		return new TileData (this);
 	}
 }
+[Serializable]
+public class TileData {
+	Vector2 position;
+	string textureName;
+	Tile.CollidableType collidableType;
+	
+	public TileData(Tile aTile) {
+		position = new Vector2 (aTile.gameObject.transform.position.x, aTile.gameObject.transform.position.y);
+		textureName = Tile.TexturePath + aTile.GetComponent<SpriteRenderer> ().sprite.texture.name;
+		collidableType = aTile.mCollidableType;
+	}
+}
+

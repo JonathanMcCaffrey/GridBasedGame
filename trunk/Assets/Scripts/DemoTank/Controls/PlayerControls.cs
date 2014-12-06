@@ -71,7 +71,6 @@ public class PlayerControls : MonoBehaviour {
 		}
 		if (Input.GetMouseButtonUp (0)) {
 			if (mMouseWasDown && (mLastMousePosition == Input.mousePosition)) {
-				print ("CreateBullet");
 				GameObject bullet = GameObject.Instantiate (mPlayerBullet, mBulletSpawn.transform.position, mPlayerGun.transform.rotation) as GameObject;
 				bullet.rigidbody2D.AddForce (new Vector2 (Mathf.Sin (angle - (180.0f / 57.2957795f)) * FORCE / 2, Mathf.Cos (angle - (180.0f / 57.2957795f)) * FORCE / 2));
 			}
