@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Runtime.Serialization;
 using System;
@@ -43,7 +43,7 @@ public class Tile : MonoBehaviour {
 	}
 	
 	void OnMouseDown() {
-		if (Editor.instance.mIsOn) {
+		if (EditorControls.instance.mIsOn) {
 			if (this.mEditorType != EditorType.Button) {
 				Destroy (this.gameObject);
 			}

@@ -19,7 +19,7 @@ public class ButtonLayer : MonoBehaviour {
 	void SetStartingButtons () {
 		foreach (Tile tile in GetComponentsInChildren<Tile> ()) {
 			mTileList.Add (tile);
-			Editor.instance.mShortCutList [tile.mHotKey] = tile.gameObject;
+			EditorControls.instance.mShortCutList [tile.mHotKey] = tile.gameObject;
 		}
 	}
 	
