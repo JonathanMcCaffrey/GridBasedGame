@@ -7,12 +7,15 @@ public class Item : MonoBehaviour {
 	public UILabel mDescriptionLabel = null;
 	public UILabel mMarkingLabel = null;
 
-	private int mOrder = 0;
+	public int mOrder = 0;
 
 	void Start() {
 		mMarkingLabel.gameObject.SetActive (false);
 	}
 
+	public void onSelected() {
+		print ("Load Level");
+	}
 
 
 }
