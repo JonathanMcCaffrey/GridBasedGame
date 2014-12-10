@@ -41,3 +41,14 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+trunk/Assembly-CSharp-Editor.csproj
+trunk/Assembly-CSharp-Editor-vs.csproj
+trunk/Assembly-CSharp.csproj
+trunk/Assembly-CSharp-vs.csproj
+trunk/trunk.sln
+trunk/trunk.userprefs
+trunk/trunk-csharp.sln
+trunk/Library/*
+trunk/ProjectSettings/*
+trunk/Temp/*
