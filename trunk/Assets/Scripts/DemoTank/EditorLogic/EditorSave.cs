@@ -7,40 +7,55 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class EditorSave : MonoBehaviour, IKeyListener {
 	Dictionary<KeyCode, int> mSlotList = new Dictionary<KeyCode, int>();
 	
+	List<LevelLayersData> mLayersData = new List<LevelLayersData>();
+	public List<LevelLayersData> LayersData {
+		get {
+			return mLayersData;
+		}
+	}
+	
+	//TODO
+	List<LevelLayersData> mHeadersData = new List<LevelLayersData>();
+	public List<LevelLayersData> HeadersData {
+		get {
+			return mHeadersData;
+		}
+	}	
+	
+	
 	bool mIsSaving = false;
 	
 	KeyCode mSaveKey = KeyCode.KeypadPeriod;
 	KeyCode mLoadKey = KeyCode.Keypad0;
-
+	
 	string mLevelLayersFolderName = "LevelLayersData";
-
+	
 	//TODO Save the header, and have the Layers saving be based on it
 	string mLevelHeaderFolderName = "LevelHeaderData";
-
+	
 	
 	string FilePath() { 
 		return Application.persistentDataPath + "/";
 	}
-
+	
 	string LayersFilePath() { 
 		return Application.persistentDataPath + "/" + mLevelLayersFolderName + "/";
 	}
-
+	
 	string HeaderFilePath() { 
 		return Application.persistentDataPath + "/" + mLevelHeaderFolderName + "/";
 	}
-
+	
 	public static EditorSave instance = null;
 	void Awake() {
 		if (instance) {
 			Destroy (gameObject);
 		} else {
 			DontDestroyOnLoad(gameObject);
-			instance = this;
-			
+			instance = this;		
 		}
 	}
-
+	
 	void CreateFolders () {
 		if (!Directory.Exists (FilePath () + mLevelLayersFolderName)) {
 			Directory.CreateDirectory (FilePath () + mLevelLayersFolderName);
@@ -50,7 +65,9 @@ public class EditorSave : MonoBehaviour, IKeyListener {
 			Directory.CreateDirectory (FilePath () + mLevelHeaderFolderName);
 		}
 	}
-
+	
+	
+	
 	void SetComputerHotkeys () {
 		mSlotList.Add (KeyCode.Keypad1, 1);
 		mSlotList.Add (KeyCode.Keypad2, 2);
@@ -64,34 +81,54 @@ public class EditorSave : MonoBehaviour, IKeyListener {
 		Keys.AddListener (this);
 	}
 
+	void LoadLayerHeaders () {
+		//TODO Current loading layers for simplicity and speed. Switch to headers
+
+		var layersPathList = Directory.GetFiles (LayersFilePath ());
+		foreach (string path in layersPathList) {
+			mLayersData.Add (LoadLayerFromDirectPath (path, false));
+		}
+	}
+	
 	void Start() {
 		CreateFolders ();
 		SetComputerHotkeys (); 
+
+		LoadLayerHeaders ();
 	}
 	
-
+	
 	void Save(int aSlot) {
 		BinaryFormatter binaryFormatter = new BinaryFormatter ();
 		FileStream file = File.Create(LayersFilePath() + aSlot.ToString() + ".txt");
 		binaryFormatter.Serialize(file, LevelLayers.instance.GenerateData ());
 		file.Close ();
-		
-		print (FilePath () + aSlot.ToString () + ".txt");
 	}
 	
-	
-	void Load(int aSlot) {
-		if (File.Exists (FilePath() + aSlot.ToString () + ".txt")) {
-			BinaryFormatter binaryFormatter = new BinaryFormatter();
-			FileStream file = File.Open(LayersFilePath() + aSlot.ToString () + ".txt", FileMode.Open);
-			LevelLayersData data = (LevelLayersData)binaryFormatter.Deserialize(file);
-			file.Close();
+	LevelLayersData LoadLayerFromDirectPath (string directPath, bool updateInstance = true) {
+		if (File.Exists (directPath)) {
+			BinaryFormatter binaryFormatter = new BinaryFormatter ();
+			FileStream file = File.Open (directPath, FileMode.Open);
+			LevelLayersData data = (LevelLayersData)binaryFormatter.Deserialize (file);
+			file.Close ();
 			
-			LevelLayers.instance.SetData(data);
+			if(updateInstance) {
+				LevelLayers.instance.SetData (data);
+				
+				//TODO Bug, needs to get mSelect order from headerData. Add this
+				LevelHeader.instance.mSelectOrder = 0;
+			}
 			
-			LevelHeader.instance.mSelectOrder = aSlot;
+			return data;
 		}
 		
+		return null;
+	}	
+	
+	LevelLayersData LoadLayerFromSlot(int aSlot) {
+		string directPath = FilePath () + aSlot.ToString () + ".txt";
+		
+		return LoadLayerFromDirectPath (directPath, false);
 	}
 	
 	public void OnKeyPressed (KeyCode aKeyCode) {
@@ -110,7 +147,7 @@ public class EditorSave : MonoBehaviour, IKeyListener {
 		if (mIsSaving) {
 			Save(mSlotList[aKeyCode]);			
 		} else {
-			Load(mSlotList[aKeyCode]);
+			LoadLayerFromSlot(mSlotList[aKeyCode]);
 		}
 	}
 }

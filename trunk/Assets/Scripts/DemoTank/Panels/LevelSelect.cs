@@ -7,7 +7,7 @@ public class LevelSelect : MonoBehaviour {
 	public List<Item> mItemList = new List<Item>();
 	
 	public GameObject mScrollContainer = null;
-
+	
 	public GameObject mDefaultItem = null;
 	
 	private Add mAddItem = null;
@@ -18,8 +18,6 @@ public class LevelSelect : MonoBehaviour {
 			return mHighestOrder;
 		}
 	}
-	
-	
 	
 	public static LevelSelect instance = null;
 	void Awake() {
@@ -56,7 +54,12 @@ public class LevelSelect : MonoBehaviour {
 			itemIndex++;
 		}
 		
-		mAddItem.gameObject.transform.localPosition = new Vector3 (150 * itemIndex, 0, 0);
+		if (mAddItem) {
+			mAddItem.gameObject.transform.localPosition = new Vector3 (150 * itemIndex, 0, 0);
+		} else {
+			mAddItem = mScrollContainer.GetComponentInChildren<Add> ();
+			mAddItem.gameObject.transform.localPosition = new Vector3 (150 * itemIndex, 0, 0);
+		}
 	}
 	
 	public void Refresh() {
@@ -65,15 +68,25 @@ public class LevelSelect : MonoBehaviour {
 		RefreshPositions ();
 	}
 	
-	void Start() {
-		var itemList = mScrollContainer.GetComponentsInChildren<Item> ();
-		foreach (Item item in itemList) {
-			mItemList.Add(item);
+	static void ReadLevelSelectHeaders () {
+		//TODO replace with layer headers.
+		var layerDataList = EditorSave.instance.LayersData;
+		int itemIndex = 1;
+
+		foreach (LevelLayersData item in layerDataList) {
+			//TODO Generate More Data
+			Add.AddItemPanel (itemIndex);
+			itemIndex++;
 		}
 
+		LevelSelect.instance.Refresh ();
+	}
+	
+	void Start() {
+		ReadLevelSelectHeaders ();
 		
 		mAddItem = mScrollContainer.GetComponentInChildren<Add> ();
-
+		
 		Refresh ();
 	}
 }
