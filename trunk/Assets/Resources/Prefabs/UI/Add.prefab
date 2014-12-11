@@ -173,7 +173,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 128, y: 200, z: 0}
+  m_Size: {x: 128, y: 128, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!111 &11100000
 Animation:
@@ -423,7 +423,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ee05958a99535c4e9fd05dd1f61a764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mDefaultItem: {fileID: 100000, guid: c745615b6ddae0544aa42503a20805e0, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -7,6 +7,8 @@ public class LevelSelect : MonoBehaviour {
 	public List<Item> mItemList = new List<Item>();
 	
 	public GameObject mScrollContainer = null;
+
+	public GameObject mDefaultItem = null;
 	
 	private Add mAddItem = null;
 	

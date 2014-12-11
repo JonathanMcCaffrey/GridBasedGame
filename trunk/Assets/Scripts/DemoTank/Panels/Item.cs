@@ -14,7 +14,10 @@ public class Item : MonoBehaviour {
 	}
 
 	public void onSelected() {
-		print ("Load Level");
+	//	EditorSave.instance;
+
+
+		Destroy (LevelSelect.instance.gameObject);
 	}
 
 

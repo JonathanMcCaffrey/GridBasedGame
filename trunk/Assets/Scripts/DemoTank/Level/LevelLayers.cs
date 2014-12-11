@@ -69,6 +69,7 @@ public class LevelLayers : MonoBehaviour {
 
 [Serializable]
 public class LevelLayersData {
+	
 	public List<TileData> mEnemyDataList = new List<TileData> ();
 	public List<TileData> mFloorDataList = new List<TileData> ();
 	public List<TileData> mWallDataList = new List<TileData> ();
