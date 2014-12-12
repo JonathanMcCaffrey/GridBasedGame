@@ -4,6 +4,16 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
+public class DataPack {
+	public LevelHeaderData mHeaderData = null;
+	public LevelLayersData mLevelLayersData = null;
+	
+	public DataPack(LevelHeaderData aHeaderData, LevelLayersData aLayersData) {
+		mHeaderData = aHeaderData;
+		mLevelLayersData = aLayersData;
+	}
+}
+
 public class EditorSave : MonoBehaviour, IKeyListener {
 	Dictionary<KeyCode, int> mSlotList = new Dictionary<KeyCode, int>();
 	
@@ -14,14 +24,12 @@ public class EditorSave : MonoBehaviour, IKeyListener {
 		}
 	}
 	
-	//TODO
-	List<LevelLayersData> mHeadersData = new List<LevelLayersData>();
-	public List<LevelLayersData> HeadersData {
+	List<LevelHeaderData> mHeadersData = new List<LevelHeaderData>();
+	public List<LevelHeaderData> HeadersData {
 		get {
 			return mHeadersData;
 		}
 	}	
-	
 	
 	bool mIsSaving = false;
 	
@@ -29,8 +37,6 @@ public class EditorSave : MonoBehaviour, IKeyListener {
 	KeyCode mLoadKey = KeyCode.Keypad0;
 	
 	string mLevelLayersFolderName = "LevelLayersData";
-	
-	//TODO Save the header, and have the Layers saving be based on it
 	string mLevelHeaderFolderName = "LevelHeaderData";
 	
 	
@@ -66,8 +72,6 @@ public class EditorSave : MonoBehaviour, IKeyListener {
 		}
 	}
 	
-	
-	
 	void SetComputerHotkeys () {
 		mSlotList.Add (KeyCode.Keypad1, 1);
 		mSlotList.Add (KeyCode.Keypad2, 2);
@@ -82,11 +86,13 @@ public class EditorSave : MonoBehaviour, IKeyListener {
 	}
 	
 	void LoadLayerHeaders () {
-		//TODO Current loading layers for simplicity and speed. Switch to headers
-		
-		var layersPathList = Directory.GetFiles (LayersFilePath ());
+		var layersPathList = Directory.GetFiles (HeaderFilePath ());
 		foreach (string path in layersPathList) {
-			mLayersData.Add (LoadLayerFromDirectPath (path, false));
+			
+			var dataPack = LoadLayerFromDirectPath (path, false);
+			
+			mLayersData.Add (dataPack.mLevelLayersData);
+			mHeadersData.Add (dataPack.mHeaderData);
 		}
 	}
 	
@@ -98,44 +104,76 @@ public class EditorSave : MonoBehaviour, IKeyListener {
 	}
 	
 	
-	void Save(int aSlot) {
-		//TODO :(
-		#if !UNITY_WP8
-		BinaryFormatter binaryFormatter = new BinaryFormatter ();
-		FileStream file = File.Create(LayersFilePath() + aSlot.ToString() + ".txt");
-		binaryFormatter.Serialize(file, LevelLayers.instance.GenerateData ());
-		file.Close ();
-		#endif
-	}
-	
-	LevelLayersData LoadLayerFromDirectPath (string directPath, bool updateInstance = true) {
-		//TODO :(
-		#if !UNITY_WP8
-		if (File.Exists (directPath)) {
+	public void Save(int aSlot) {
+		//TODO :(  This serialization doesn't work on mobile devices. Fix later
+		//#if !UNITY_WP8
+		LevelHeader.instance.mSlotNumber = aSlot;
+		LevelHeaderData headerData = LevelHeader.instance.GenerateData ();
+
+		{
 			BinaryFormatter binaryFormatter = new BinaryFormatter ();
-			FileStream file = File.Open (directPath, FileMode.Open);
-			LevelLayersData data = (LevelLayersData)binaryFormatter.Deserialize (file);
+			FileStream file = File.Create (HeaderFilePath () + aSlot.ToString () + ".txt");
+			binaryFormatter.Serialize (file, headerData);
 			file.Close ();
-			
-			if(updateInstance) {
-				LevelLayers.instance.SetData (data);
-				
-				//TODO Bug, needs to get mSelect order from headerData. Add this
-				LevelHeader.instance.mSelectOrder = 0;
-			}
-			
-			return data;
 		}
 		
-		#endif
+		{
+			BinaryFormatter binaryFormatter = new BinaryFormatter ();
+			FileStream file = File.Create(LayersFilePath() + headerData.mFileName + ".txt");
+			binaryFormatter.Serialize(file, LevelLayers.instance.GenerateData ());
+			file.Close ();
+		}
+		//#endif
+	}
+	
+	DataPack LoadLayerFromDirectPath (string directPath, bool updateInstance = true) {
+		//TODO :(   This serialization doesn't work on mobile devices. Fix later
+		//#if !UNITY_WP8
+
+		print (directPath);
+
+		if (File.Exists (directPath)) {
+			LevelHeaderData headerData = null;
+			
+			{
+				BinaryFormatter binaryFormatter = new BinaryFormatter ();
+				FileStream file = File.Open (directPath, FileMode.Open);
+				headerData = (LevelHeaderData)binaryFormatter.Deserialize (file);
+				file.Close ();
+			}
+			
+			LevelLayersData levelLayersData = null;
+			
+			{
+				print (LayersFilePath() + headerData.mFileName + ".txt");
+
+				BinaryFormatter binaryFormatter = new BinaryFormatter ();
+				FileStream file = File.Open (LayersFilePath() + headerData.mFileName + ".txt", FileMode.Open);
+				levelLayersData = (LevelLayersData)binaryFormatter.Deserialize (file);
+				file.Close ();
+			}
+			
+			if(updateInstance) {
+				LevelHeader.instance.SetData (headerData);
+				LevelLayers.instance.SetData(levelLayersData);
+
+
+
+				print ("print data loaded");
+			}
+			
+			return new DataPack(headerData, levelLayersData);
+		}
+		
+		//	#endif
 		
 		return null;
 	}	
 	
-	LevelLayersData LoadLayerFromSlot(int aSlot) {
-		string directPath = FilePath () + aSlot.ToString () + ".txt";
+	public DataPack LoadLayerFromSlot(int aSlot, bool updateInstance) {
+		string directPath = HeaderFilePath() + aSlot.ToString () + ".txt";
 		
-		return LoadLayerFromDirectPath (directPath, false);
+		return LoadLayerFromDirectPath (directPath, updateInstance);
 	}
 	
 	public void OnKeyPressed (KeyCode aKeyCode) {
@@ -154,7 +192,7 @@ public class EditorSave : MonoBehaviour, IKeyListener {
 		if (mIsSaving) {
 			Save(mSlotList[aKeyCode]);			
 		} else {
-			LoadLayerFromSlot(mSlotList[aKeyCode]);
+			LoadLayerFromSlot(mSlotList[aKeyCode], true);
 		}
 	}
 }

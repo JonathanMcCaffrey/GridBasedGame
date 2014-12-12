@@ -48,6 +48,9 @@ public class LevelLayers : MonoBehaviour {
 			Rect rect = tempObject.GetComponent<SpriteRenderer> ().sprite.rect;
 			tempObject.GetComponent<SpriteRenderer> ().sprite = Sprite.Create (texture2D, rect, new Vector2 (0.5f, 0.5f));
 			tempObject.transform.position = new Vector3 (tileData.mX, tileData.mY);
+
+			print (tempObject.transform.position.ToString());
+
 			tempObject.transform.parent = transformParent.transform;
 			if (tempTile) {
 				tempTile.mCollidableType = tileData.mCollidableType;

@@ -6,9 +6,13 @@ using System;
 
 public class LevelHeader : MonoBehaviour {
 
-	public int mSelectOrder = 0;
+	public int mSlotNumber = 0;
 	public string mName = "";
 	public string mFileName = "";
+
+	public string getSafeFileName() {
+		return mFileName.Length > 0 ? mFileName : "Temp_" + mSlotNumber.ToString ();
+	}
 
 	public static LevelHeader instance = null;
 	void Awake() {
@@ -21,6 +25,9 @@ public class LevelHeader : MonoBehaviour {
 	}
 
 	public void SetData(LevelHeaderData aData) {
+		mSlotNumber = aData.mSlotNumber;
+		mFileName = aData.mFileName;
+		mName = aData.mName;
 	}
 
 	public LevelHeaderData GenerateData() {
@@ -30,11 +37,13 @@ public class LevelHeader : MonoBehaviour {
 
 [Serializable]
 public class LevelHeaderData {
-	public int mSelectOrder = 0;
+	public int mSlotNumber = 0;
 	public string mName = "";
 	public string mFileName = "";
 
 	public LevelHeaderData(LevelHeader aDataSource) {
-
+		mSlotNumber = aDataSource.mSlotNumber;
+		mName = aDataSource.mName;
+		mFileName = aDataSource.getSafeFileName ();
 	}
 }
