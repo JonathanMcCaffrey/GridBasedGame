@@ -3,23 +3,26 @@ using System.Collections;
 using System.Runtime.Serialization;
 using System;
 
-
 public class Tile : MonoBehaviour {
 	
 	public static string TexturePath = "Textures/DemoTank/";
-	
-	
+
 	public enum EditorType { Tile, Button };
-	public enum CollidableType { Floor, Wall, Damage, Bullet, Enemy, Player, Breakable };
+	public enum CollidableType { Floor, Wall, Damage, Bullet, Enemy, Player, Breakable, Delete, Finish, Start };
+
+	public enum EnemyType { Turret, Bomb };
 	
 	public EditorType mEditorType = EditorType.Button;
 	public CollidableType mCollidableType = CollidableType.Floor;
-	
-	float mGridSize = 50.0f;
+
+	public EnemyType mEnemyType = EnemyType.Turret;
+
 	
 	public KeyCode mHotKey = KeyCode.None;
-	
-	
+
+
+	float mGridSize = 50.0f;
+
 	void TileToGrid () {
 		mGridSize = GetComponent<BoxCollider2D> ().size.x;
 		if (mEditorType == EditorType.Tile) {
