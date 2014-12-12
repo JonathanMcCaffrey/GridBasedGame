@@ -80,10 +80,10 @@ public class EditorSave : MonoBehaviour, IKeyListener {
 		mSlotList.Add (KeyCode.Keypad9, 9);
 		Keys.AddListener (this);
 	}
-
+	
 	void LoadLayerHeaders () {
 		//TODO Current loading layers for simplicity and speed. Switch to headers
-
+		
 		var layersPathList = Directory.GetFiles (LayersFilePath ());
 		foreach (string path in layersPathList) {
 			mLayersData.Add (LoadLayerFromDirectPath (path, false));
@@ -93,19 +93,24 @@ public class EditorSave : MonoBehaviour, IKeyListener {
 	void Start() {
 		CreateFolders ();
 		SetComputerHotkeys (); 
-
+		
 		LoadLayerHeaders ();
 	}
 	
 	
 	void Save(int aSlot) {
+		//TODO :(
+		#if !UNITY_WP8
 		BinaryFormatter binaryFormatter = new BinaryFormatter ();
 		FileStream file = File.Create(LayersFilePath() + aSlot.ToString() + ".txt");
 		binaryFormatter.Serialize(file, LevelLayers.instance.GenerateData ());
 		file.Close ();
+		#endif
 	}
 	
 	LevelLayersData LoadLayerFromDirectPath (string directPath, bool updateInstance = true) {
+		//TODO :(
+		#if !UNITY_WP8
 		if (File.Exists (directPath)) {
 			BinaryFormatter binaryFormatter = new BinaryFormatter ();
 			FileStream file = File.Open (directPath, FileMode.Open);
@@ -121,6 +126,8 @@ public class EditorSave : MonoBehaviour, IKeyListener {
 			
 			return data;
 		}
+		
+		#endif
 		
 		return null;
 	}	

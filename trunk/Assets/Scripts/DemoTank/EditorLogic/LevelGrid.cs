@@ -7,12 +7,11 @@ public class LevelGrid : MonoBehaviour {
 	
 	public float mWidth = 1000.0f;
 	public float mHeight = 1000.0f;
-	public Color mColour = Color.white;
+	public Color mColour = Color.blue;
 
 	int mMax = 1000;
 
 	void CreateEditorGrid () {
-		Vector3 pos = Camera.current.transform.position;
 		Gizmos.color = this.mColour;
 		for (float x = 0; x < mWidth; x += 1) {
 			Gizmos.DrawLine (new Vector3 (mGridSize * x, -mMax, 2), new Vector3 (mGridSize * x, mMax, 2));
