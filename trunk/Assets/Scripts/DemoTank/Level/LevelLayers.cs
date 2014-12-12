@@ -2,12 +2,13 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
-
+using System.Xml;
+using System.Xml.Serialization;
 
 public class LevelLayers : MonoBehaviour {
 	
 	public GameObject mDefaultTile = null;
-
+	
 	public GameObject mEnemyLayer = null;
 	public GameObject mFloorLayer = null;
 	public GameObject mWallLayer = null;
@@ -29,7 +30,7 @@ public class LevelLayers : MonoBehaviour {
 		}
 		
 		var floorList = instance.mFloorLayer.GetComponentsInChildren<Tile> ();
-
+		
 		foreach (var temp in floorList) {
 			Destroy (temp.gameObject);
 		}
@@ -49,8 +50,6 @@ public class LevelLayers : MonoBehaviour {
 			tempObject.GetComponent<SpriteRenderer> ().sprite = Sprite.Create (texture2D, rect, new Vector2 (0.5f, 0.5f));
 			tempObject.transform.position = new Vector3 (tileData.mX, tileData.mY);
 
-			print (tempObject.transform.position.ToString());
-
 			tempObject.transform.parent = transformParent.transform;
 			if (tempTile) {
 				tempTile.mCollidableType = tileData.mCollidableType;
@@ -60,22 +59,29 @@ public class LevelLayers : MonoBehaviour {
 	
 	public void SetData(LevelLayersData aData) {
 		LevelLayers.ClearLevel ();
-
+		
 		SetFromDataList (aData.mFloorDataList, LevelLayers.instance.mFloorLayer);
 		SetFromDataList (aData.mWallDataList, LevelLayers.instance.mWallLayer);
 	}
-
+	
 	public LevelLayersData GenerateData() {
 		return new LevelLayersData (this);                        
 	}
 }
 
 [Serializable]
+[XmlRoot("levelLayersData")]
 public class LevelLayersData {
 	
+	[XmlArray("enemies"),XmlArrayItem("enemy")]
 	public List<TileData> mEnemyDataList = new List<TileData> ();
+	[XmlArray("floors"),XmlArrayItem("floor")]
 	public List<TileData> mFloorDataList = new List<TileData> ();
+	[XmlArray("walls"),XmlArrayItem("wall")]
 	public List<TileData> mWallDataList = new List<TileData> ();
+	
+	public LevelLayersData() {
+	}
 	
 	public LevelLayersData(LevelLayers aDataSource) {
 		var floorTilesFound = aDataSource.mFloorLayer.GetComponentsInChildren<Tile>();

@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml;
+using System.Xml.Serialization;
+
 
 public class DataPack {
 	public LevelHeaderData mHeaderData = null;
@@ -105,11 +108,31 @@ public class EditorSave : MonoBehaviour, IKeyListener {
 	
 	
 	public void Save(int aSlot) {
-		//TODO :(  This serialization doesn't work on mobile devices. Fix later
-		//#if !UNITY_WP8
+		#if UNITY_WP8
+		
 		LevelHeader.instance.mSlotNumber = aSlot;
 		LevelHeaderData headerData = LevelHeader.instance.GenerateData ();
-
+		
+		{
+			XmlSerializer xmlSerializer = new XmlSerializer(typeof(LevelHeaderData));
+			FileStream file = new FileStream(HeaderFilePath () + aSlot.ToString () + ".txt", FileMode.Create);
+			xmlSerializer.Serialize(file, headerData);
+			file.Close();
+		}
+		
+		{
+			XmlSerializer xmlSerializer = new XmlSerializer(typeof(LevelLayersData));
+			FileStream file = new FileStream(LayersFilePath() + headerData.mFileName + ".txt", FileMode.Create);
+			xmlSerializer.Serialize(file, LevelLayers.instance.GenerateData());
+			file.Close();
+		}
+		
+		
+		#else
+		
+		LevelHeader.instance.mSlotNumber = aSlot;
+		LevelHeaderData headerData = LevelHeader.instance.GenerateData ();
+		
 		{
 			BinaryFormatter binaryFormatter = new BinaryFormatter ();
 			FileStream file = File.Create (HeaderFilePath () + aSlot.ToString () + ".txt");
@@ -123,15 +146,44 @@ public class EditorSave : MonoBehaviour, IKeyListener {
 			binaryFormatter.Serialize(file, LevelLayers.instance.GenerateData ());
 			file.Close ();
 		}
-		//#endif
+		#endif
 	}
 	
 	DataPack LoadLayerFromDirectPath (string directPath, bool updateInstance = true) {
 		//TODO :(   This serialization doesn't work on mobile devices. Fix later
-		//#if !UNITY_WP8
-
-		print (directPath);
-
+		#if UNITY_WP8
+		
+		
+		if (File.Exists (directPath)) {
+			LevelHeaderData headerData = null;
+			
+			{
+				XmlSerializer xmlSerializer = new XmlSerializer(typeof(LevelHeaderData));
+				FileStream file = new FileStream(directPath, FileMode.Open);
+				headerData = xmlSerializer.Deserialize(file) as LevelHeaderData;
+				file.Close();
+			}
+			
+			LevelLayersData levelLayersData = null;
+			
+			{
+				XmlSerializer xmlSerializer = new XmlSerializer(typeof(LevelLayersData));
+				FileStream file = new FileStream(LayersFilePath() + headerData.mFileName + ".txt", FileMode.Open);
+				levelLayersData = xmlSerializer.Deserialize(file) as LevelLayersData;
+				file.Close();
+			}
+			
+			if(updateInstance) {
+				LevelHeader.instance.SetData (headerData);
+				LevelLayers.instance.SetData(levelLayersData);
+				
+			}
+			
+			return new DataPack(headerData, levelLayersData);
+		}
+		
+		#else
+		
 		if (File.Exists (directPath)) {
 			LevelHeaderData headerData = null;
 			
@@ -145,8 +197,6 @@ public class EditorSave : MonoBehaviour, IKeyListener {
 			LevelLayersData levelLayersData = null;
 			
 			{
-				print (LayersFilePath() + headerData.mFileName + ".txt");
-
 				BinaryFormatter binaryFormatter = new BinaryFormatter ();
 				FileStream file = File.Open (LayersFilePath() + headerData.mFileName + ".txt", FileMode.Open);
 				levelLayersData = (LevelLayersData)binaryFormatter.Deserialize (file);
@@ -156,16 +206,12 @@ public class EditorSave : MonoBehaviour, IKeyListener {
 			if(updateInstance) {
 				LevelHeader.instance.SetData (headerData);
 				LevelLayers.instance.SetData(levelLayersData);
-
-
-
-				print ("print data loaded");
 			}
 			
 			return new DataPack(headerData, levelLayersData);
 		}
 		
-		//	#endif
+		#endif
 		
 		return null;
 	}	

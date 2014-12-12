@@ -57,6 +57,9 @@ public class TileData {
 	public string mTextureName;
 	public Tile.CollidableType mCollidableType;
 	
+	public TileData() {
+	}
+	
 	public TileData(Tile aTile) {
 		mX = aTile.gameObject.transform.position.x;
 		mY = aTile.gameObject.transform.position.y;

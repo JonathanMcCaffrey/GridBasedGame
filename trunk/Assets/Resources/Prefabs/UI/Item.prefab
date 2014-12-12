@@ -143,7 +143,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -186.21521, y: -106.77533, z: 0}
+  m_LocalPosition: {x: 961.18811, y: -158.751266, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400012}
@@ -656,7 +656,11 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick: []
+  onClick:
+  - mTarget: {fileID: 11400014}
+    mMethodName: onSelected
+    mParameters: []
+    oneShot: 0
 --- !u!114 &11400018
 MonoBehaviour:
   m_ObjectHideFlags: 1
