@@ -28,8 +28,9 @@ public class TextBox : MonoBehaviour {
 	void OnGUI() {
 		GUI.color = getColour ();
 		GUI.SetNextControlName (mControlName);
+		bool hasFocus = GUI.GetNameOfFocusedControl () == mControlName;
 		var tempString = GUI.TextField (getRect (), getText ());
-		if ((GUI.GetNameOfFocusedControl () == mControlName)) {
+		if (hasFocus) {
 			mText = tempString;
 		}
 		GUI.color = Color.black;

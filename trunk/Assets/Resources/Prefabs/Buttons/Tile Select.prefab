@@ -942,7 +942,7 @@ Transform:
   m_Children:
   - {fileID: 400030}
   m_Father: {fileID: 400068}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!4 &400054
 Transform:
   m_ObjectHideFlags: 1
@@ -956,7 +956,7 @@ Transform:
   - {fileID: 400038}
   - {fileID: 400040}
   m_Father: {fileID: 400068}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!4 &400056
 Transform:
   m_ObjectHideFlags: 1
@@ -969,7 +969,7 @@ Transform:
   m_Children:
   - {fileID: 400036}
   m_Father: {fileID: 400068}
-  m_RootOrder: 5
+  m_RootOrder: 3
 --- !u!4 &400058
 Transform:
   m_ObjectHideFlags: 1
@@ -981,7 +981,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400068}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!4 &400060
 Transform:
   m_ObjectHideFlags: 1
@@ -993,7 +993,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400068}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!4 &400062
 Transform:
   m_ObjectHideFlags: 1
@@ -1048,11 +1048,11 @@ Transform:
   - {fileID: 400066}
   - {fileID: 400064}
   - {fileID: 400062}
+  - {fileID: 400056}
   - {fileID: 400060}
   - {fileID: 400058}
-  - {fileID: 400056}
-  - {fileID: 400054}
   - {fileID: 400052}
+  - {fileID: 400054}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!54 &5400000
@@ -2061,7 +2061,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3007
+  startingRenderQueue: 3008
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
@@ -2384,7 +2384,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3009
+  startingRenderQueue: 3010
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -3079,7 +3079,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3005
+  startingRenderQueue: 3006
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
