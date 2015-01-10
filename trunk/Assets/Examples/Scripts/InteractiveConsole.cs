@@ -56,6 +56,16 @@ public sealed class InteractiveConsole : ConsoleBase
             }
         }
 
+		FB.AppRequest (FriendSelectorMessage,
+		               null, 
+		               FriendSelectorFiltersArr, 
+		               excludeIds, 
+		               maxRecipients, 
+		               FriendSelectorData, 
+		               FriendSelectorTitle,
+		              null);
+
+		/*
         FB.AppRequest(
             FriendSelectorMessage,
             null,
@@ -66,6 +76,7 @@ public sealed class InteractiveConsole : ConsoleBase
             FriendSelectorTitle,
             Callback
         );
+        */
     }
     #endregion
 
@@ -81,6 +92,7 @@ public sealed class InteractiveConsole : ConsoleBase
         {
             throw new ArgumentException("\"To Comma Ids\" must be specificed", "to");
         }
+		/*
         FB.AppRequest(
             DirectRequestMessage,
             DirectRequestTo.Split(','),
@@ -90,7 +102,7 @@ public sealed class InteractiveConsole : ConsoleBase
             "",
             DirectRequestTitle,
             Callback
-        );
+        );*/
     }
 
     #endregion

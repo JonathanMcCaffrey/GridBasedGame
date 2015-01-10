@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Item : MonoBehaviour {
@@ -14,7 +14,7 @@ public class Item : MonoBehaviour {
 	}
 	
 	public void onSelected() {
-		EditorSave.instance.LoadLayerFromSlot (mOrder, true);
+		EditorSerialization.instance.LoadLayerFromSlot (mOrder, true);
 		
 		Destroy (LevelSelect.instance.gameObject);
 	}

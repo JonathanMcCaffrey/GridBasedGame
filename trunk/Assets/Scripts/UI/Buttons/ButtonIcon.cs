@@ -12,6 +12,7 @@ public class ButtonIcon : MonoBehaviour {
 	}
 	
 	public void onClick() {
+		
 		Debug.Log ("Button OnClick Not Set");
 	}
 	
@@ -20,7 +21,15 @@ public class ButtonIcon : MonoBehaviour {
 			if (getIcon ().name != iconSprite.name) {
 				getIcon ().sprite2D = iconSprite;
 			}
+			
+			if (gameObject.name != "Button - " + getIcon ().sprite2D.name + " - Icon") {
+				gameObject.name = "Button - " + getIcon ().sprite2D.name + " - Icon";
+			}
 		}
+	}
+	
+	public void Awake() {
+		OnDrawGizmos ();
 	}
 	
 	public void OnDrawGizmos() {
@@ -33,7 +42,7 @@ public class ButtonIcon : MonoBehaviour {
 		if (!icon) {
 			return;
 		}
-
+		
 		RefreshButton ();
 	}
 }

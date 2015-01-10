@@ -24,6 +24,14 @@ public class ButtonText : MonoBehaviour {
 		if (getLabel().text != text) {
 			getLabel().text = text;
 		}
+		
+		if (gameObject.name != "Button - " + getLabel ().text + " - Text") {
+			gameObject.name = "Button - " + getLabel ().text + " - Text";
+		}
+	}
+	
+	public void Awake() {
+		OnDrawGizmos ();
 	}
 	
 	public void OnDrawGizmos() {

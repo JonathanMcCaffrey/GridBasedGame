@@ -13,17 +13,19 @@ public class ButtonDefaultDrawer : PropertyDrawer {
 	bool notReady() {
 		return !background.objectReferenceValue || !button.objectReferenceValue;
 	}
-
+	
 	public override void OnGUI(Rect rect, SerializedProperty prop, GUIContent label) {
+		prop.serializedObject.Update ();
+		
 		disableModifiedControls = prop.FindPropertyRelative ("disableModifiedControls");
 		background = prop.FindPropertyRelative ("background");
 		button = prop.FindPropertyRelative ("button");
 		backgroundColor = prop.FindPropertyRelative ("backgroundColor");
 		onButtonClick = prop.FindPropertyRelative ("onButtonClick");
-
+		
 		
 		EditorGUILayout.PropertyField (disableModifiedControls, true);
-
+		
 		if (notReady ()) {
 			EditorGUILayout.PropertyField (background, true);
 			EditorGUILayout.PropertyField (button, true);
@@ -31,5 +33,8 @@ public class ButtonDefaultDrawer : PropertyDrawer {
 			EditorGUILayout.PropertyField (backgroundColor, true);
 			EditorGUILayout.PropertyField (onButtonClick, true);
 		}
+		
+		prop.serializedObject.ApplyModifiedProperties ();
+		
 	}
 }

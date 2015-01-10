@@ -16,6 +16,6 @@
     </activity>
     <activity android:name="com.facebook.unity.FBUnityDeepLinkingActivity" android:exported="true">
     </activity>
-    <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="\ 455055687929470" />
+    <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="\ 377480135757400" />
   </application>
 </manifest>

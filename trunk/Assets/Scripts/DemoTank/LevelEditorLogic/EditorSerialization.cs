@@ -17,7 +17,7 @@ public class DataPack {
 	}
 }
 
-public class EditorSave : MonoBehaviour, IKeyListener {
+public class EditorSerialization : MonoBehaviour, IKeyListener {
 	Dictionary<KeyCode, int> mSlotList = new Dictionary<KeyCode, int>();
 	
 	List<LevelLayersData> mLayersData = new List<LevelLayersData>();
@@ -55,7 +55,7 @@ public class EditorSave : MonoBehaviour, IKeyListener {
 		return Application.persistentDataPath + "/" + mLevelHeaderFolderName + "/";
 	}
 	
-	public static EditorSave instance = null;
+	public static EditorSerialization instance = null;
 	void Awake() {
 		if (instance) {
 			Destroy (gameObject);
@@ -66,6 +66,8 @@ public class EditorSave : MonoBehaviour, IKeyListener {
 	}
 	
 	void CreateFolders () {
+		Debug.Log ("FilePath: " + FilePath () + mLevelLayersFolderName);
+
 		if (!Directory.Exists (FilePath () + mLevelLayersFolderName)) {
 			Directory.CreateDirectory (FilePath () + mLevelLayersFolderName);
 		}
@@ -102,7 +104,7 @@ public class EditorSave : MonoBehaviour, IKeyListener {
 	void Start() {
 		CreateFolders ();
 		SetComputerHotkeys (); 
-		
+
 		LoadLayerHeaders ();
 	}
 	
@@ -150,7 +152,6 @@ public class EditorSave : MonoBehaviour, IKeyListener {
 	}
 	
 	DataPack LoadLayerFromDirectPath (string directPath, bool updateInstance = true) {
-		//TODO :(   This serialization doesn't work on mobile devices. Fix later
 		#if UNITY_WP8
 		
 		

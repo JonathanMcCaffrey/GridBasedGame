@@ -185,8 +185,8 @@ public class ConsoleBase : MonoBehaviour
 
     private void CallFBInit()
     {
-        FB.Init(OnInitComplete, OnHideUnity);
-    }
+		FB.Init (OnInitComplete, OnHideUnity);
+	}
 
     private void OnInitComplete()
     {

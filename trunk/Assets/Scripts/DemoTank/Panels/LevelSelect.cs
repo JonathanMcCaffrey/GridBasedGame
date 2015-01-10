@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -70,7 +70,7 @@ public class LevelSelect : MonoBehaviour {
 	
 	static void ReadLevelSelectHeaders () {
 		//TODO replace with layer headers.
-		var layerDataList = EditorSave.instance.LayersData;
+		var layerDataList = EditorSerialization.instance.LayersData;
 		int itemIndex = 1;
 
 		foreach (LevelLayersData item in layerDataList) {

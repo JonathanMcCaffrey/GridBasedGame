@@ -102,8 +102,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  m_LocalRotation: {x: 0, y: -.0784590319, z: 0, w: .996917367}
-  m_LocalPosition: {x: -171.900177, y: 285.000031, z: 2802.80005}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -744.576294, y: 808.460632, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400004}
@@ -158,7 +158,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 64, y: 64, z: 0}
+  m_Size: {x: 196, y: 64, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!111 &11100000
 Animation:
@@ -197,7 +197,7 @@ MonoBehaviour:
       mParameters: []
       oneShot: 0
   labelObject: {fileID: 100000}
-  text: Pause Game
+  text: Set_Name
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -238,7 +238,7 @@ MonoBehaviour:
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: 7a48ea22e80d1ac4b97fdd87f9009546, type: 2}
-  mText: Pause Game
+  mText: Set_Name
   mFontSize: 40
   mFontStyle: 0
   mAlignment: 0
