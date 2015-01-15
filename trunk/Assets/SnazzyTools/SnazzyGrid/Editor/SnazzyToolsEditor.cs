@@ -1159,7 +1159,7 @@ public class SnazzyToolsEditor: EditorWindow
 		}
 	}
 	
-	static void SnapPos(bool x,bool y,bool z)
+	public static void SnapPos(bool x,bool y,bool z)
 	{
 		#if !UNITY_3_4 && !UNITY_3_5 && !UNITY_4_0 && !UNITY_4_1 && !UNITY_4_2
 		Undo.RecordObjects(Selection.transforms,"Selection Snap Transform");

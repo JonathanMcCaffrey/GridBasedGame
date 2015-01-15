@@ -1,8 +1,13 @@
+#define USING_SNAZZY_GRID
+
+
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
+
 public class AssetPlacementWindow :  EditorWindow {
+	
 	
 	bool shouldShowAll = true;
 	
@@ -14,13 +19,20 @@ public class AssetPlacementWindow :  EditorWindow {
 		window.minSize = new Vector2(200,100);
 	}
 	
-	static void RefreshAutoSnap (Rect snapSize) {
-		/* //TODO Deprecated Code. Update to use SnazzyGrid
+	static void RefreshAutoSnap (GameObject placedAsset) {
+		
+		#if USING_SNAZZY_GRID
+		SnazzyToolsEditor.SnapPos(true, true, true);
+		#else
+		if (Utils.GameObjectFunctions.HasMesh(placedAsset)) {
+			/*var snapSize = Utils.GameObjectFunctions.CreateRectFromMeshes(placedAsset);
 		if (EditorPrefs.GetBool (AssetPlacement.SnapUpdateKey)) {
 			EditorPrefs.SetFloat (AutoGridSnap.MoveSnapXKey, snapSize.width);
 			EditorPrefs.SetFloat (AutoGridSnap.MoveSnapYKey, snapSize.height);
+		}*/
 		}
-		*/
+		#endif
+		
 	}
 	
 	static void SetTabContainerParent (GameObject placedAsset) {
@@ -42,11 +54,7 @@ public class AssetPlacementWindow :  EditorWindow {
 			Selection.activeGameObject = placedAsset;
 			
 			SetTabContainerParent (placedAsset);
-			
-			if (Utils.GameObjectFunctions.HasMesh(placedAsset)) {
-				var snapSize = Utils.GameObjectFunctions.CreateRectFromMeshes(placedAsset);
-				RefreshAutoSnap (snapSize);
-			}
+			RefreshAutoSnap (placedAsset);
 		}
 	}	
 	
@@ -79,15 +87,15 @@ public class AssetPlacementWindow :  EditorWindow {
 		if (!background) {
 			Debug.Log ("AssetPlacement InstallPath Needs Fixing");
 		}
-
+		
 		windowTitle = AssetDatabase.LoadAssetAtPath(path+"Title.jpg",typeof(Texture)) as Texture;
 	}
-
+	
 	void CreateTitleLogo (float width, ref float distanceFromTop) {
 		EditorGUI.LabelField (new Rect (0, 0, width, 64), new GUIContent (windowTitle, "//TODO Add Tooltip"));
 		distanceFromTop += 64;
 	}
-
+	
 	void CreateToggleTabSelection (float width, ref float distanceFromTop) {
 		float toggleHeight = 16;
 		shouldShowAll = EditorGUI.Toggle (new Rect (0, distanceFromTop, width, toggleHeight), "Show All", shouldShowAll);
@@ -101,12 +109,12 @@ public class AssetPlacementWindow :  EditorWindow {
 			AssetPlacementChoiceSystem.instance.selectedTab = AssetPlacementChoiceSystem.instance.tabList [selectedTabNumber];
 		}
 	}
-
+	
 	void CreateAssetButtons (float width, ref float distanceFromTop) {
 		int index = 0;
 		float xVal = 0;
 		float yVal = 0;
-
+		
 		foreach (var assetData in AssetPlacementChoiceSystem.instance.assetList) {
 			if (assetData.tab != AssetPlacementChoiceSystem.instance.selectedTab.name && !shouldShowAll) {
 				index++;
@@ -121,10 +129,10 @@ public class AssetPlacementWindow :  EditorWindow {
 			}
 			if (usedTexture && GUI.Button (new Rect ((width / 3) * xVal, distanceFromTop + (width / 3) * yVal, (width / 3), (width / 3)), usedTexture)) {
 				EditorPrefs.SetInt (AssetPlacementKeys.SelectedAssetNumber, index);
-
+				
 				//AssetPlacementKeys.SelectedAssetNumber
-
-			
+				
+				
 			}
 			index++;
 			xVal++;
@@ -134,23 +142,23 @@ public class AssetPlacementWindow :  EditorWindow {
 			}
 		}
 	}
-
+	
 	public void OnGUI() {
 		if (background) {
 			float width = Screen.width;
-
+			
 			EditorGUI.DrawPreviewTexture (new Rect (0, 0, Screen.width, Screen.height), background);
-
+			
 			float distanceFromTop = 0.0f;
 			CreateTitleLogo (width, ref distanceFromTop);
 			CreateToggleTabSelection (width, ref distanceFromTop);
 			CreateAssetButtons (width, ref distanceFromTop);
-
-
+			
+			
 			/*EditorPrefs.SetBool (AssetPlacement.SnapUpdateKey,
 			                     EditorGUI.Toggle (new Rect(-1, distanceFromTop, width, 20),  "Update Auto Snap", EditorPrefs.GetBool (AssetPlacement.SnapUpdateKey, false)));
 			distanceFromTop += 20;*/
-		
+			
 		}
 	}
 }
