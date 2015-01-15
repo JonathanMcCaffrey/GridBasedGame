@@ -20,7 +20,6 @@ public class AssetPlacementWindow :  EditorWindow {
 	}
 	
 	static void RefreshAutoSnap (GameObject placedAsset) {
-		
 		#if USING_SNAZZY_GRID
 		SnazzyToolsEditor.SnapPos(true, true, true);
 		#else
@@ -68,7 +67,9 @@ public class AssetPlacementWindow :  EditorWindow {
 	
 	//TODO find a better hotkey
 	//TODO Re-add later
-	//[MenuItem("Edit/Commands/ToggleAutoSnapUpdate #_%_f")]
+	#if !USING_SNAZZY_GRID
+	[MenuItem("Edit/Commands/ToggleAutoSnapUpdate #_%_f")]
+	#endif
 	static void ToggleAutoSnapUpdate() {
 		EditorPrefs.SetBool (AssetPlacementKeys.SnapUpdate, !EditorPrefs.GetBool (AssetPlacementKeys.SnapUpdate));
 	}	
