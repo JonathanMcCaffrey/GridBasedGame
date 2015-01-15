@@ -3034,8 +3034,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d754bf0b1cb58c46b07eafd43e67810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xPosition: -1.7290616
-  yPosition: 10.3302116
+  xPosition: -15.5116568
+  yPosition: 6.15311146
   adjustX: .75
   adjustY: -28.8899994
   marker: {fileID: 1846288679}
@@ -3053,7 +3053,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shouldReset: 0
-  selectedKey: 50
   assetList:
   - filePath: Assets\PlacementAssets\Enemies\Tile_Turret.prefab
     name: Enemies\Tile_Turret.prefab

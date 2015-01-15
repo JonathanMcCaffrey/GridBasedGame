@@ -13,7 +13,6 @@ using UnityEditor;
 public class AssetPlacementChoiceSystem : MonoBehaviour {
 	public bool shouldReset = false;
 	
-	public int selectedKey = (int)KeyCode.None;
 	public static AssetPlacementData selectedAsset = null; 
 	
 	public List<AssetPlacementData> assetList = new List<AssetPlacementData>();
@@ -112,12 +111,17 @@ public class AssetPlacementChoiceSystem : MonoBehaviour {
 	}
 	
 	void ByHotKeySelection () {
+		int index = 0;
 		foreach (AssetPlacementData data in assetList) {
 			if (selectedTab != null && data.tab == selectedTab.name) {
-				if (data.keyCode == (KeyCode)selectedKey) {
+				if (data.keyCode == (KeyCode)EditorPrefs.GetInt(AssetPlacementKeys.SelectedKey)) {
 					selectedAsset = data;
+					
+					EditorPrefs.SetInt (AssetPlacementKeys.SelectedAssetNumber, index);
 				}
 			}
+			
+			index++;
 		}
 	}
 	

@@ -1,22 +1,24 @@
 #define USING_SNAZZY_GRID
 
-
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
-
 public class AssetPlacementWindow :  EditorWindow {
-	
-	
 	bool shouldShowAll = true;
 	
 	//TODO add more features to this window
+	
+	public static AssetPlacementWindow instance = null;
+	
 	[MenuItem( "Edit/Asset Placement Window" )]
 	static void Init() {
-		AssetPlacementWindow window = (AssetPlacementWindow)EditorWindow.GetWindow( typeof( AssetPlacementWindow ) );
-		window.title = "AP";
-		window.minSize = new Vector2(200,100);
+		if (!instance) {
+			AssetPlacementWindow window = (AssetPlacementWindow)EditorWindow.GetWindow (typeof(AssetPlacementWindow));
+			window.title = "AP";
+			window.minSize = new Vector2 (200, 100);
+			instance = window;
+		}
 	}
 	
 	static void RefreshAutoSnap (GameObject placedAsset) {
@@ -103,9 +105,9 @@ public class AssetPlacementWindow :  EditorWindow {
 		distanceFromTop += toggleHeight;
 		if (!shouldShowAll) {
 			float popupHeight = 20;
-			int selectedTabNumber = EditorPrefs.GetInt (AssetPlacementKeys.SelectedTabKey);
+			int selectedTabNumber = EditorPrefs.GetInt (AssetPlacementKeys.SelectedTab);
 			selectedTabNumber = EditorGUI.Popup (new Rect (0, distanceFromTop, width, popupHeight), selectedTabNumber, AssetPlacementChoiceSystem.instance.tabNames.ToArray ());
-			EditorPrefs.SetInt (AssetPlacementKeys.SelectedTabKey, selectedTabNumber);
+			EditorPrefs.SetInt (AssetPlacementKeys.SelectedTab, selectedTabNumber);
 			distanceFromTop += popupHeight;
 			AssetPlacementChoiceSystem.instance.selectedTab = AssetPlacementChoiceSystem.instance.tabList [selectedTabNumber];
 		}
@@ -128,13 +130,28 @@ public class AssetPlacementWindow :  EditorWindow {
 			else {
 				//TODO add all cases
 			}
-			if (usedTexture && GUI.Button (new Rect ((width / 3) * xVal, distanceFromTop + (width / 3) * yVal, (width / 3), (width / 3)), usedTexture)) {
+			
+			
+			var buttonStyle = EditorPrefs.GetInt (AssetPlacementKeys.SelectedAssetNumber) == index ? GUI.skin.box : GUI.skin.button;
+			
+			//TODO Make this work with hotkeys
+			
+			var buttonRect = new Rect ((width / 3) * xVal, distanceFromTop + (width / 3) * yVal, (width / 3), (width / 3));
+			if (usedTexture && GUI.Button (buttonRect, usedTexture, buttonStyle)) {
 				EditorPrefs.SetInt (AssetPlacementKeys.SelectedAssetNumber, index);
-				
-				//AssetPlacementKeys.SelectedAssetNumber
-				
-				
 			}
+			
+			
+			string keyLabel = assetData.keyCode.ToString();
+			if(keyLabel.Length > 1) {
+				keyLabel = keyLabel.Remove(0,keyLabel.Length - 1); 
+			}
+
+			GUI.Label(new Rect(buttonRect.x + buttonRect.width * 0.75f, 
+			                   buttonRect.y + buttonRect.height * 0.75f, 
+			                   buttonRect.width * 0.25f, 
+			                   buttonRect.width * 0.25f), keyLabel);
+			
 			index++;
 			xVal++;
 			if (xVal > 2) {
@@ -145,6 +162,8 @@ public class AssetPlacementWindow :  EditorWindow {
 	}
 	
 	public void OnGUI() {
+		instance = this;
+
 		if (background) {
 			float width = Screen.width;
 			

@@ -8,16 +8,18 @@ using System.Collections.Generic;
 public class AssetPlacementChoiceSystemUnity : Editor {	
 	SerializedProperty assetList = null;
 	SerializedProperty tabList = null;
-	SerializedProperty selectedKey = null;
 	SerializedProperty selectedTab = null;
 	SerializedProperty shouldReset = null;
 	
-	int keyValue = -1;
+	static int keyValue = -1;
 	
 	void OnEnable() {
 		assetList = serializedObject.FindProperty ("assetList");
 		tabList = serializedObject.FindProperty ("tabList");
-		selectedKey = serializedObject.FindProperty ("selectedKey");
+		
+		
+		EditorPrefs.SetInt (AssetPlacementKeys.SelectedKey, (int)KeyCode.None);
+		
 		selectedTab = serializedObject.FindProperty ("selectedTab");
 		shouldReset = serializedObject.FindProperty ("shouldReset");
 	}
@@ -28,7 +30,7 @@ public class AssetPlacementChoiceSystemUnity : Editor {
 			extractedTabNameList.Add (tabList.GetArrayElementAtIndex (index).FindPropertyRelative("name").stringValue);
 		}
 		
-		int selectedTabNumber = EditorPrefs.GetInt (AssetPlacementKeys.SelectedTabKey);
+		int selectedTabNumber = EditorPrefs.GetInt (AssetPlacementKeys.SelectedTab);
 		
 		if (extractedTabNameList.Count > 0) {
 			
@@ -46,7 +48,7 @@ public class AssetPlacementChoiceSystemUnity : Editor {
 			serializedObject.Update ();
 		}
 		
-		EditorPrefs.SetInt (AssetPlacementKeys.SelectedTabKey, selectedTabNumber);
+		EditorPrefs.SetInt (AssetPlacementKeys.SelectedTab, selectedTabNumber);
 		
 	}
 	
@@ -71,12 +73,6 @@ public class AssetPlacementChoiceSystemUnity : Editor {
 		}
 	}
 	
-	void UpdateSelectedKey () {
-		if (keyValue != -1) {
-			selectedKey.intValue = keyValue;
-		}
-	}
-	
 	void CreateResetButton () {
 		if (GUILayout.Button ("Reset")) {
 			shouldReset.boolValue = true;
@@ -87,27 +83,36 @@ public class AssetPlacementChoiceSystemUnity : Editor {
 		serializedObject.Update ();
 		
 		GUILayout.Label ("Asset Count: " + assetList.arraySize.ToString ());
-		GUILayout.Label ("Selected Key: " +((KeyCode)selectedKey.intValue).ToString ());
+		GUILayout.Label ("Selected Key: " +((KeyCode)EditorPrefs.GetInt(AssetPlacementKeys.SelectedKey)).ToString ());
 		
 		CreateTabSelection ();
 		CreateAssetSelection ();
 		CreateResetButton ();
 		
-		UpdateSelectedKey ();
-		
 		serializedObject.ApplyModifiedProperties ();
 	}
 	
-	public void OnSceneGUI() {
+	static void RefreshSelectedKey () {
+		EditorPrefs.SetInt (AssetPlacementKeys.SelectedKey, (int)Event.current.keyCode);
 		if (Event.current.keyCode != KeyCode.None) {
-			keyValue = (int)Event.current.keyCode;
-			foreach(var assetData in AssetPlacementChoiceSystem.instance.assetList) {
-				if(assetData.keyCode == Event.current.keyCode) { 
-					EditorPrefs.SetInt (AssetPlacementKeys.SelectedAssetNumber, AssetPlacementKeys.HotKeySelectionEnabled);
+			int index = 0;
+			foreach (var assetData in AssetPlacementChoiceSystem.instance.assetList) {
+				if (assetData.keyCode == Event.current.keyCode) {
+					EditorPrefs.SetInt (AssetPlacementKeys.SelectedAssetNumber, index);
 					return;
 				}
+				index++;
 			}
 		}
+	}
+	
+	public void OnGUI() {
+		RefreshSelectedKey ();
+		
+	}
+	
+	public void OnSceneGUI() {
+		RefreshSelectedKey ();
 	}
 }
 
