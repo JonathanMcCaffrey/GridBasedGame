@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: '##SnazzySettings##'
+  m_Name: SnazzySettings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,24 +77,24 @@ MonoBehaviour:
   tooltip: 1
   cameraAngleOffset: 90
   gridSizeIndex: 3
-  gridIncrementIndex: 0
-  gridMultiIndex: 1
+  gridIncrementIndex: 4
+  gridMultiIndex: 4
   rotIndex: 0
   rotMultiIndex: 0
-  mov2: 0
+  mov2: 1
   angle2: 0
   rotationMode: 0
-  gridIsEnabled: 1
+  gridIsEnabled: 0
   gridIncrement: 1
   gridIncrement2: 2
-  moveAmount: 1
+  moveAmount: 2
   rotAmount: 22.5
   gridSize: 1
   objectScale: 16
   snapAreaSize: .857142925
   rotIncrement: 22.5
   rotIncrement2: 45
-  keyDown: 0
+  keyDown: 1
   settings: 0
   rotAxis: 0
   autoSnap: 1
@@ -121,7 +121,7 @@ MonoBehaviour:
   oldTransform: {fileID: 0}
   oldSelectedTransform: {fileID: 0}
   oldSelectedLength: 1
-  oldPosition: {x: 4.5, y: 4.5, z: 0}
+  oldPosition: {x: 12.6644001, y: 15.8003588, z: 500}
   oldScale: {x: 1, y: 1, z: 1}
   oldRotation: {x: -0, y: 0, z: 0}
   movToggleKey: 256

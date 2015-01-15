@@ -10,7 +10,6 @@ public class AssetPlacementChoiceSystemUnity : Editor {
 	SerializedProperty tabList = null;
 	SerializedProperty selectedKey = null;
 	SerializedProperty selectedTab = null;
-	SerializedProperty selectedTabNumber = null;
 	SerializedProperty shouldReset = null;
 	
 	int keyValue = -1;
@@ -20,7 +19,6 @@ public class AssetPlacementChoiceSystemUnity : Editor {
 		tabList = serializedObject.FindProperty ("tabList");
 		selectedKey = serializedObject.FindProperty ("selectedKey");
 		selectedTab = serializedObject.FindProperty ("selectedTab");
-		selectedTabNumber = serializedObject.FindProperty ("selectedTabNumber");
 		shouldReset = serializedObject.FindProperty ("shouldReset");
 	}
 	
@@ -30,21 +28,26 @@ public class AssetPlacementChoiceSystemUnity : Editor {
 			extractedTabNameList.Add (tabList.GetArrayElementAtIndex (index).FindPropertyRelative("name").stringValue);
 		}
 		
+		int selectedTabNumber = EditorPrefs.GetInt (AssetPlacementKeys.SelectedTabKey);
+		
 		if (extractedTabNameList.Count > 0) {
-
-			selectedTabNumber.intValue = GUILayout.SelectionGrid (selectedTabNumber.intValue, extractedTabNameList.ToArray(), extractedTabNameList.Count);
+			
+			selectedTabNumber = GUILayout.SelectionGrid (selectedTabNumber, extractedTabNameList.ToArray(), extractedTabNameList.Count);
 			serializedObject.ApplyModifiedProperties();
-
+			
 			selectedTab.serializedObject.Update ();
-
-			selectedTab.FindPropertyRelative("name").stringValue = tabList.GetArrayElementAtIndex(selectedTabNumber.intValue).FindPropertyRelative("name").stringValue;
-			selectedTab.FindPropertyRelative("filePath").stringValue = tabList.GetArrayElementAtIndex(selectedTabNumber.intValue).FindPropertyRelative("filePath").stringValue;
-			selectedTab.FindPropertyRelative("number").intValue = tabList.GetArrayElementAtIndex(selectedTabNumber.intValue).FindPropertyRelative("number").intValue;
-
+			
+			selectedTab.FindPropertyRelative("name").stringValue = tabList.GetArrayElementAtIndex(selectedTabNumber).FindPropertyRelative("name").stringValue;
+			selectedTab.FindPropertyRelative("filePath").stringValue = tabList.GetArrayElementAtIndex(selectedTabNumber).FindPropertyRelative("filePath").stringValue;
+			selectedTab.FindPropertyRelative("number").intValue = tabList.GetArrayElementAtIndex(selectedTabNumber).FindPropertyRelative("number").intValue;
+			
 			selectedTab.serializedObject.ApplyModifiedProperties();
-
+			
 			serializedObject.Update ();
 		}
+		
+		EditorPrefs.SetInt (AssetPlacementKeys.SelectedTabKey, selectedTabNumber);
+		
 	}
 	
 	void CreateAssetSelection () {
@@ -97,7 +100,13 @@ public class AssetPlacementChoiceSystemUnity : Editor {
 	
 	public void OnSceneGUI() {
 		if (Event.current.keyCode != KeyCode.None) {
-			keyValue  = (int)Event.current.keyCode;
+			keyValue = (int)Event.current.keyCode;
+			foreach(var assetData in AssetPlacementChoiceSystem.instance.assetList) {
+				if(assetData.keyCode == Event.current.keyCode) { 
+					EditorPrefs.SetInt (AssetPlacementKeys.SelectedAssetNumber, AssetPlacementKeys.HotKeySelectionEnabled);
+					return;
+				}
+			}
 		}
 	}
 }

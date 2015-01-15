@@ -3,8 +3,6 @@ using UnityEditor;
 using System.Collections.Generic;
 
 public static class AssetPlacement {
-	public const string SnapUpdateKey = "AssetPlacement.doSnapUpdate";
-
 	private static bool doSnapUpdate = true;
 	
 	static AssetPlacement() {
@@ -12,6 +10,6 @@ public static class AssetPlacement {
 	}
 	
 	public static void Update() {
-		doSnapUpdate = EditorPrefs.GetBool (SnapUpdateKey, false);
+		doSnapUpdate = EditorPrefs.GetBool (AssetPlacementKeys.SnapUpdate, false);
 	}
 }

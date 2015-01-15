@@ -39,7 +39,7 @@ Material:
       data:
         first:
           name: _Scale
-        second: 1
+        second: 2
       data:
         first:
           name: _SnapAreaSize
@@ -83,7 +83,7 @@ Material:
       data:
         first:
           name: _ObjectScale
-        second: 16
+        second: 32
     m_Colors:
       data:
         first:

@@ -267,6 +267,7 @@ public class SnazzyToolsEditor: EditorWindow
 			if (key.clickCount == 2) Application.OpenURL(Application.dataPath+"/"+installPath+"SnazzyTools/SnazzyGrid/SnazzyGridManual.pdf");
 			if (key.button == 1 && key.type == EventType.mouseDown) Application.OpenURL ("http://forum.unity3d.com/threads/snazzytools-snazzygrid-much-more-than-just-a-grid.253799/");
 		}
+
 		/*
 		if (GUILayout.Button ("Display")) {
 			GameObject[] test = Resources.FindObjectsOfTypeAll(typeof(GameObject)) as GameObject[];

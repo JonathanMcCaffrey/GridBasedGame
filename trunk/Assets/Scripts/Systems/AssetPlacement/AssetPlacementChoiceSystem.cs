@@ -8,17 +8,20 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml;
 using System.Xml.Serialization;
 
+using UnityEditor;
+
 public class AssetPlacementChoiceSystem : MonoBehaviour {
 	public bool shouldReset = false;
 	
 	public int selectedKey = (int)KeyCode.None;
 	public static AssetPlacementData selectedAsset = null; 
 	
-	public List<AssetPlacementData> assetList = new List<AssetPlacementData>(); 
+	public List<AssetPlacementData> assetList = new List<AssetPlacementData>();
 	public List<TabPlacementData> tabList = new List<TabPlacementData>();
+	//Duplicated tab name data for ease of use only. Otherwise, use tabList
+	public List<string> tabNames = new List<string>();
 	
 	public TabPlacementData selectedTab = null;
-	public int selectedTabNumber = 0;
 	
 	private string folderName = "PlacementAssets";
 	private string FolderPath() { 		
@@ -39,15 +42,16 @@ public class AssetPlacementChoiceSystem : MonoBehaviour {
 			instance = this;
 		}
 	}
-
+	
 	void LoadTabs () {
 		var tabPaths = Directory.GetDirectories (FolderPath ());
 		foreach (var filePath in tabPaths) {
 			var name = filePath.Remove (0, FolderPath ().Length + 1);
 			tabList.Add (new TabPlacementData(filePath, name));
+			tabNames.Add(name);
 		}
 	}
-
+	
 	void LoadAssets (string searchedExtension = ".prefab"){
 		if (assetList.Count == 0) {
 			foreach (TabPlacementData tabData in tabList) {
@@ -98,13 +102,31 @@ public class AssetPlacementChoiceSystem : MonoBehaviour {
 		}
 	}
 	
-	void UpdateSelectedAsset () {
+	bool ByButtonSelection () {
+		var selectedAssetNumber = EditorPrefs.GetInt (AssetPlacementKeys.SelectedAssetNumber);
+		if (selectedAssetNumber != AssetPlacementKeys.HotKeySelectionEnabled) {
+			selectedAsset = assetList [selectedAssetNumber];
+			return true;
+		}
+		return false;
+	}
+	
+	void ByHotKeySelection () {
 		foreach (AssetPlacementData data in assetList) {
 			if (selectedTab != null && data.tab == selectedTab.name) {
 				if (data.keyCode == (KeyCode)selectedKey) {
 					selectedAsset = data;
 				}
 			}
+		}
+	}
+	
+	void UpdateSelectedAsset () {
+		var hasFoundAsset = ByButtonSelection (); 
+		if (hasFoundAsset) {
+			return;
+		} else {
+			ByHotKeySelection ();
 		}
 	}
 	
