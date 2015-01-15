@@ -1,0 +1,2 @@
+
+Asset Placement System is for easily creating and placing assets within the unity editor.

@@ -1,0 +1,213 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400000}
+  - 114: {fileID: 11400000}
+  m_Layer: 0
+  m_Name: '##SnazzySettings##'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b296b45fbf3780b4fbf40ed9cfa08d2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridSizePresets:
+  - .100000001
+  - .25
+  - .5
+  - 1
+  - 2
+  - 4
+  gridIncrementPresets:
+  - 1
+  - 2
+  - 4
+  - 8
+  - 10
+  - 16
+  - 20
+  gridMultiPresets:
+  - 1
+  - 2
+  - 4
+  - 8
+  - 10
+  - 16
+  - 20
+  rotPresets:
+  - 5.625
+  - 11.25
+  - 22.5
+  - 45
+  - 90
+  rotMultiPresets:
+  - 5.625
+  - 11.25
+  - 22.5
+  - 45
+  - 90
+  tooltip: 1
+  cameraAngleOffset: 90
+  gridSizeIndex: 3
+  gridIncrementIndex: 0
+  gridMultiIndex: 1
+  rotIndex: 0
+  rotMultiIndex: 0
+  mov2: 0
+  angle2: 0
+  rotationMode: 0
+  gridIsEnabled: 1
+  gridIncrement: 1
+  gridIncrement2: 2
+  moveAmount: 1
+  rotAmount: 22.5
+  gridSize: 1
+  objectScale: 16
+  snapAreaSize: .857142925
+  rotIncrement: 22.5
+  rotIncrement2: 45
+  keyDown: 0
+  settings: 0
+  rotAxis: 0
+  autoSnap: 1
+  autoSnapPos: 1
+  autoSnapPosX: 1
+  autoSnapPosY: 1
+  autoSnapPosZ: 1
+  autoSnapRot: 1
+  autoSnapRotX: 1
+  autoSnapRotY: 1
+  autoSnapRotZ: 1
+  autoSnapScale: 1
+  autoSnapScaleX: 1
+  autoSnapScaleY: 1
+  autoSnapScaleZ: 1
+  lockChild: 0
+  showHelp: 1
+  showGrid: 1
+  viewDependency: 4
+  snapRotCam: 0
+  snapRotLight: 0
+  clone1: {fileID: 0}
+  lookAtSelect: 0
+  oldTransform: {fileID: 0}
+  oldSelectedTransform: {fileID: 0}
+  oldSelectedLength: 1
+  oldPosition: {x: 4.5, y: 4.5, z: 0}
+  oldScale: {x: 1, y: 1, z: 1}
+  oldRotation: {x: -0, y: 0, z: 0}
+  movToggleKey: 256
+  angleToggleKey: 256
+  gridKey: 103
+  leftKey: 260
+  rightKey: 262
+  upKey: 264
+  downKey: 258
+  frontKey: 280
+  backKey: 281
+  rotLeftKey: 263
+  rotRightKey: 265
+  snapRotKey: 259
+  rotXYZKey: 267
+  duplicateKey: 268
+  focusKey: 261
+  lockKeys: 0
+  snapKeyDown: 0
+  snapKeyDownStart: 0
+  snapKeyTapped: 0
+  snapPosKeyDown: 0
+  snapPosKeyDownStart: 230.548569
+  snapPosKeyTapped: 0
+  snapRotKeyDown: 0
+  snapRotKeyDownStart: 0
+  snapRotKeyTapped: 0
+  snapScaleKeyDown: 0
+  snapScaleKeyDownStart: 0
+  snapScaleKeyTapped: 0
+  snapKey: 266
+  snapInversionKey: 0
+  snapPosKey: 257
+  snapScaleKey: 0
+  resetTransformKey: 0
+  resetPositionKey: 0
+  resetRotationKey: 0
+  resetScaleKey: 0
+  childCompensationKey: 0
+  parentKey: 0
+  parentToCenterKey: 0
+  centerCurrentParentKey: 0
+  hierarchyUpKey: 270
+  hierarchyDownKey: 269
+  unparentKey: 0
+  unparentDeleteKey: 0
+  movToggleKeySpecial: 0
+  angleToggleKeySpecial: 0
+  gridKeySpecial: 0
+  leftKeySpecial: 0
+  rightKeySpecial: 0
+  upKeySpecial: 0
+  downKeySpecial: 0
+  frontKeySpecial: 0
+  backKeySpecial: 0
+  rotLeftKeySpecial: 0
+  rotRightKeySpecial: 0
+  snapRotKeySpecial: 0
+  rotXYZKeySpecial: 0
+  duplicateKeySpecial: 0
+  focusKeySpecial: 0
+  resetTransformKeySpecial: 0
+  resetPositionKeySpecial: 0
+  resetRotationKeySpecial: 0
+  resetScaleKeySpecial: 0
+  childCompensationKeySpecial: 0
+  parentKeySpecial: 0
+  parentToCenterKeySpecial: 0
+  hierarchyUpKeySpecial: 0
+  hierarchyDownKeySpecial: 0
+  unparentKeySpecial: 0
+  snapKeySpecial: 0
+  snapInversionKeySpecial: 0
+  snapPosKeySpecial: 0
+  snapScaleKeySpecial: 0
+  unparentDeleteKeySpecial: 0
+  centerCurrentParentKeySpecial: 0
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1

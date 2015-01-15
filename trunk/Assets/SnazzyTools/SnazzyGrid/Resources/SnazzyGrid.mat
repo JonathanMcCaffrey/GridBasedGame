@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: SnazzyGrid
+  m_Shader: {fileID: 4800000, guid: 73dc2fcaca608c94aa52303ec386617c, type: 3}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _SnazzyGrid1
+        second:
+          m_Texture: {fileID: 2800000, guid: e8e7e55814ffb1d44a860d217c31c841, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _SnazzyGrid2
+        second:
+          m_Texture: {fileID: 2800000, guid: 9689f11293baa2f418a016a7a21db6b7, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _Cutoff
+        second: .5
+      data:
+        first:
+          name: _GridSteps
+        second: 1
+      data:
+        first:
+          name: _Scale
+        second: 1
+      data:
+        first:
+          name: _SnapAreaSize
+        second: 1.16666663
+      data:
+        first:
+          name: _SnapTransparency
+        second: 1.13888896
+      data:
+        first:
+          name: _SnapOffset
+        second: .5
+      data:
+        first:
+          name: _StreakScale
+        second: 7
+      data:
+        first:
+          name: _GridOffset
+        second: .5
+      data:
+        first:
+          name: _Fresnel
+        second: 4
+      data:
+        first:
+          name: _VertexPush
+        second: 9.99999975e-05
+      data:
+        first:
+          name: _X
+        second: 0
+      data:
+        first:
+          name: _Y
+        second: 0
+      data:
+        first:
+          name: _Z
+        second: 1
+      data:
+        first:
+          name: _ObjectScale
+        second: 16
+    m_Colors:
+      data:
+        first:
+          name: _GridColor
+        second: {r: .5, g: .5, b: .5, a: 1}
+      data:
+        first:
+          name: _StreakColor
+        second: {r: 1, g: .992156863, b: .729411781, a: 1}

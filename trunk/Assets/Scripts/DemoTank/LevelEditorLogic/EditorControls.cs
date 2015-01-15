@@ -27,16 +27,13 @@ public class EditorControls : MonoBehaviour, IKeyListener {
 	void CheckForMouseTileCreation () {
 		if (mIsOn && mSelectedPrefab) {
 			if (Input.GetMouseButtonDown (0)) {
-
-
-
+				//TODO Write a function to swap all GameObjects with matching Prefabs
 				GameObject temp = GameObject.Instantiate (mSelectedPrefab, new Vector3 (Camera.main.ScreenToWorldPoint (Input.mousePosition).x, Camera.main.ScreenToWorldPoint (Input.mousePosition).y, 0), Quaternion.identity) as GameObject;
 				if (mSelectedPrefab.GetComponent<Tile> ().mCollidableType == Tile.CollidableType.Floor) {
 					temp.transform.parent =  LevelLayers.instance.mFloorLayer.transform;
 				} else if (mSelectedPrefab.GetComponent<Tile> ().mCollidableType == Tile.CollidableType.Wall) {
 					temp.transform.parent = LevelLayers.instance.mWallLayer.transform;
 				}
-
 
 				temp.GetComponent<Tile>().mEditorType = Tile.EditorType.Tile;
 			}
