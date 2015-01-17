@@ -116,7 +116,7 @@ public class AssetPlacementWindow :  EditorWindow {
 			EditorPrefs.SetInt (AssetPlacementKeys.SelectedTab, selectedTabNumber);
 			distanceFromTop += popupHeight;
 			
-			if (AssetPlacementChoiceSystem.instance.tabList.Count < selectedTabNumber) {
+			if (AssetPlacementChoiceSystem.instance.tabList.Count < selectedTabNumber && AssetPlacementChoiceSystem.instance.tabList.Count != 0) {
 				AssetPlacementChoiceSystem.instance.selectedTab = AssetPlacementChoiceSystem.instance.tabList [selectedTabNumber];
 			}
 		} else {
@@ -238,6 +238,11 @@ public class AssetPlacementWindow :  EditorWindow {
 				index++;
 				continue;
 			}
+
+			if(assetData.gameObject == null) {
+				continue;
+			}
+
 			Texture2D usedTexture = null;
 			if (assetData.gameObject.GetComponent<SpriteRenderer> ()) {
 				usedTexture = assetData.gameObject.GetComponent<SpriteRenderer> ().sprite.texture;
@@ -252,7 +257,7 @@ public class AssetPlacementWindow :  EditorWindow {
 			
 			//TODO Make this work with hotkeys
 			
-			var buttonRect = new Rect ((width / 3) * xVal, distanceFromTop + (width / 3) * yVal, (width / 3), (width / 3));
+			var buttonRect = new Rect ((width / 3.0f) * xVal, distanceFromTop + (width / 3.0f) * yVal, (width / 3.0f), (width / 3.0f));
 			if (usedTexture && GUI.Button (buttonRect, usedTexture, buttonStyle)) {
 				EditorPrefs.SetInt (AssetPlacementKeys.SelectedAssetNumber, index);
 			}
@@ -278,7 +283,8 @@ public class AssetPlacementWindow :  EditorWindow {
 			}
 		}
 	}
-	
+
+	Vector2 scrollPosition = Vector2.zero;
 	public void OnGUI() {
 		instance = this;
 		
@@ -296,8 +302,29 @@ public class AssetPlacementWindow :  EditorWindow {
 			distanceFromTop += toggleHeight;
 
 			CreateToggleTabSelection (width, ref distanceFromTop);
-			CreateAssetButtons (width, ref distanceFromTop);
-			
+
+			float dist = distanceFromTop;
+
+			int assetCount = 0;
+			foreach (var assetData in AssetPlacementChoiceSystem.instance.assetList) {
+				if (assetData.tab != AssetPlacementChoiceSystem.instance.selectedTab.name && !shouldShowAll) {
+					continue;
+				}
+				assetCount++;
+			}
+
+			float scrollMax = (((assetCount / 3) + 1.0f) * width / 3.0f) + 2.0f;
+			float viewMax = Screen.height - dist - 5;
+			float buffer = scrollMax > viewMax ? 12 : 0;
+
+			scrollPosition = GUI.BeginScrollView(new Rect(0.0f, dist, width, viewMax),
+			                                     scrollPosition,
+			                                     new Rect(0.0f, dist, width - buffer, scrollMax)); 
+
+			CreateAssetButtons (width - buffer, ref distanceFromTop);
+
+			GUI.EndScrollView();
+
 			/*EditorPrefs.SetBool (AssetPlacement.SnapUpdateKey,
 			                     EditorGUI.Toggle (new Rect(-1, distanceFromTop, width, 20),  "Update Auto Snap", EditorPrefs.GetBool (AssetPlacement.SnapUpdateKey, false)));
 			distanceFromTop += 20;*/

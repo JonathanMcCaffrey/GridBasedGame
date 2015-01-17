@@ -76,7 +76,8 @@ public class AssetPlacementChoiceSystemUnity : Editor {
 			shouldReset.boolValue = true;
 		}
 	}
-	
+
+	Vector2 scrollPosition = Vector2.zero;
 	public override void OnInspectorGUI() {
 		serializedObject.Update ();
 
@@ -85,7 +86,9 @@ public class AssetPlacementChoiceSystemUnity : Editor {
 		GUILayout.Label ("Selected Key: " +((KeyCode)keyValue).ToString (), defaultStyle);
 		
 		CreateTabSelection ();
+
 		CreateAssetSelection ();
+
 		CreateResetButton ();
 		
 		serializedObject.ApplyModifiedProperties ();

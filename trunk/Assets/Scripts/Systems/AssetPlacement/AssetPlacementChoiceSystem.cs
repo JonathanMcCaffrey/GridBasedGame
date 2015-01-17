@@ -126,6 +126,10 @@ public class AssetPlacementChoiceSystem : MonoBehaviour {
 	}
 	
 	void UpdateSelectedAsset () {
+		if (assetList.Count == 0) {
+			return;
+				}
+
 		var hasFoundAsset = ByButtonSelection (); 
 		if (hasFoundAsset) {
 			return;
