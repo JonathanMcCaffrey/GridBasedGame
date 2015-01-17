@@ -4,11 +4,32 @@ using UnityEditor;
 
 [CustomPropertyDrawer(typeof(AssetPlacementData))]
 public class AssetPlacementDataUnity : PropertyDrawer {
+	public bool shouldLoadKey = true;
+	public void OnEnable() {
+		shouldLoadKey = true;
+	}
+	
 	public override void OnGUI(Rect rect, SerializedProperty prop, GUIContent label) {
 		SerializedProperty keyCode = prop.FindPropertyRelative ("keyCode");
 		SerializedProperty name = prop.FindPropertyRelative ("name");
+		SerializedProperty shouldRefresh = prop.FindPropertyRelative ("shouldRefresh");
 		
-		GUI.Label (new Rect (rect.x, rect.y, rect.width / 2, rect.height), name.stringValue);
-		EditorGUI.PropertyField (new Rect(rect.x + rect.width / 2, rect.y, rect.width / 2, rect.height), keyCode);
+		if (shouldRefresh.boolValue && name.stringValue != "") {
+			shouldRefresh.boolValue = false;
+			var foundValue = EditorPrefs.GetInt ("PrefabsKeys." + name.stringValue);
+			
+			Debug.Log("PrefabsKeys." + name.stringValue);
+			
+			if(foundValue != 0) {
+				keyCode.intValue = foundValue;
+			}
+		}
+		
+		string fixedLabel = name.stringValue.TrimEnd (".prefab".ToCharArray ());
+		
+		GUI.Label (new Rect (rect.x, rect.y, rect.width * 0.60f, rect.height), fixedLabel);
+		EditorGUI.PropertyField (new Rect(rect.width * 0.65f, rect.y, rect.width * 0.35f, rect.height), keyCode, GUIContent.none);
+		
+		EditorPrefs.SetInt ("PrefabsKeys." + name, keyCode.intValue);
 	}
 }

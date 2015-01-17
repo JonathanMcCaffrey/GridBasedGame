@@ -7,9 +7,11 @@ public class AssetPlacementData {
 	public string filePath = "";
 	public string name = "";
 	public string tab = "";
-	public KeyCode keyCode = KeyCode.A;
+	public KeyCode keyCode = KeyCode.None;
 	public GameObject gameObject = null;
-	
+
+	public bool shouldRefresh = true;
+
 	public AssetPlacementData(string filePath, string name, string tab) {
 		this.filePath = filePath;
 		this.name = name;

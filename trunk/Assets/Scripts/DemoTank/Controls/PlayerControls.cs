@@ -173,7 +173,6 @@ public class PlayerControls : MonoBehaviour {
 	
 	
 	void OnCollisionEnter2D(Collision2D col) {
-		print ("Collision Event");
 		this.rigidbody2D.velocity = Vector3.zero;
 	}
 }

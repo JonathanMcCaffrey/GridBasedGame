@@ -3,6 +3,8 @@
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization;
 
 public class AssetPlacementWindow :  EditorWindow {
 	bool shouldShowAll = true;
@@ -109,8 +111,84 @@ public class AssetPlacementWindow :  EditorWindow {
 			selectedTabNumber = EditorGUI.Popup (new Rect (0, distanceFromTop, width, popupHeight), selectedTabNumber, AssetPlacementChoiceSystem.instance.tabNames.ToArray ());
 			EditorPrefs.SetInt (AssetPlacementKeys.SelectedTab, selectedTabNumber);
 			distanceFromTop += popupHeight;
-			AssetPlacementChoiceSystem.instance.selectedTab = AssetPlacementChoiceSystem.instance.tabList [selectedTabNumber];
+			
+			if (AssetPlacementChoiceSystem.instance.tabList.Count < selectedTabNumber) {
+				AssetPlacementChoiceSystem.instance.selectedTab = AssetPlacementChoiceSystem.instance.tabList [selectedTabNumber];
+			}
+		} else {
+			distanceFromTop += 8;
 		}
+	}
+	
+	public int textureWidth = 128; 
+	public int textureHeight = 128;
+	
+	
+	Texture2D CreateTextureFromCamera(AssetPlacementData assetData) {
+		string fixedName = assetData.name.Replace('\\', '_');
+		fixedName = fixedName.Replace('/', '_');
+		fixedName = fixedName.Replace('.', '_');
+		
+		var directoryPath = Application.dataPath + "/Resources/PlacementIcons/";
+		string textureFilePath = directoryPath + fixedName + ".png";
+		if (!Directory.Exists (directoryPath)) {
+			Directory.CreateDirectory(directoryPath);
+		}
+		
+		var resourcePath = "PlacementIcons/" + fixedName;
+		if (File.Exists (textureFilePath)) {
+			var texture = Resources.Load<Texture2D>(resourcePath);
+			return texture;
+		}
+		
+		Camera stagedCamera = null;
+		foreach(var camera in Camera.allCameras) {
+			if(camera.gameObject.name == "RenderIconCamera") {
+				stagedCamera = camera;
+			}
+		}
+		if(!stagedCamera) {
+			return null;
+		}
+
+		var stagedParent = GameObject.FindGameObjectWithTag("IconTextureCanvas") as GameObject;
+		if (!stagedParent) {
+			return null;
+		}
+
+		var stagedAsset = PrefabUtility.InstantiatePrefab(assetData.gameObject) as GameObject; 	
+		stagedAsset.name = "StagedAsset";
+		DontDestroyOnLoad (stagedAsset);
+		stagedAsset.transform.parent = stagedParent.transform;
+		stagedAsset.transform.localPosition = Vector3.zero;
+
+		SceneView.RepaintAll ();
+
+		
+		RenderTexture rt = new RenderTexture(textureWidth, textureHeight, 24000);
+		RenderTexture.active = rt;
+		stagedCamera.targetTexture = rt;
+		
+		Texture2D screenShot = new Texture2D (textureWidth, textureHeight);
+		stagedCamera.Render ();
+		RenderTexture.active = rt;
+		screenShot.ReadPixels (new Rect (0, 0, Screen.width, Screen.height), 0, 0);
+		screenShot.Apply ();
+		
+		var bytes = screenShot.EncodeToPNG ();
+		
+		RenderTexture.active = null;
+		DestroyImmediate (screenShot);
+		
+		File.WriteAllBytes (textureFilePath, bytes);
+		
+		
+		stagedCamera.targetTexture = null;
+		RenderTexture.active = null; 
+		
+		DestroyImmediate (stagedAsset);
+
+		return null;
 	}
 	
 	void CreateAssetButtons (float width, ref float distanceFromTop) {
@@ -123,14 +201,15 @@ public class AssetPlacementWindow :  EditorWindow {
 				index++;
 				continue;
 			}
-			Texture usedTexture = null;
+			Texture2D usedTexture = null;
 			if (assetData.gameObject.GetComponent<SpriteRenderer> ()) {
 				usedTexture = assetData.gameObject.GetComponent<SpriteRenderer> ().sprite.texture;
+			} if (assetData.gameObject.GetComponent<MeshRenderer> ()) {
+				var tempTexture = CreateTextureFromCamera(assetData);
+				if(tempTexture) {
+					usedTexture = tempTexture;
+				}
 			}
-			else {
-				//TODO add all cases
-			}
-			
 			
 			var buttonStyle = EditorPrefs.GetInt (AssetPlacementKeys.SelectedAssetNumber) == index ? GUI.skin.box : GUI.skin.button;
 			
@@ -146,7 +225,7 @@ public class AssetPlacementWindow :  EditorWindow {
 			if(keyLabel.Length > 1) {
 				keyLabel = keyLabel.Remove(0,keyLabel.Length - 1); 
 			}
-
+			
 			GUI.Label(new Rect(buttonRect.x + buttonRect.width * 0.75f, 
 			                   buttonRect.y + buttonRect.height * 0.75f, 
 			                   buttonRect.width * 0.25f, 
@@ -163,7 +242,7 @@ public class AssetPlacementWindow :  EditorWindow {
 	
 	public void OnGUI() {
 		instance = this;
-
+		
 		if (background) {
 			float width = Screen.width;
 			
@@ -173,7 +252,6 @@ public class AssetPlacementWindow :  EditorWindow {
 			CreateTitleLogo (width, ref distanceFromTop);
 			CreateToggleTabSelection (width, ref distanceFromTop);
 			CreateAssetButtons (width, ref distanceFromTop);
-			
 			
 			/*EditorPrefs.SetBool (AssetPlacement.SnapUpdateKey,
 			                     EditorGUI.Toggle (new Rect(-1, distanceFromTop, width, 20),  "Update Auto Snap", EditorPrefs.GetBool (AssetPlacement.SnapUpdateKey, false)));

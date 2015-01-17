@@ -11,12 +11,11 @@ public class AssetPlacementChoiceSystemUnity : Editor {
 	SerializedProperty selectedTab = null;
 	SerializedProperty shouldReset = null;
 	
-	static int keyValue = -1;
+	static int keyValue = (int)KeyCode.None;
 	
 	void OnEnable() {
 		assetList = serializedObject.FindProperty ("assetList");
 		tabList = serializedObject.FindProperty ("tabList");
-		
 		
 		EditorPrefs.SetInt (AssetPlacementKeys.SelectedKey, (int)KeyCode.None);
 		
@@ -48,8 +47,7 @@ public class AssetPlacementChoiceSystemUnity : Editor {
 			serializedObject.Update ();
 		}
 		
-		EditorPrefs.SetInt (AssetPlacementKeys.SelectedTab, selectedTabNumber);
-		
+		EditorPrefs.SetInt (AssetPlacementKeys.SelectedTab, selectedTabNumber);	
 	}
 	
 	void CreateAssetSelection () {
@@ -83,7 +81,7 @@ public class AssetPlacementChoiceSystemUnity : Editor {
 		serializedObject.Update ();
 		
 		GUILayout.Label ("Asset Count: " + assetList.arraySize.ToString ());
-		GUILayout.Label ("Selected Key: " +((KeyCode)EditorPrefs.GetInt(AssetPlacementKeys.SelectedKey)).ToString ());
+		GUILayout.Label ("Selected Key: " +((KeyCode)keyValue).ToString ());
 		
 		CreateTabSelection ();
 		CreateAssetSelection ();
@@ -95,11 +93,15 @@ public class AssetPlacementChoiceSystemUnity : Editor {
 	static void RefreshSelectedKey () {
 		EditorPrefs.SetInt (AssetPlacementKeys.SelectedKey, (int)Event.current.keyCode);
 		if (Event.current.keyCode != KeyCode.None) {
+			keyValue = (int)Event.current.keyCode;
+			
 			int index = 0;
 			foreach (var assetData in AssetPlacementChoiceSystem.instance.assetList) {
-				if (assetData.keyCode == Event.current.keyCode) {
-					EditorPrefs.SetInt (AssetPlacementKeys.SelectedAssetNumber, index);
-					return;
+				if(AssetPlacementChoiceSystem.instance.selectedTab.name == assetData.tab) {
+					if (assetData.keyCode == Event.current.keyCode) {
+						EditorPrefs.SetInt (AssetPlacementKeys.SelectedAssetNumber, index);
+						return;
+					}
 				}
 				index++;
 			}
@@ -108,7 +110,6 @@ public class AssetPlacementChoiceSystemUnity : Editor {
 	
 	public void OnGUI() {
 		RefreshSelectedKey ();
-		
 	}
 	
 	public void OnSceneGUI() {
