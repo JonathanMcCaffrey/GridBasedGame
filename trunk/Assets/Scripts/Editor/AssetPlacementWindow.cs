@@ -7,7 +7,9 @@ using System.IO;
 using System.Runtime.Serialization;
 
 public class AssetPlacementWindow :  EditorWindow {
-	bool shouldShowAll = true;
+	bool shouldShowAll = false;
+	bool shouldShowLabels = false;
+	
 	
 	//TODO add more features to this window
 	
@@ -85,6 +87,7 @@ public class AssetPlacementWindow :  EditorWindow {
 	}
 	
 	private Texture background = null;
+	private Texture backgroundAlpha = null;
 	private Texture windowTitle = null;
 	void Load() {
 		string path = "Assets/"+AssetPlacementKeys.InstallPath+"AssetPlacement/Resources/GUI/";
@@ -93,6 +96,7 @@ public class AssetPlacementWindow :  EditorWindow {
 			Debug.Log ("AssetPlacement InstallPath Needs Fixing");
 		}
 		
+		backgroundAlpha = AssetDatabase.LoadAssetAtPath(path+"BGAlpha.png",typeof(Texture)) as Texture;
 		windowTitle = AssetDatabase.LoadAssetAtPath(path+"Title.jpg",typeof(Texture)) as Texture;
 	}
 	
@@ -125,6 +129,7 @@ public class AssetPlacementWindow :  EditorWindow {
 	
 	
 	Texture2D CreateTextureFromCamera(AssetPlacementData assetData) {
+		//TODO Have it create and delete the staged object it finds
 		string fixedName = assetData.name.Replace('\\', '_');
 		fixedName = fixedName.Replace('/', '_');
 		fixedName = fixedName.Replace('.', '_');
@@ -150,20 +155,20 @@ public class AssetPlacementWindow :  EditorWindow {
 		if(!stagedCamera) {
 			return null;
 		}
-
+		
 		var stagedParent = GameObject.FindGameObjectWithTag("IconTextureCanvas") as GameObject;
 		if (!stagedParent) {
 			return null;
 		}
-
+		
 		var stagedAsset = PrefabUtility.InstantiatePrefab(assetData.gameObject) as GameObject; 	
 		stagedAsset.name = "StagedAsset";
 		DontDestroyOnLoad (stagedAsset);
 		stagedAsset.transform.parent = stagedParent.transform;
 		stagedAsset.transform.localPosition = Vector3.zero;
-
+		
 		SceneView.RepaintAll ();
-
+		
 		
 		RenderTexture rt = new RenderTexture(textureWidth, textureHeight, 24000);
 		RenderTexture.active = rt;
@@ -187,8 +192,40 @@ public class AssetPlacementWindow :  EditorWindow {
 		RenderTexture.active = null; 
 		
 		DestroyImmediate (stagedAsset);
-
+		
 		return null;
+	}
+	
+	void CreateHotkeyLabel (Rect buttonRect, string keyLabel) {
+		Rect labelRect = new Rect (buttonRect.x + buttonRect.width * 0.7f, buttonRect.y + buttonRect.height * 0.7f, buttonRect.width * 0.3f, buttonRect.width * 0.3f);
+		
+		GUI.DrawTexture (new Rect (labelRect.x - labelRect.width * 0.1f,
+		                           labelRect.y - labelRect.height * 0.1f, 
+		                           labelRect.width,
+		                           labelRect.height)
+		                 , backgroundAlpha);
+		
+		GUIStyle labelStyle = new GUIStyle ();
+		labelStyle.fontSize = 18;
+		labelStyle.fontStyle = FontStyle.Bold;
+		labelStyle.normal.textColor = Color.black;
+		GUI.Label (labelRect, keyLabel, labelStyle);
+	}
+	
+	void CreateTabLabel (AssetPlacementData assetData, Rect buttonRect) {
+		Rect labelRect = new Rect(buttonRect.x + buttonRect.width * 0.1f, buttonRect.y + buttonRect.height * 0.1f, buttonRect.width * 0.8f, buttonRect.width * 0.2f); 
+		
+		GUI.DrawTexture (new Rect (labelRect.x,
+		                           labelRect.y - labelRect.height * 0.1f, 
+		                           labelRect.width,
+		                           labelRect.height)
+		                 , backgroundAlpha);
+		
+		var labelStyle = new GUIStyle ();
+		labelStyle.fontSize = 14;
+		labelStyle.fontStyle = FontStyle.Bold;
+		labelStyle.normal.textColor = Color.black;
+		GUI.Label (labelRect, assetData.tab, labelStyle);
 	}
 	
 	void CreateAssetButtons (float width, ref float distanceFromTop) {
@@ -226,10 +263,12 @@ public class AssetPlacementWindow :  EditorWindow {
 				keyLabel = keyLabel.Remove(0,keyLabel.Length - 1); 
 			}
 			
-			GUI.Label(new Rect(buttonRect.x + buttonRect.width * 0.75f, 
-			                   buttonRect.y + buttonRect.height * 0.75f, 
-			                   buttonRect.width * 0.25f, 
-			                   buttonRect.width * 0.25f), keyLabel);
+			if(shouldShowLabels) {
+				CreateHotkeyLabel (buttonRect, keyLabel);
+				if(shouldShowAll) {
+					CreateTabLabel (assetData, buttonRect);
+				}
+			}
 			
 			index++;
 			xVal++;
@@ -249,14 +288,19 @@ public class AssetPlacementWindow :  EditorWindow {
 			EditorGUI.DrawPreviewTexture (new Rect (0, 0, Screen.width, Screen.height), background);
 			
 			float distanceFromTop = 0.0f;
+
 			CreateTitleLogo (width, ref distanceFromTop);
+
+			float toggleHeight = 16;
+			shouldShowLabels = EditorGUI.Toggle (new Rect (0, distanceFromTop, width, toggleHeight), "Show Labels", shouldShowLabels);
+			distanceFromTop += toggleHeight;
+
 			CreateToggleTabSelection (width, ref distanceFromTop);
 			CreateAssetButtons (width, ref distanceFromTop);
 			
 			/*EditorPrefs.SetBool (AssetPlacement.SnapUpdateKey,
 			                     EditorGUI.Toggle (new Rect(-1, distanceFromTop, width, 20),  "Update Auto Snap", EditorPrefs.GetBool (AssetPlacement.SnapUpdateKey, false)));
 			distanceFromTop += 20;*/
-			
 		}
 	}
 }

@@ -79,9 +79,10 @@ public class AssetPlacementChoiceSystemUnity : Editor {
 	
 	public override void OnInspectorGUI() {
 		serializedObject.Update ();
-		
-		GUILayout.Label ("Asset Count: " + assetList.arraySize.ToString ());
-		GUILayout.Label ("Selected Key: " +((KeyCode)keyValue).ToString ());
+
+		var defaultStyle = new GUIStyle ();
+		GUILayout.Label ("Asset Count: " + assetList.arraySize.ToString (), defaultStyle);
+		GUILayout.Label ("Selected Key: " +((KeyCode)keyValue).ToString (), defaultStyle);
 		
 		CreateTabSelection ();
 		CreateAssetSelection ();
