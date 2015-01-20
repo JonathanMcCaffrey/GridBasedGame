@@ -1,0 +1,135 @@
+fileFormatVersion: 2
+guid: 6f5e304511772f54dba9004193c27a4a
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: AmbientMusic
+    21300002: AmbientSpot
+    21300004: LightDirectional
+    21300006: LightFull
+    21300008: LightSpot
+    21300010: LightSpotlight
+    21300012: Trigger1
+    21300014: Trigger2
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 1
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 5
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: AmbientMusic
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 130
+        width: 38
+        height: 32
+      alignment: 9
+      pivot: {x: .552631557, y: .375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AmbientSpot
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 164
+        width: 50
+        height: 55
+      alignment: 9
+      pivot: {x: .540000021, y: .454545468}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: LightDirectional
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 112
+        width: 41
+        height: 51
+      alignment: 9
+      pivot: {x: .439024389, y: .490196079}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: LightFull
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 77
+        width: 30
+        height: 51
+      alignment: 9
+      pivot: {x: .600000024, y: .490196079}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: LightSpot
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 111
+        width: 40
+        height: 51
+      alignment: 9
+      pivot: {x: .449999988, y: .490196079}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: LightSpotlight
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 165
+        width: 43
+        height: 53
+      alignment: 9
+      pivot: {x: .418604642, y: .509433985}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Trigger1
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 221
+        width: 52
+        height: 33
+      alignment: 9
+      pivot: {x: .538461566, y: .545454562}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Trigger2
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 220
+        width: 54
+        height: 34
+      alignment: 9
+      pivot: {x: .518518507, y: .529411793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 

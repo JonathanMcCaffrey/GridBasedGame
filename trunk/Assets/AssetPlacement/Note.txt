@@ -1,0 +1,22 @@
+
+Asset Placement System is for easily creating and placing assets within the unity editor via hotkeys. 
+- Ask Jon for Questions on this.
+- Also, not fully done.
+
+[Setup]
+- Windows/AssetPlacement 
+- Set hotkeys in AssetPlacementSystem (Choice)
+- Adjust mouse position for your zoom distance in AssetPlacement (Position)
+
+[Description]
+- Hotkeys only work with AssetPlacementSystem and Scene selected.
+- Set hotkeys in AssetPlacementSystem.
+- Click 'Reset' button in AssetPlacementSystem to refresh loaded assets.
+
+[Notes]
+- Asset selection Hotkeys only work for the currently selected tab
+
+[HotKeys]
+Ctrl+Shift+E Select AssetPlacementSystem.
+Ctrl+Shift+F Toggle Auto Snap if using AutoGridSnap.
+Ctrl+Shift+D Create the selected asset at mouse position.
