@@ -10,21 +10,8 @@ public class AssetPlacement : EditorWindow {
 		EditorApplication.update += Update;	
 	}
 	
-	public void OnGUI() {
-		if (Event.current.keyCode != KeyCode.None) {
-			int index = 0;
-			foreach(var assetData in AssetPlacementChoiceSystem.instance.assetList) {
-				if(assetData.keyCode == Event.current.keyCode) { 
-					EditorPrefs.SetInt (AssetPlacementKeys.SelectedAssetNumber, index);
-					return;
-				}
-				index++;
-			}
-		}
-	}
-
 	public static void Update() {
-		doSnapUpdate = EditorPrefs.GetBool (AssetPlacementKeys.SnapUpdate, false);
+		doSnapUpdate = EditorPrefs.GetBool (AssetPlacementGlobals.SnapUpdate, false);
 
 		if (AssetPlacementWindow.instance) {
 			AssetPlacementWindow.instance.Repaint();

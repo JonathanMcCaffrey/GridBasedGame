@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -53,23 +53,25 @@ public class AssetPlacementPositionSystem : MonoBehaviour {
 
 	void CreateMarker () {
 		if (marker == null && AssetPlacementChoiceSystem.instance) {
-			marker = GameObject.Find (AssetPlacementKeys.PositionMarker);
+			marker = GameObject.Find (AssetPlacementGlobals.PositionMarker);
 			if (marker) {
 				return;
 			}
-			string path = "Assets/" + AssetPlacementKeys.InstallPath + "AssetPlacement/Resources/GUI/";
+			string path = "Assets/" + AssetPlacementGlobals.InstallPath + "AssetPlacement/Resources/GUI/";
 			var markerTexture = AssetDatabase.LoadAssetAtPath (path + "PositionMarker.png", typeof(Texture2D)) as Texture2D;
 			if (markerTexture) {
-				marker = new GameObject (AssetPlacementKeys.PositionMarker);
+				marker = new GameObject (AssetPlacementGlobals.PositionMarker);
+				DontDestroyOnLoad(marker);
 				marker.AddComponent<SpriteRenderer> ();
 				var renderer = marker.GetComponent<SpriteRenderer> ();
-				var sprite = Sprite.Create(markerTexture, new Rect(0,0,markerTexture.width,markerTexture.height), Vector2.zero);
+				var sprite = Sprite.Create(markerTexture, new Rect(0,0,markerTexture.width,markerTexture.height), new Vector2(0.5f, 0.5f));
 				sprite.name = "PositionMarker";
 				renderer.sprite = sprite;
 
 			}
 
 			marker.transform.parent = gameObject.transform;
+			marker.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f); 
 		}
 	}
 	
@@ -90,7 +92,6 @@ public class AssetPlacementPositionSystem : MonoBehaviour {
 	void MoveDebugMarker (Vector3 position) {
 		if (ShouldMoveMarker ()) {
 			marker.transform.localPosition = position;
-			marker.transform.localScale = Vector3.one;
 		}
 	}
 	

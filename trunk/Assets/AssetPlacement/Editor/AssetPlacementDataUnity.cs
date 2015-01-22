@@ -16,7 +16,7 @@ public class AssetPlacementDataUnity : PropertyDrawer {
 		
 		if (shouldRefresh.boolValue && name.stringValue != "") {
 			shouldRefresh.boolValue = false;
-			var foundValue = EditorPrefs.GetInt (AssetPlacementKeys.SavedHotkey + name.stringValue);
+			var foundValue = EditorPrefs.GetInt (AssetPlacementGlobals.SavedHotkey + name.stringValue);
 			if(foundValue != 0) {
 				keyCode.enumValueIndex = foundValue;
 			}
@@ -27,6 +27,6 @@ public class AssetPlacementDataUnity : PropertyDrawer {
 		GUI.Label (new Rect (rect.x, rect.y, rect.width * 0.60f, rect.height), fixedLabel);
 		EditorGUI.PropertyField (new Rect(rect.width * 0.65f, rect.y, rect.width * 0.35f, rect.height), keyCode, GUIContent.none);
 		
-		EditorPrefs.SetInt (AssetPlacementKeys.SavedHotkey + name.stringValue, keyCode.enumValueIndex);
+		EditorPrefs.SetInt (AssetPlacementGlobals.SavedHotkey + name.stringValue, keyCode.enumValueIndex);
 	}
 }

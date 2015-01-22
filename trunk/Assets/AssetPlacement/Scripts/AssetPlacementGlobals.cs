@@ -1,8 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-//TODO Rename to AssetPlacmenetGlobals?
-public class AssetPlacementKeys {
+public class AssetPlacementGlobals {
 	//Where the AssetPlacement project is in Assets/
 	static public string InstallPath = ""; 
 
@@ -13,6 +12,8 @@ public class AssetPlacementKeys {
 
 	//Where the system will put the icons it renders from 3D assets in Assets/
 	static public string IconRenderPath = "/Resources/PlacementIcons/";
+
+	static public string HotKeysPath = "/AssetPlacement/Editor/AssetPlacementSerializedHotKeys.cs";
 
 	//Keys used internally
 	public const string SnapUpdate = "AssetPlacement.doSnapUpdate";

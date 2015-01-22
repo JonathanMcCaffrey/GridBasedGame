@@ -19,4 +19,4 @@ Asset Placement System is for easily creating and placing assets within the unit
 [HotKeys]
 Ctrl+Shift+E Select AssetPlacementSystem.
 Ctrl+Shift+F Toggle Auto Snap if using AutoGridSnap.
-Ctrl+Shift+D Create the selected asset at mouse position.
+D Create the selected asset at mouse position.

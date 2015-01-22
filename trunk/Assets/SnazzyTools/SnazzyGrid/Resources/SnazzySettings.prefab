@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: SnazzySettings
+  m_Name: '##SnazzySettings##'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,7 +94,7 @@ MonoBehaviour:
   snapAreaSize: .857142925
   rotIncrement: 22.5
   rotIncrement2: 45
-  keyDown: 0
+  keyDown: 1
   settings: 0
   rotAxis: 0
   autoSnap: 1
@@ -121,7 +121,7 @@ MonoBehaviour:
   oldTransform: {fileID: 0}
   oldSelectedTransform: {fileID: 0}
   oldSelectedLength: 1
-  oldPosition: {x: 0, y: 0, z: 0}
+  oldPosition: {x: -7, y: -2, z: 500}
   oldScale: {x: 1, y: 1, z: 1}
   oldRotation: {x: -0, y: 0, z: 0}
   movToggleKey: 256

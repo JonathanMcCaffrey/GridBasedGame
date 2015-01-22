@@ -71,7 +71,7 @@ Material:
       data:
         first:
           name: _X
-        second: -1.00000012
+        second: 0
       data:
         first:
           name: _Y
@@ -79,7 +79,7 @@ Material:
       data:
         first:
           name: _Z
-        second: -1.1920929e-07
+        second: 1
       data:
         first:
           name: _ObjectScale
