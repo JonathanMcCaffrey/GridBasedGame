@@ -56,15 +56,15 @@ public class AssetPlacementChoiceSystemUnity : Editor {
 				EditorGUILayout.BeginVertical ();
 				EditorGUILayout.PropertyField (assetList.GetArrayElementAtIndex (index), true);
 				
-				if(assetList.GetArrayElementAtIndex (index).FindPropertyRelative("gameObject").objectReferenceValue == null) {
-					string fixedPath = assetList.GetArrayElementAtIndex (index).FindPropertyRelative("filePath").stringValue; 
-					fixedPath = fixedPath.Replace('\\', '/');
-					
-					var prefab = AssetDatabase.LoadAssetAtPath(fixedPath, typeof(GameObject)) as GameObject;
-					assetList.GetArrayElementAtIndex (index).FindPropertyRelative("gameObject").objectReferenceValue =  prefab;
-				}
-				
 				EditorGUILayout.EndVertical ();
+			}
+
+			if(assetList.GetArrayElementAtIndex (index).FindPropertyRelative("gameObject").objectReferenceValue == null) {
+				string fixedPath = assetList.GetArrayElementAtIndex (index).FindPropertyRelative("filePath").stringValue; 
+				fixedPath = fixedPath.Replace('\\', '/');
+				
+				var prefab = AssetDatabase.LoadAssetAtPath(fixedPath, typeof(GameObject)) as GameObject;
+				assetList.GetArrayElementAtIndex (index).FindPropertyRelative("gameObject").objectReferenceValue =  prefab;
 			}
 		}
 	}

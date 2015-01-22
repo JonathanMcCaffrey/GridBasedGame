@@ -7,15 +7,13 @@ using System.Runtime.Serialization;
 
 public class AssetPlacementIconRenderer {
 
-	//int textureWidth is 128! 
 	private static int textureWidth = 128; 
 	private static int textureHeight = 128;
 	
 	//TODO Do something better than this
 	private static Vector3 cameraPosition = new Vector3 (-5.09f, 16.97f, -7.5f);
 	private static Vector3 cameraRotation = new Vector3 (39.80953f, 44.82499f, -14.40204f);
-
-	//CreateFileDirectory
+	
 	private static string CreateFileDirectory (string fixedName) {
 		var directoryPath = Application.dataPath + AssetPlacementGlobals.IconRenderPath;
 		string textureFilePath = directoryPath + fixedName + ".png";
@@ -142,10 +140,8 @@ public class AssetPlacementIconRenderer {
  					screenShot.SetPixel(x, y, new Color(1.0f, 1.0f, 1.0f, 0.0f));
 				}
 			}
-
 		}
-		
-		
+
 		screenShot.alphaIsTransparency = true;
 		
 		screenShot.Apply ();

@@ -22602,8 +22602,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 184509811b517c1459523e7d180c54f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xPosition: -.55542177
-  yPosition: 2.46177459
+  xPosition: -12.7537279
+  yPosition: -16.9666538
   adjustX: -.300000012
   adjustY: -35.2999992
   marker: {fileID: 489352637}
@@ -22625,32 +22625,32 @@ MonoBehaviour:
   - filePath: Assets\PlacementAssets\Decor\Sphere.prefab
     name: Decor\Sphere.prefab
     tab: Decor
-    keyCode: 0
-    gameObject: {fileID: 0}
-    shouldRefresh: 1
+    keyCode: 49
+    gameObject: {fileID: 100000, guid: b2d7f94a43156444cb61cfe79fdf2d89, type: 2}
+    shouldRefresh: 0
   - filePath: Assets\PlacementAssets\Enemies\Tile_Turret.prefab
     name: Enemies\Tile_Turret.prefab
     tab: Enemies
     keyCode: 0
-    gameObject: {fileID: 0}
+    gameObject: {fileID: 100000, guid: 3e582457daf312f409e60323ce2d7e06, type: 2}
     shouldRefresh: 1
   - filePath: Assets\PlacementAssets\Misc\Tile_Finish.prefab
     name: Misc\Tile_Finish.prefab
     tab: Misc
-    keyCode: 0
-    gameObject: {fileID: 0}
-    shouldRefresh: 1
+    keyCode: 119
+    gameObject: {fileID: 100000, guid: 0b7b9b0836cedce4c9f93c38ac59faf9, type: 2}
+    shouldRefresh: 0
   - filePath: Assets\PlacementAssets\Misc\Tile_Start.prefab
     name: Misc\Tile_Start.prefab
     tab: Misc
-    keyCode: 0
-    gameObject: {fileID: 0}
-    shouldRefresh: 1
+    keyCode: 50
+    gameObject: {fileID: 100000, guid: fd40fa8c7262cb442886e694cf1a9450, type: 2}
+    shouldRefresh: 0
   - filePath: Assets\PlacementAssets\Objects\Tile_RockWall.prefab
     name: Objects\Tile_RockWall.prefab
     tab: Objects
     keyCode: 0
-    gameObject: {fileID: 0}
+    gameObject: {fileID: 100000, guid: 8e616b434815a39498fdeca38a0d96ec, type: 2}
     shouldRefresh: 1
   - filePath: Assets\PlacementAssets\Tiles\Tile_Copper.prefab
     name: Tiles\Tile_Copper.prefab
@@ -22865,9 +22865,16 @@ MonoBehaviour:
   - Objects
   - Sounds
   - Tiles
+  - Decor
+  - Enemies
+  - Lights
+  - Misc
+  - Objects
+  - Sounds
+  - Tiles
   selectedTab:
-    filePath: C:/Users/Jonathan/Desktop/GridBasedGame/GridBasedGame/trunk/Assets\PlacementAssets\Tiles
-    name: Tiles
+    filePath: C:/Users/Jonathan/Desktop/GridBasedGame/GridBasedGame/trunk/Assets\PlacementAssets\Misc
+    name: Misc
     number: 0
     container: {fileID: 0}
 --- !u!1001 &2144997725
