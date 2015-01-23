@@ -11,8 +11,10 @@ using System.Xml.Serialization;
 using UnityEditor;
 
 public class AssetPlacementChoiceSystem : MonoBehaviour {
-	public bool shouldReset = false;
-	
+	public bool shouldResetAssets = false;
+	public bool shouldResetHotKeys = false;
+
+
 	public static AssetPlacementData selectedAsset = null; 
 	
 	public List<AssetPlacementData> assetList = new List<AssetPlacementData>();
@@ -158,11 +160,14 @@ public class AssetPlacementChoiceSystem : MonoBehaviour {
 	
 	public void OnDrawGizmos() {
 		instance = this;
-		
-		if (shouldReset) {
-			shouldReset = false;
+
+		if (shouldResetHotKeys) {
+			shouldResetHotKeys = false;
 			SaveAllHotKeys();
-			
+		}
+
+		if (shouldResetAssets) {
+			shouldResetAssets = false;
 			ForceRefresh ();
 		}
 		
@@ -199,9 +204,8 @@ public class AssetPlacementChoiceSystem : MonoBehaviour {
 		foreach (var asset in assetList) {
 			if(!keyCodeList.ContainsKey(asset.keyCode)) {
 				var keyString = asset.keyCode.ToString();
-				
 				var text = 
-					"\n\n\t[MenuItem( \"Window/Asset Placement Window/KeyCode " + keyString + " _" + keyString + "\")]" +
+					"\n\n\t[MenuItem( \"Window/Asset Placement Window - HotKeys/KeyCode " + keyString + " _" + keyString + "\")]" +
 						"\n\tpublic static void SelectItem" + keyString + "() {" +
 						"\n\t\tEditorPrefs.SetInt (AssetPlacementGlobals.SelectedKey, (int)KeyCode." + keyString + "); " +
 						"\n\t\tEditorPrefs.SetInt (AssetPlacementGlobals.SelectedAssetNumber, AssetPlacementGlobals.HotKeySelectionEnabled);" +

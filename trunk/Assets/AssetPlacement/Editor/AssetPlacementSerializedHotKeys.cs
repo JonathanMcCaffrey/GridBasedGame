@@ -39,11 +39,11 @@ public class AssetPlacementSerializedHotKeys : EditorWindow {
 	}
 
 
-	[MenuItem( "Window/Asset Placement Window/KeyCode Alpha2 _Alpha2")]
-	public static void SelectItemAlpha2() {
-		EditorPrefs.SetInt (AssetPlacementGlobals.SelectedKey, (int)KeyCode.Alpha2); 
+	[MenuItem( "Window/Asset Placement Window/KeyCode Q _Q")]
+	public static void SelectItemQ() {
+		EditorPrefs.SetInt (AssetPlacementGlobals.SelectedKey, (int)KeyCode.Q); 
 		EditorPrefs.SetInt (AssetPlacementGlobals.SelectedAssetNumber, AssetPlacementGlobals.HotKeySelectionEnabled);
-		RefreshSelectedKey(KeyCode.Alpha2);
+		RefreshSelectedKey(KeyCode.Q);
 	}
 
 
@@ -63,11 +63,11 @@ public class AssetPlacementSerializedHotKeys : EditorWindow {
 	}
 
 
-	[MenuItem( "Window/Asset Placement Window/KeyCode Alpha5 _Alpha5")]
-	public static void SelectItemAlpha5() {
-		EditorPrefs.SetInt (AssetPlacementGlobals.SelectedKey, (int)KeyCode.Alpha5); 
+	[MenuItem( "Window/Asset Placement Window/KeyCode W _W")]
+	public static void SelectItemW() {
+		EditorPrefs.SetInt (AssetPlacementGlobals.SelectedKey, (int)KeyCode.W); 
 		EditorPrefs.SetInt (AssetPlacementGlobals.SelectedAssetNumber, AssetPlacementGlobals.HotKeySelectionEnabled);
-		RefreshSelectedKey(KeyCode.Alpha5);
+		RefreshSelectedKey(KeyCode.W);
 	}
 
 

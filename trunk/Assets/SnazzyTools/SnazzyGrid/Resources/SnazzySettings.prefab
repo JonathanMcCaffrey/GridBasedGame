@@ -94,7 +94,7 @@ MonoBehaviour:
   snapAreaSize: .857142925
   rotIncrement: 22.5
   rotIncrement2: 45
-  keyDown: 0
+  keyDown: 1
   settings: 0
   rotAxis: 0
   autoSnap: 1

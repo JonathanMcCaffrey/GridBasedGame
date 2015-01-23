@@ -9,7 +9,8 @@ public class AssetPlacementChoiceSystemUnity : Editor {
 	SerializedProperty assetList = null;
 	SerializedProperty tabList = null;
 	SerializedProperty selectedTab = null;
-	SerializedProperty shouldReset = null;
+	SerializedProperty shouldResetAssets = null;
+	SerializedProperty shouldResetHotKeys = null;
 
 	void OnEnable() {
 		assetList = serializedObject.FindProperty ("assetList");
@@ -18,7 +19,8 @@ public class AssetPlacementChoiceSystemUnity : Editor {
 		EditorPrefs.SetInt (AssetPlacementGlobals.SelectedKey, (int)KeyCode.None);
 		
 		selectedTab = serializedObject.FindProperty ("selectedTab");
-		shouldReset = serializedObject.FindProperty ("shouldReset");
+		shouldResetAssets = serializedObject.FindProperty ("shouldResetAssets");
+		shouldResetAssets = serializedObject.FindProperty ("shouldResetHotKeys");
 	}
 	
 	void CreateTabSelection () {
@@ -69,10 +71,18 @@ public class AssetPlacementChoiceSystemUnity : Editor {
 		}
 	}
 	
-	void CreateResetButton () {
-		if (GUILayout.Button ("Reset")) {
-			shouldReset.boolValue = true;
+	void CreateResetButtons () {
+		GUILayout.BeginHorizontal ();
+
+		if (GUILayout.Button ("Reset Data")) {
+			shouldResetAssets.boolValue = true;
 		}
+
+		if (GUILayout.Button ("Reset Keys")) {
+			shouldResetAssets.boolValue = true;
+		}
+
+		GUILayout.EndHorizontal ();
 	}
 	
 	Vector2 scrollPosition = Vector2.zero;
@@ -85,7 +95,7 @@ public class AssetPlacementChoiceSystemUnity : Editor {
 		CreateTabSelection ();
 		CreateAssetSelection ();
 		
-		CreateResetButton ();
+		CreateResetButtons ();
 		
 		serializedObject.ApplyModifiedProperties ();
 	}
