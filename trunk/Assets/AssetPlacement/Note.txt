@@ -7,14 +7,14 @@ Asset Placement System is for easily creating and placing assets within the unit
 - Windows/AssetPlacement 
 - Set hotkeys in AssetPlacementSystem (Choice)
 - Adjust mouse position for your zoom distance in AssetPlacement (Position)
-
-[Description]
-- Hotkeys only work with AssetPlacementSystem and Scene selected.
 - Set hotkeys in AssetPlacementSystem.
-- Click 'Reset' button in AssetPlacementSystem to refresh loaded assets.
+- Click 'Reset Assets' button in AssetPlacementSystem to refresh loaded assets.
+- Click 'Reset Hotkeys' to generate a new Hotkey file that matches current key choices.
 
 [Notes]
 - Asset selection Hotkeys only work for the currently selected tab
+- Reseting the hotkeys will not work right away. 
+-- Build and refresh twice, and use buttons in the meantime.
 
 [HotKeys]
 Ctrl+Shift+E Select AssetPlacementSystem.
