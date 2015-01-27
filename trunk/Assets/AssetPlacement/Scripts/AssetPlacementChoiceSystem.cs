@@ -74,7 +74,7 @@ public class AssetPlacementChoiceSystem : MonoBehaviour {
 		if (!Directory.Exists (FolderPath ())) {
 			Directory.CreateDirectory (FolderPath ());
 		}
-		
+
 		LoadTabs ();
 		LoadAssets ();
 	}
@@ -161,6 +161,11 @@ public class AssetPlacementChoiceSystem : MonoBehaviour {
 	public void OnDrawGizmos() {
 		instance = this;
 
+		if (EditorPrefs.GetBool (AssetPlacementGlobals.ShouldRefreshHotkeys)) {
+			EditorPrefs.SetBool (AssetPlacementGlobals.ShouldRefreshHotkeys, false);
+			shouldResetHotKeys = true;
+		}
+
 		if (shouldResetHotKeys) {
 			shouldResetHotKeys = false;
 			SaveAllHotKeys();
@@ -195,7 +200,7 @@ public class AssetPlacementChoiceSystem : MonoBehaviour {
 
 	public void SaveAllHotKeys() {
 		var directoryPath = Application.dataPath + AssetPlacementGlobals.HotKeysPath;
-		string content = "using UnityEditor; \nusing UnityEngine; \n\npublic class AssetPlacementSerializedHotKeys : EditorWindow {";
+		string content = "//This code is generated dynamically. Don't edit\nusing UnityEditor; \nusing UnityEngine; \n\npublic class AssetPlacementSerializedHotKeys : EditorWindow {";
 
 		content += refreshSelectedKeyFunctionString;
 
@@ -222,5 +227,7 @@ public class AssetPlacementChoiceSystem : MonoBehaviour {
 		content += "\n}";
 		
 		File.WriteAllText(directoryPath, content);
+
+		AssetDatabase.ImportAsset (directoryPath);
 	}
 }

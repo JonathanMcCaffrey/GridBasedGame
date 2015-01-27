@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 [CustomEditor(typeof(AssetPlacementChoiceSystem))]
 [CanEditMultipleObjects]
-public class AssetPlacementChoiceSystemUnity : Editor {	
+public class AssetPlacementChoiceSystemEdtior : Editor {	
 	SerializedProperty assetList = null;
 	SerializedProperty tabList = null;
 	SerializedProperty selectedTab = null;
@@ -20,7 +20,7 @@ public class AssetPlacementChoiceSystemUnity : Editor {
 		
 		selectedTab = serializedObject.FindProperty ("selectedTab");
 		shouldResetAssets = serializedObject.FindProperty ("shouldResetAssets");
-		shouldResetAssets = serializedObject.FindProperty ("shouldResetHotKeys");
+		shouldResetHotKeys = serializedObject.FindProperty ("shouldResetHotKeys");
 	}
 	
 	void CreateTabSelection () {
@@ -79,7 +79,7 @@ public class AssetPlacementChoiceSystemUnity : Editor {
 		}
 
 		if (GUILayout.Button ("Reset Keys")) {
-			shouldResetAssets.boolValue = true;
+			shouldResetHotKeys.boolValue = true;
 		}
 
 		GUILayout.EndHorizontal ();

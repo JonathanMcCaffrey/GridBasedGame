@@ -4,7 +4,7 @@ using UnityEditor;
 
 [CustomEditor(typeof(AssetPlacementPositionSystem))]
 [CanEditMultipleObjects]
-public class AssetPlacementPositionSystemUnity : Editor {
+public class AssetPlacementPositionSystemEdtior : Editor {
 	SerializedProperty marker;
 	SerializedProperty xPosition;
 	SerializedProperty yPosition;
