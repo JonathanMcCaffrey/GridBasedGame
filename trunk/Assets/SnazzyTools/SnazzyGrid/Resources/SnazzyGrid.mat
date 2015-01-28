@@ -71,15 +71,15 @@ Material:
       data:
         first:
           name: _X
-        second: 0
+        second: -.657691061
       data:
         first:
           name: _Y
-        second: 0
+        second: -.255746245
       data:
         first:
           name: _Z
-        second: 1
+        second: .708545208
       data:
         first:
           name: _ObjectScale

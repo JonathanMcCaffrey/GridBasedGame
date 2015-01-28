@@ -6,10 +6,10 @@ using System.IO;
 using System.Runtime.Serialization;
 
 public class AssetPlacementIconRenderer {
-
+	
 	private static int textureWidth = 128; 
 	private static int textureHeight = 128;
-
+	
 	private static string CreateFileDirectory (string fixedName) {
 		var directoryPath = Application.dataPath + AssetPlacementGlobals.IconRenderPath;
 		string textureFilePath = directoryPath + fixedName + ".png";
@@ -39,13 +39,13 @@ public class AssetPlacementIconRenderer {
 			cameraContainer = new GameObject (cameraName);
 			stagedCamera = cameraContainer.AddComponent<Camera> ();
 			stagedCamera.fieldOfView = 90.0f;
-
+			
 			//The transparency pick colour (.png)
 			stagedCamera.backgroundColor = Color.magenta;
 		} else {
 			stagedCamera = cameraContainer.GetComponent<Camera> ();
 		}
-
+		
 		return stagedCamera;
 	}	
 	
@@ -97,6 +97,7 @@ public class AssetPlacementIconRenderer {
 	private static Light CreateStageLightSun () {
 		string stagedLightSunName = AssetPlacementGlobals.LightSunRender3D;
 		GameObject stageLightSunContainer = null;
+		
 		stageLightSunContainer = GameObject.Find (stagedLightSunName);
 		if (!stageLightSunContainer) {
 			stageLightSunContainer = new GameObject (stagedLightSunName);
@@ -133,11 +134,11 @@ public class AssetPlacementIconRenderer {
 			for (int y = 0; y < textureHeight; y++) {
 				var pixel = screenShot.GetPixel(x, y);
 				if(pixel.r == Color.magenta.r && pixel.g == Color.magenta.g && pixel.b == Color.magenta.b) {  
- 					screenShot.SetPixel(x, y, new Color(1.0f, 1.0f, 1.0f, 0.0f));
+					screenShot.SetPixel(x, y, new Color(1.0f, 1.0f, 1.0f, 0.0f));
 				}
 			}
 		}
-
+		
 		screenShot.alphaIsTransparency = true;
 		
 		screenShot.Apply ();
@@ -149,21 +150,39 @@ public class AssetPlacementIconRenderer {
 		stagedCamera.targetTexture = null;
 		RenderTexture.active = null;
 	}
-
+	
 	static void FocusStageCameraOnAsset (Camera stagedCamera, GameObject stagedAsset) {
-		Vector2 min = new Vector2 (int.MaxValue, int.MaxValue);
-		Vector2 max = new Vector2 (int.MinValue, int.MinValue);
-		Utils.GameObjectFunctions.GetMinMaxPointFromGameObject (stagedAsset, ref min, ref max);
+		Vector3 min3 = Vector3.zero;
+		Vector3 max3 = Vector3.zero;
+		Utils.GameObjectFunctions.GetMaxMinPointFromGameObject (stagedAsset, ref max3, ref min3);
+		
+		Vector2 min = new Vector2(min3.x, min3.y);
+		Vector2 max = new Vector2(max3.x, max3.y);
+		
 		Vector2 point = new Vector2 (max.x - min.x, max.y - min.y);
 		float distance = Mathf.Sqrt (point.x * point.x + point.y * point.y);
 		float height = distance / 2.0f;
 		float zoomOut = 2.25f;
 		Vector3 distanceVector = new Vector3 (0, 0, height * zoomOut);
-		Vector3 axisVector = new Vector3 (1, 0, 0);
+		
 		stagedCamera.transform.position = Vector3.zero;
 		stagedCamera.transform.rotation = Quaternion.identity;
-		stagedCamera.transform.RotateAround (distanceVector, axisVector, 45);
-		stagedCamera.transform.LookAt (Vector3.zero);
+		
+		stagedCamera.transform.RotateAround (distanceVector, Vector3.right, 45);
+		stagedCamera.transform.RotateAround (distanceVector, Vector3.forward, -45);
+
+
+		Vector3 reverseTransformVector = new Vector3 ((max3.x + min3.x) / 2.0f, (max3.y + min3.y) / 2.0f, (max3.z + min3.z) / 2.0f);
+		
+		stagedCamera.transform.position = new Vector3 (stagedCamera.transform.position.x + reverseTransformVector.x, 
+		                                               stagedCamera.transform.position.y + reverseTransformVector.y, 
+		                                               stagedCamera.transform.position.z + reverseTransformVector.z); 
+		
+		stagedCamera.transform.LookAt (reverseTransformVector);
+		
+		
+		
+		SceneView.RepaintAll ();
 	}
 	
 	public static Texture2D CreateTextureFromCamera(AssetPlacementData assetData, ref bool hasMadeAnIconRenderAsset) {
@@ -182,15 +201,15 @@ public class AssetPlacementIconRenderer {
 			var stagedCamera = CreateStageCamera ();
 			var stagedContainer = CreateStage ();
 			var stagedAsset = CreateStagedAsset (assetData, stagedContainer); 	
-
+			
 			FocusStageCameraOnAsset (stagedCamera, stagedAsset);
-
+			
 			CreateStageLightMain ();
 			CreateStageLightSub ();
 			CreateStageLightSun ();
-
+			
 			TakeStageScreenshot (textureFilePath, stagedCamera, stagedAsset);
-
+			
 			AssetDatabase.ImportAsset(textureFilePath);
 			AssetDatabase.Refresh();
 			
