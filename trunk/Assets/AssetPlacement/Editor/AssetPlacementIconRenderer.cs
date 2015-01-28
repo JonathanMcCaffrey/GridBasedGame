@@ -9,11 +9,7 @@ public class AssetPlacementIconRenderer {
 
 	private static int textureWidth = 128; 
 	private static int textureHeight = 128;
-	
-	//TODO Do something better than this
-	private static Vector3 cameraPosition = new Vector3 (-5.09f, 16.97f, -7.5f);
-	private static Vector3 cameraRotation = new Vector3 (39.80953f, 44.82499f, -14.40204f);
-	
+
 	private static string CreateFileDirectory (string fixedName) {
 		var directoryPath = Application.dataPath + AssetPlacementGlobals.IconRenderPath;
 		string textureFilePath = directoryPath + fixedName + ".png";
@@ -42,14 +38,14 @@ public class AssetPlacementIconRenderer {
 		if (!cameraContainer) {
 			cameraContainer = new GameObject (cameraName);
 			stagedCamera = cameraContainer.AddComponent<Camera> ();
-			stagedCamera.transform.localPosition = cameraPosition;
-			stagedCamera.transform.Rotate (cameraRotation);
+			stagedCamera.fieldOfView = 90.0f;
 
 			//The transparency pick colour (.png)
 			stagedCamera.backgroundColor = Color.magenta;
 		} else {
 			stagedCamera = cameraContainer.GetComponent<Camera> ();
 		}
+
 		return stagedCamera;
 	}	
 	
@@ -153,6 +149,23 @@ public class AssetPlacementIconRenderer {
 		stagedCamera.targetTexture = null;
 		RenderTexture.active = null;
 	}
+
+	static void FocusStageCameraOnAsset (Camera stagedCamera, GameObject stagedAsset) {
+		var meshFilter = stagedAsset.GetComponent<MeshFilter> ();
+		Vector2 min = new Vector2 (int.MaxValue, int.MaxValue);
+		Vector2 max = new Vector2 (int.MinValue, int.MinValue);
+		Utils.GameObjectFunctions.GetMinMaxPointFromMeshFilter (ref min, ref max, meshFilter);
+		Vector2 point = new Vector2 (max.x - min.x, max.y - min.y);
+		float distance = Mathf.Sqrt (point.x * point.x + point.y * point.y);
+		float height = distance / 2.0f;
+		float zoomOut = 2.25f;
+		Vector3 distanceVector = new Vector3 (0, 0, height * zoomOut);
+		Vector3 axisVector = new Vector3 (1, 0, 0);
+		stagedCamera.transform.position = Vector3.zero;
+		stagedCamera.transform.rotation = Quaternion.identity;
+		stagedCamera.transform.RotateAround (distanceVector, axisVector, 45);
+		stagedCamera.transform.LookAt (Vector3.zero);
+	}
 	
 	public static Texture2D CreateTextureFromCamera(AssetPlacementData assetData, ref bool hasMadeAnIconRenderAsset) {
 		string fixedName = assetData.name.Replace('\\', '_'); 
@@ -170,14 +183,17 @@ public class AssetPlacementIconRenderer {
 			var stagedCamera = CreateStageCamera ();
 			var stagedContainer = CreateStage ();
 			var stagedAsset = CreateStagedAsset (assetData, stagedContainer); 	
-			
+
+			FocusStageCameraOnAsset (stagedCamera, stagedAsset);
+
 			CreateStageLightMain ();
 			CreateStageLightSub ();
 			CreateStageLightSun ();
-			
-			//TODO Move and aim camera to point at the stage asset
-			
+
 			TakeStageScreenshot (textureFilePath, stagedCamera, stagedAsset);
+
+			AssetDatabase.ImportAsset(textureFilePath);
+			AssetDatabase.Refresh();
 			
 			EditorWindow.DestroyImmediate (stagedAsset);
 			

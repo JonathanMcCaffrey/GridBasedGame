@@ -11,7 +11,7 @@ namespace Utils {
 			return placedAsset.GetComponent<MeshFilter> () && placedAsset.GetComponent<MeshFilter> ().sharedMesh;
 		}
 
-		private static void GetMinMaxPointFromMeshFilter (ref Vector2 minPoint, ref Vector2 maxPoint, MeshFilter meshFilter) {
+		public static void GetMinMaxPointFromMeshFilter (ref Vector2 minPoint, ref Vector2 maxPoint, MeshFilter meshFilter) {
 			Vector3[] vertexPositions = meshFilter.sharedMesh.vertices;
 			foreach (var position in vertexPositions) {
 				minPoint.x = Mathf.Min (minPoint.x, position.x * meshFilter.gameObject.transform.localScale.x);
