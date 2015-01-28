@@ -151,10 +151,9 @@ public class AssetPlacementIconRenderer {
 	}
 
 	static void FocusStageCameraOnAsset (Camera stagedCamera, GameObject stagedAsset) {
-		var meshFilter = stagedAsset.GetComponent<MeshFilter> ();
 		Vector2 min = new Vector2 (int.MaxValue, int.MaxValue);
 		Vector2 max = new Vector2 (int.MinValue, int.MinValue);
-		Utils.GameObjectFunctions.GetMinMaxPointFromMeshFilter (ref min, ref max, meshFilter);
+		Utils.GameObjectFunctions.GetMinMaxPointFromGameObject (stagedAsset, ref min, ref max);
 		Vector2 point = new Vector2 (max.x - min.x, max.y - min.y);
 		float distance = Mathf.Sqrt (point.x * point.x + point.y * point.y);
 		float height = distance / 2.0f;

@@ -5175,6 +5175,78 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!1 &1092951385
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: 5c9e35b68e07aba4482fed2a4bcf2b93, type: 2}
+  m_PrefabInternal: {fileID: 1556829102}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1092951389}
+  - 33: {fileID: 1092951388}
+  - 65: {fileID: 1092951387}
+  - 23: {fileID: 1092951386}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &1092951386
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 2300000, guid: 5c9e35b68e07aba4482fed2a4bcf2b93,
+    type: 2}
+  m_PrefabInternal: {fileID: 1556829102}
+  m_GameObject: {fileID: 1092951385}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!65 &1092951387
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6500000, guid: 5c9e35b68e07aba4482fed2a4bcf2b93,
+    type: 2}
+  m_PrefabInternal: {fileID: 1556829102}
+  m_GameObject: {fileID: 1092951385}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1092951388
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 3300000, guid: 5c9e35b68e07aba4482fed2a4bcf2b93,
+    type: 2}
+  m_PrefabInternal: {fileID: 1556829102}
+  m_GameObject: {fileID: 1092951385}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1092951389
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: 5c9e35b68e07aba4482fed2a4bcf2b93, type: 2}
+  m_PrefabInternal: {fileID: 1556829102}
+  m_GameObject: {fileID: 1092951385}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .406045437, y: -.516818404, z: .0762786865}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1412825925}
+  m_RootOrder: 0
 --- !u!1 &1127882260
 GameObject:
   m_ObjectHideFlags: 0
@@ -6529,6 +6601,34 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: f95e07e3d350bf748b0c42b453a69d2e, type: 2}
   mSpriteName: Flat Outline
   mFillCenter: 1
+--- !u!1 &1412825924
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100002, guid: 5c9e35b68e07aba4482fed2a4bcf2b93, type: 2}
+  m_PrefabInternal: {fileID: 1556829102}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1412825925}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1412825925
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400002, guid: 5c9e35b68e07aba4482fed2a4bcf2b93, type: 2}
+  m_PrefabInternal: {fileID: 1556829102}
+  m_GameObject: {fileID: 1412825924}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1092951389}
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
 --- !u!1 &1424353908
 GameObject:
   m_ObjectHideFlags: 0
@@ -7071,6 +7171,50 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!1001 &1556829102
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400002, guid: 5c9e35b68e07aba4482fed2a4bcf2b93, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 5c9e35b68e07aba4482fed2a4bcf2b93, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 5c9e35b68e07aba4482fed2a4bcf2b93, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 5c9e35b68e07aba4482fed2a4bcf2b93, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 5c9e35b68e07aba4482fed2a4bcf2b93, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 5c9e35b68e07aba4482fed2a4bcf2b93, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 5c9e35b68e07aba4482fed2a4bcf2b93, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 5c9e35b68e07aba4482fed2a4bcf2b93, type: 2}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 5c9e35b68e07aba4482fed2a4bcf2b93, type: 2}
+  m_RootGameObject: {fileID: 1412825924}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &1638293420
 GameObject:
   m_ObjectHideFlags: 0
@@ -7950,8 +8094,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 184509811b517c1459523e7d180c54f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xPosition: -.635504603
-  yPosition: 1.59857786
+  xPosition: -2.526263
+  yPosition: -.179797828
   adjustX: -9.80000019
   adjustY: -41.0999985
   marker: {fileID: 2010133716}
@@ -7971,12 +8115,18 @@ MonoBehaviour:
   shouldResetAssets: 0
   shouldResetHotKeys: 0
   assetList:
+  - filePath: Assets\PlacementAssets\Decor\Cube.prefab
+    name: Decor\Cube.prefab
+    tab: Decor
+    keyCode: 0
+    gameObject: {fileID: 100002, guid: 5c9e35b68e07aba4482fed2a4bcf2b93, type: 2}
+    shouldRefresh: 0
   - filePath: Assets\PlacementAssets\Decor\Sphere.prefab
     name: Decor\Sphere.prefab
     tab: Decor
     keyCode: 0
     gameObject: {fileID: 100000, guid: b2d7f94a43156444cb61cfe79fdf2d89, type: 2}
-    shouldRefresh: 1
+    shouldRefresh: 0
   - filePath: Assets\PlacementAssets\Enemies\Tile_Turret.prefab
     name: Enemies\Tile_Turret.prefab
     tab: Enemies
@@ -7988,55 +8138,55 @@ MonoBehaviour:
     tab: Misc
     keyCode: 0
     gameObject: {fileID: 100000, guid: 0b7b9b0836cedce4c9f93c38ac59faf9, type: 2}
-    shouldRefresh: 0
+    shouldRefresh: 1
   - filePath: Assets\PlacementAssets\Misc\Tile_Start.prefab
     name: Misc\Tile_Start.prefab
     tab: Misc
     keyCode: 0
     gameObject: {fileID: 100000, guid: fd40fa8c7262cb442886e694cf1a9450, type: 2}
-    shouldRefresh: 0
+    shouldRefresh: 1
   - filePath: Assets\PlacementAssets\Objects\Tile_RockWall.prefab
     name: Objects\Tile_RockWall.prefab
     tab: Objects
     keyCode: 0
     gameObject: {fileID: 100000, guid: 8e616b434815a39498fdeca38a0d96ec, type: 2}
-    shouldRefresh: 0
+    shouldRefresh: 1
   - filePath: Assets\PlacementAssets\Tiles\Tile_Copper.prefab
     name: Tiles\Tile_Copper.prefab
     tab: Tiles
-    keyCode: 49
+    keyCode: 0
     gameObject: {fileID: 100000, guid: a6630eee5de989b439e3a376a9e336d9, type: 2}
-    shouldRefresh: 0
+    shouldRefresh: 1
   - filePath: Assets\PlacementAssets\Tiles\Tile_CopperFloor.prefab
     name: Tiles\Tile_CopperFloor.prefab
     tab: Tiles
     keyCode: 0
     gameObject: {fileID: 100000, guid: 5fc33f387ed59974fa7b9177317d57c2, type: 2}
-    shouldRefresh: 0
+    shouldRefresh: 1
   - filePath: Assets\PlacementAssets\Tiles\Tile_CopperWall.prefab
     name: Tiles\Tile_CopperWall.prefab
     tab: Tiles
     keyCode: 0
     gameObject: {fileID: 100000, guid: 99aaceb2e1c518f4ba20b74312e36917, type: 2}
-    shouldRefresh: 0
+    shouldRefresh: 1
   - filePath: Assets\PlacementAssets\Tiles\Tile_Metal.prefab
     name: Tiles\Tile_Metal.prefab
     tab: Tiles
     keyCode: 0
     gameObject: {fileID: 100000, guid: 737bad6dfdd8a5f40bb999ddcc0d4bb9, type: 2}
-    shouldRefresh: 0
+    shouldRefresh: 1
   - filePath: Assets\PlacementAssets\Tiles\Tile_MetalFloor.prefab
     name: Tiles\Tile_MetalFloor.prefab
     tab: Tiles
     keyCode: 0
     gameObject: {fileID: 100000, guid: b96bc45ac66d897429e28d9498465f10, type: 2}
-    shouldRefresh: 0
+    shouldRefresh: 1
   - filePath: Assets\PlacementAssets\Tiles\Tile_MetalWall.prefab
     name: Tiles\Tile_MetalWall.prefab
     tab: Tiles
     keyCode: 0
     gameObject: {fileID: 100000, guid: 0270c2b6e1bdb854d998780facd71384, type: 2}
-    shouldRefresh: 0
+    shouldRefresh: 1
   tabList:
   - filePath: C:/Users/Jonathan/Desktop/GridBasedGame/GridBasedGame/trunk/Assets\PlacementAssets\Decor
     name: Decor
@@ -8074,9 +8224,16 @@ MonoBehaviour:
   - Objects
   - Sounds
   - Tiles
+  - Decor
+  - Enemies
+  - Lights
+  - Misc
+  - Objects
+  - Sounds
+  - Tiles
   selectedTab:
-    filePath: C:/Users/Jonathan/Desktop/GridBasedGame/GridBasedGame/trunk/Assets\PlacementAssets\Tiles
-    name: Tiles
+    filePath: C:/Users/Jonathan/Desktop/GridBasedGame/GridBasedGame/trunk/Assets\PlacementAssets\Decor
+    name: Decor
     number: 0
     container: {fileID: 0}
 --- !u!4 &1719962299
