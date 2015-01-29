@@ -228,6 +228,6 @@ public class AssetPlacementChoiceSystem : MonoBehaviour {
 		
 		File.WriteAllText(directoryPath, content);
 
-		AssetDatabase.ImportAsset (directoryPath);
+		//TODO Was trying to refresh load this here with AssetData, but didn't work. Probably another method would work
 	}
 }

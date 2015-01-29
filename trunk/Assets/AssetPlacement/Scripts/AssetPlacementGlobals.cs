@@ -25,7 +25,7 @@ public class AssetPlacementGlobals {
 	//Where the system will put the icons it renders from 3D assets in Assets/
 	static public string IconRenderPath = "/Resources/PlacementIcons/";
 	
-	static public string HotKeysPath = "/AssetPlacement/Editor/AssetPlacementSerializedHotKeys.cs";
+	static public string HotKeysPath = InstallPath + "/AssetPlacement/Editor/AssetPlacementSerializedHotKeys.cs";
 	
 	//Keys used internally
 	public const string SnapUpdate = "AssetPlacement.doSnapUpdate";

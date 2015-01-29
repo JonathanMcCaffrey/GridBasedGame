@@ -1,7 +1,6 @@
 
 Asset Placement System is for easily creating and placing assets within the unity editor via hotkeys. 
 - Ask Jon for Questions on this.
-- Also, not fully done.
 
 [Setup]
 - Windows/AssetPlacement 
@@ -9,7 +8,7 @@ Asset Placement System is for easily creating and placing assets within the unit
 - Adjust mouse position for your zoom distance in AssetPlacement (Position)
 - Set hotkeys in AssetPlacementSystem.
 - Click 'Reset Assets' button in AssetPlacementSystem to refresh loaded assets.
-- Click 'Reset Hotkeys' to generate a new Hotkey file that matches current key choices.
+- Click 'Reset Hotkeys' to generate a new Hotkey file that matches current key choices. //TODO No longer needed?
 
 [Notes]
 - Asset selection Hotkeys only work for the currently selected tab

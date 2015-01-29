@@ -14,14 +14,25 @@ namespace Utils {
 		public static void GetMinMaxPointFromMeshFilter (ref Vector3 minPoint, ref Vector3 maxPoint, MeshFilter meshFilter) {
 			Vector3[] vertexPositions = meshFilter.sharedMesh.vertices;
 			foreach (var position in vertexPositions) {
-				minPoint.x = Mathf.Min (minPoint.x, position.x * meshFilter.gameObject.transform.localScale.x + meshFilter.gameObject.transform.position.x);
-				minPoint.y = Mathf.Min (minPoint.y, position.y * meshFilter.gameObject.transform.localScale.y + meshFilter.gameObject.transform.position.y);
-				minPoint.z = Mathf.Min (minPoint.z, position.z * meshFilter.gameObject.transform.localScale.z + meshFilter.gameObject.transform.position.z);
 
-				maxPoint.x = Mathf.Max (maxPoint.x, position.x * meshFilter.gameObject.transform.localScale.x + meshFilter.gameObject.transform.position.x);
-				maxPoint.y = Mathf.Max (maxPoint.y, position.y * meshFilter.gameObject.transform.localScale.y + meshFilter.gameObject.transform.position.y);
-				maxPoint.z = Mathf.Max (maxPoint.z, position.z * meshFilter.gameObject.transform.localScale.z + meshFilter.gameObject.transform.position.z);
+				Vector3 fixedVertex = new Vector3(position.x * meshFilter.gameObject.transform.lossyScale.x,
+				                                  position.y * meshFilter.gameObject.transform.lossyScale.y,
+				                                  position.z * meshFilter.gameObject.transform.lossyScale.z);
 
+				fixedVertex = meshFilter.gameObject.transform.rotation * fixedVertex;
+
+				fixedVertex = new Vector3(fixedVertex.x + meshFilter.gameObject.transform.position.x,
+				                          fixedVertex.y + meshFilter.gameObject.transform.position.y,
+				                          fixedVertex.z + meshFilter.gameObject.transform.position.z);
+
+
+				minPoint.x = Mathf.Min (minPoint.x, fixedVertex.x);
+				minPoint.y = Mathf.Min (minPoint.y, fixedVertex.y);
+				minPoint.z = Mathf.Min (minPoint.z, fixedVertex.z);
+
+				maxPoint.x = Mathf.Max (maxPoint.x, fixedVertex.x);
+				maxPoint.y = Mathf.Max (maxPoint.y, fixedVertex.y);
+				maxPoint.z = Mathf.Max (maxPoint.z, fixedVertex.z);
 			}
 		}
 
