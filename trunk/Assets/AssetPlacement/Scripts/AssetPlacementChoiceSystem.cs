@@ -210,7 +210,7 @@ public class AssetPlacementChoiceSystem : MonoBehaviour {
 			if(!keyCodeList.ContainsKey(asset.keyCode)) {
 				var keyString = asset.keyCode.ToString();
 				var text = 
-					"\n\n\t[MenuItem( \"Window/Asset Placement Window - HotKeys/KeyCode " + keyString + " _" + keyString + "\")]" +
+					"\n\n\t[MenuItem( AssetPlacementGlobals.CommandPath + \"Hot Keys/" + keyString + " _" + keyString + "\")]" +
 						"\n\tpublic static void SelectItem" + keyString + "() {" +
 						"\n\t\tEditorPrefs.SetInt (AssetPlacementGlobals.SelectedKey, (int)KeyCode." + keyString + "); " +
 						"\n\t\tEditorPrefs.SetInt (AssetPlacementGlobals.SelectedAssetNumber, AssetPlacementGlobals.HotKeySelectionEnabled);" +

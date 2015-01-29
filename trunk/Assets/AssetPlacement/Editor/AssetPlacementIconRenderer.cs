@@ -163,7 +163,7 @@ public class AssetPlacementIconRenderer {
 		Vector3 max = Vector3.zero;
 
 		stagedAsset.transform.Rotate (new Vector3 (-27, -10, 0));
-		Utils.GameObjectFunctions.GetMaxMinPointFromGameObject (stagedAsset, ref max, ref min);
+		Utils.GameObjectUtils.GetMaxMinPointFromGameObject (stagedAsset, ref max, ref min);
 
 		float extraPush = max.z - min.z;
 		Vector2 point = new Vector2 (max.x - min.x, max.y - min.y);

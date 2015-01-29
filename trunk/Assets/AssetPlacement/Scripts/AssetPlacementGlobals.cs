@@ -8,25 +8,27 @@ using System.Collections;
 public class AssetPlacementGlobals {
 	//Where the AssetPlacement project is in Assets/
 	#if ProjectSelection
-	static public string InstallPath = ""; 
+	public const string InstallPath = ""; 
 	#else
-	static public string InstallPath = ""; 
+	public const string InstallPath = ""; 
 	#endif
 	
 	//Where 'your' assets are in Assets/
 	//And this assumes they are in a folder called AssetPlacement
 	#if ProjectSelection
-	static public string AssetPathPath = ""; 
+	public const string AssetPathPath = ""; 
 	#else
-	static public string AssetPathPath = "Resources/"; 
+	public const AssetPathPath = "Resources/"; 
 	#endif
 	//TODO Maybe add some drag and drop folder selection
 	
 	//Where the system will put the icons it renders from 3D assets in Assets/
-	static public string IconRenderPath = "/Resources/PlacementIcons/";
+	public const string IconRenderPath = "/Resources/PlacementIcons/";
 	
-	static public string HotKeysPath = InstallPath + "/AssetPlacement/Editor/AssetPlacementSerializedHotKeys.cs";
-	
+	public const string HotKeysPath = InstallPath + "/AssetPlacement/Editor/AssetPlacementSerializedHotKeys.cs";
+
+	public const string CommandPath = "Window/Asset Placement/";
+
 	//Keys used internally
 	public const string SnapUpdate = "AssetPlacement.doSnapUpdate";
 	public const string ShowAll = "AssetPlacement.ShowAll";
@@ -50,6 +52,6 @@ public class AssetPlacementGlobals {
 	
 	
 	//Constants used by AssetPlacementSystem
-	public static int HotKeySelectionEnabled = -1; //TODO Delete this
+	public const int HotKeySelectionEnabled = -1; //TODO Delete this
 	
 }

@@ -51,6 +51,8 @@ public class AssetPlacementPositionSystem : MonoBehaviour {
 		return position;
 	}
 
+
+	Texture2D markerTexture = null;
 	void CreateMarker () {
 		if (marker == null && AssetPlacementChoiceSystem.instance) {
 			marker = GameObject.Find (AssetPlacementGlobals.PositionMarker);
@@ -58,20 +60,25 @@ public class AssetPlacementPositionSystem : MonoBehaviour {
 				return;
 			}
 			string path = "Assets/" + AssetPlacementGlobals.InstallPath + "AssetPlacement/Resources/GUI/";
-			var markerTexture = AssetDatabase.LoadAssetAtPath (path + "PositionMarker.png", typeof(Texture2D)) as Texture2D;
+
+
+			if(markerTexture == null) {
+				markerTexture = AssetDatabase.LoadAssetAtPath (path + "PositionMarker.png", typeof(Texture2D)) as Texture2D;
+			}
+
 			if (markerTexture) {
 				marker = new GameObject (AssetPlacementGlobals.PositionMarker);
-				DontDestroyOnLoad(marker);
 				marker.AddComponent<SpriteRenderer> ();
 				var renderer = marker.GetComponent<SpriteRenderer> ();
 				var sprite = Sprite.Create(markerTexture, new Rect(0,0,markerTexture.width,markerTexture.height), new Vector2(0.5f, 0.5f));
 				sprite.name = "PositionMarker";
 				renderer.sprite = sprite;
 
+				marker.transform.parent = gameObject.transform;
+				marker.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f); 
 			}
 
-			marker.transform.parent = gameObject.transform;
-			marker.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f); 
+		
 		}
 	}
 	

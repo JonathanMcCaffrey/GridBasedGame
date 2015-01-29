@@ -2,7 +2,7 @@
 using System.Collections;
 
 namespace Utils {
-	public class GameObjectFunctions {
+	public class GameObjectUtils {
 		public static bool HasMesh (GameObject placedAsset) {
 			if (placedAsset.GetComponentsInChildren<MeshFilter> ().Length > 0) { 
 				return true;
