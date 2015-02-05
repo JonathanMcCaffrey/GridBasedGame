@@ -58,6 +58,7 @@ GameObject:
   - 61: {fileID: 6100000}
   - 114: {fileID: 11400000}
   - 50: {fileID: 5000000}
+  - 114: {fileID: 11400002}
   m_Layer: 8
   m_Name: Tank
   m_TagString: Player
@@ -84,7 +85,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .5, y: .5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400004}
@@ -97,7 +98,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.1920929e-06, y: -.165036201, z: -1}
+  m_LocalPosition: {x: 0, y: -.165036201, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400000}
@@ -110,7 +111,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 5, z: 0}
+  m_LocalPosition: {x: -9, y: 10, z: 41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -160,7 +161,18 @@ MonoBehaviour:
   mBulletSpawn: {fileID: 100000}
   mIsOn: 1
   mArrowPrefab: {fileID: 100006, guid: 387c1b8a8b3110c459dddfd5ca7d26cf, type: 2}
-  mTestPrefab: {fileID: 100000, guid: d804750415ef83f4ba4f2716c47c017e, type: 2}
+  mTestPrefab: {fileID: 0}
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6decd2009aa9e604d80d46a940873b64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

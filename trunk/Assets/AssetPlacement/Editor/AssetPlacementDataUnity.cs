@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEditor;
 
 [CustomPropertyDrawer(typeof(AssetPlacementData))]
-public class AssetPlacementDataDrawer : PropertyDrawer {
+public class AssetPlacementDataUnity : PropertyDrawer {
 	public bool shouldLoadKey = true;
 	public void OnEnable() {
 		shouldLoadKey = true;
@@ -25,14 +25,8 @@ public class AssetPlacementDataDrawer : PropertyDrawer {
 		string fixedLabel = name.stringValue.TrimEnd (".prefab".ToCharArray ());
 		
 		GUI.Label (new Rect (rect.x, rect.y, rect.width * 0.60f, rect.height), fixedLabel);
-
-		var prevKeyCode = keyCode;
 		EditorGUI.PropertyField (new Rect(rect.width * 0.65f, rect.y, rect.width * 0.35f, rect.height), keyCode, GUIContent.none);
-
+		
 		EditorPrefs.SetInt (AssetPlacementGlobals.SavedHotkey + name.stringValue, keyCode.enumValueIndex);
-
-		if (prevKeyCode != keyCode) {
-			EditorPrefs.SetBool (AssetPlacementGlobals.ShouldRefreshHotkeys, true);
-		}
 	}
 }

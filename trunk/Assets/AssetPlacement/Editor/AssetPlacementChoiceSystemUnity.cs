@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 [CustomEditor(typeof(AssetPlacementChoiceSystem))]
 [CanEditMultipleObjects]
-public class AssetPlacementChoiceSystemEdtior : Editor {	
+public class AssetPlacementChoiceSystemUnity : Editor {	
 	SerializedProperty assetList = null;
 	SerializedProperty tabList = null;
 	SerializedProperty selectedTab = null;

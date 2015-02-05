@@ -10,7 +10,7 @@ public class AssetPlacementGlobals {
 	#if ProjectSelection
 	public const string InstallPath = ""; 
 	#else
-	public const string InstallPath = ""; 
+	public const string InstallPath = "Unity Asset Store/"; 
 	#endif
 	
 	//Where 'your' assets are in Assets/
@@ -18,14 +18,14 @@ public class AssetPlacementGlobals {
 	#if ProjectSelection
 	public const string AssetPathPath = ""; 
 	#else
-	public const AssetPathPath = "Resources/"; 
+	public const string AssetPathPath = "Resources/"; 
 	#endif
 	//TODO Maybe add some drag and drop folder selection
 	
 	//Where the system will put the icons it renders from 3D assets in Assets/
 	public const string IconRenderPath = "/Resources/PlacementIcons/";
 	
-	public const string HotKeysPath = InstallPath + "/AssetPlacement/Editor/AssetPlacementSerializedHotKeys.cs";
+	public const string HotKeysPath = "/" + InstallPath + "AssetPlacement/Editor/AssetPlacementSerializedHotKeys.cs";
 
 	public const string CommandPath = "Window/Asset Placement/";
 

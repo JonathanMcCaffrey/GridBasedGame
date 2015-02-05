@@ -26,7 +26,9 @@ public class PlayerControls : MonoBehaviour {
 	
 	private bool mMouseWasDown = false;
 	private Vector3 mLastMousePosition = Vector3.zero;
-	
+
+	private float arrowZLayer = 260;
+
 	void RemovePoint() {
 		if (mInputList.Count > 0) {
 			
@@ -117,7 +119,7 @@ public class PlayerControls : MonoBehaviour {
 				mMouseDown = true;
 			}
 			if (mMouseDown) {
-				Vector3 mouseVector = new Vector3 (Camera.main.ScreenToWorldPoint (Input.mousePosition).x, Camera.main.ScreenToWorldPoint (Input.mousePosition).y, 0);
+				Vector3 mouseVector = new Vector3 (Camera.main.ScreenToWorldPoint (Input.mousePosition).x, Camera.main.ScreenToWorldPoint (Input.mousePosition).y, arrowZLayer);
 				Vector3 mouseGridVector = Globals.VectorToGridVector (mouseVector);
 				Vector3 playerGridVector = Globals.VectorToGridVector (mPlayer.transform.position);
 				Collider2D touched = Physics2D.OverlapPoint (new Vector2 (Camera.main.ScreenToWorldPoint (Input.mousePosition).x, Camera.main.ScreenToWorldPoint (Input.mousePosition).y));
@@ -128,7 +130,7 @@ public class PlayerControls : MonoBehaviour {
 				}
 				if (mInputList.Count == 0) {
 					if (Globals.IsMiddle (mouseGridVector, playerGridVector)) {
-						mInputList.Add (new Vector3 (mouseGridVector.x, mouseGridVector.y, mouseGridVector.z));
+						mInputList.Add (new Vector3 (mouseGridVector.x, mouseGridVector.y, arrowZLayer));
 						mArrowList.Add (GameObject.Instantiate (mArrowPrefab, mouseGridVector, Quaternion.identity) as GameObject);
 						RefreshNodeLinks ();
 						return;

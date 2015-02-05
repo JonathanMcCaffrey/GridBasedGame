@@ -15,7 +15,7 @@ public static class Globals {
 		float y = ((int)((aVector.y * 100.0f) / GRID)) * GRID / 100.0f;
 		y = (float)decimal.Round ((decimal)y, 2);
 		
-		return new Vector3 (x, y, 0);
+		return new Vector3 (x, y, aVector.z);
 	}
 	
 	public static int GridRound(float aFloat) {

@@ -46,7 +46,7 @@ public class Tile : MonoBehaviour {
 	}
 	
 	void OnMouseDown() {
-		if (EditorControls.instance.mIsOn) {
+		if (EditorControls.instance && EditorControls.instance.mIsOn) {
 			if (this.mEditorType != EditorType.Button) {
 				Destroy (this.gameObject);
 			}
