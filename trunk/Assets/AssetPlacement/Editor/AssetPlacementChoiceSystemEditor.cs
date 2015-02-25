@@ -64,7 +64,7 @@ public class AssetPlacementChoiceSystemUnity : Editor {
 			if(assetList.GetArrayElementAtIndex (index).FindPropertyRelative("gameObject").objectReferenceValue == null) {
 				string fixedPath = assetList.GetArrayElementAtIndex (index).FindPropertyRelative("filePath").stringValue; 
 				fixedPath = fixedPath.Replace('\\', '/');
-				
+
 				var prefab = AssetDatabase.LoadAssetAtPath(fixedPath, typeof(GameObject)) as GameObject;
 				assetList.GetArrayElementAtIndex (index).FindPropertyRelative("gameObject").objectReferenceValue =  prefab;
 			}
