@@ -15,9 +15,8 @@ public class AssetPlacementPositionSystem : MonoBehaviour {
 	public float xPosition = 0;
 	public float yPosition = 0;
 	
-	//TODO Find some way to auto fix the position in relation to the mouse. Might not be conceptually possible
-	public float adjustX = -9.8f;
-	public float adjustY = -41.1f;
+	private float adjustX = 0;
+	private float adjustY = 0;
 	
 	public static Vector3 selectedPosition = Vector3.zero;
 	
@@ -26,9 +25,8 @@ public class AssetPlacementPositionSystem : MonoBehaviour {
 
 	public GameObject marker = null;
 	
-	
-	//TODO Add some zplane control for the placed assets or something
-	public float distance = 500;
+
+	private float distance = 500;
 	public bool isMarkerActive = false;
 	
 	public static AssetPlacementPositionSystem instance = null;
@@ -42,7 +40,8 @@ public class AssetPlacementPositionSystem : MonoBehaviour {
 	}
 	
 	Vector3 FindPlacementPosition () {
-		Vector2 fixedPos = new Vector2 (Event.current.mousePosition.x + adjustX, -Event.current.mousePosition.y + Screen.height + adjustY);
+		Vector2 fixedPos = new Vector2 (Event.current.mousePosition.x + adjustX,
+		                                -Event.current.mousePosition.y + adjustY + Camera.current.pixelHeight);
 		var ray = Camera.current.ScreenPointToRay (fixedPos);
 		Vector3 position = ray.GetPoint (distance);
 		xPosition = position.x;
@@ -61,7 +60,6 @@ public class AssetPlacementPositionSystem : MonoBehaviour {
 			}
 			string path = "Assets/" + AssetPlacementGlobals.InstallPath + "AssetPlacement/Resources/GUI/";
 
-
 			if(markerTexture == null) {
 				markerTexture = AssetDatabase.LoadAssetAtPath (path + "PositionMarker.png", typeof(Texture2D)) as Texture2D;
 			}
@@ -77,8 +75,6 @@ public class AssetPlacementPositionSystem : MonoBehaviour {
 				marker.transform.parent = gameObject.transform;
 				marker.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f); 
 			}
-
-		
 		}
 	}
 	
@@ -99,6 +95,7 @@ public class AssetPlacementPositionSystem : MonoBehaviour {
 	void MoveDebugMarker (Vector3 position) {
 		if (ShouldMoveMarker ()) {
 			marker.transform.localPosition = position;
+			//TODO Set the debug marker to the camera, and find out what your messing up
 		}
 	}
 	

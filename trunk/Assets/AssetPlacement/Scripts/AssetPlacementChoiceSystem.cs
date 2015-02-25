@@ -14,7 +14,6 @@ public class AssetPlacementChoiceSystem : MonoBehaviour {
 	public bool shouldResetAssets = false;
 	public bool shouldResetHotKeys = false;
 
-
 	public static AssetPlacementData selectedAsset = null; 
 	
 	public List<AssetPlacementData> assetList = new List<AssetPlacementData>();

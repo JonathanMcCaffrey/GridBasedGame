@@ -8,10 +8,10 @@ public class AssetPlacementPositionSystemEdtior : Editor {
 	SerializedProperty marker;
 	SerializedProperty xPosition;
 	SerializedProperty yPosition;
-	SerializedProperty distance;
-	
-	SerializedProperty adjustX;
-	SerializedProperty adjustY;
+
+	//Note: Offset of placement off mouse position. Re-enable if needed.
+	//SerializedProperty adjustX;
+	//SerializedProperty adjustY;
 
 	SerializedProperty isMarkerActive;
 	
@@ -19,10 +19,9 @@ public class AssetPlacementPositionSystemEdtior : Editor {
 		marker = serializedObject.FindProperty ("marker");
 		xPosition = serializedObject.FindProperty ("xPosition");
 		yPosition = serializedObject.FindProperty ("yPosition");
-		distance = serializedObject.FindProperty ("distance");
-		
-		adjustX = serializedObject.FindProperty ("adjustX");
-		adjustY = serializedObject.FindProperty ("adjustY");
+
+		//adjustX = serializedObject.FindProperty ("adjustX");
+		//adjustY = serializedObject.FindProperty ("adjustY");
 		
 		isMarkerActive = serializedObject.FindProperty ("isMarkerActive");
 	}
@@ -39,10 +38,8 @@ public class AssetPlacementPositionSystemEdtior : Editor {
 		} else {
 			GUILayout.Label ("Position [X: " + xPosition.floatValue + " Y: " + yPosition.floatValue + "]");
 			
-			EditorGUILayout.PropertyField (distance, true);
-			
-			EditorGUILayout.PropertyField (adjustX, true);
-			EditorGUILayout.PropertyField (adjustY, true);
+			//EditorGUILayout.PropertyField (adjustX, true);
+			//EditorGUILayout.PropertyField (adjustY, true);
 			
 			EditorGUILayout.PropertyField (isMarkerActive, true);
 		}

@@ -29,6 +29,30 @@ public class PlayerControls : MonoBehaviour {
 
 	private float arrowZLayer = 260;
 
+	private static GameObject playerControlsContainer = null;
+	private static GameObject bulletContainer = null;
+	private static GameObject arrowContainer = null;
+
+	void Awake() {
+		if (!playerControlsContainer) {
+			playerControlsContainer = new GameObject("PlayerControlsContainer");
+			DontDestroyOnLoad(playerControlsContainer);
+		}
+
+
+		if (!bulletContainer) {
+			bulletContainer = new GameObject("BulletContainer");
+		}
+
+		if (!arrowContainer) {
+			arrowContainer = new GameObject("ArrowContainer");
+		}
+
+		bulletContainer.transform.parent = playerControlsContainer.transform;
+		arrowContainer.transform.parent = playerControlsContainer.transform;
+
+	}
+
 	void RemovePoint() {
 		if (mInputList.Count > 0) {
 			
@@ -46,19 +70,19 @@ public class PlayerControls : MonoBehaviour {
 	void RefreshNodeLinks() {
 		for (int arrowIndex = 0; arrowIndex < mArrowList.Count; arrowIndex++) {
 			if ((arrowIndex - 1 < 0) && mArrowList [arrowIndex]) {
-				mArrowList [arrowIndex].GetComponent<ArrowController> ().mPrev = null;
+				mArrowList [arrowIndex].GetComponentInChildren<ArrowController> ().mPrev = null;
 			}
 			else if((arrowIndex - 1 >= 0) && mArrowList [arrowIndex - 1]) {
-				mArrowList [arrowIndex].GetComponent<ArrowController> ().mPrev = mArrowList [arrowIndex - 1];
+				mArrowList [arrowIndex].GetComponentInChildren<ArrowController> ().mPrev = mArrowList [arrowIndex - 1];
 			}
 			if ((arrowIndex + 1 >= mArrowList.Count) && mArrowList [arrowIndex]) {
-				mArrowList [arrowIndex].GetComponent<ArrowController> ().mNext = null;
+				mArrowList [arrowIndex].GetComponentInChildren<ArrowController> ().mNext = null;
 			}
 			else if((arrowIndex + 1 <= mArrowList.Count) && mArrowList [arrowIndex + 1]) {
-				mArrowList [arrowIndex].GetComponent<ArrowController> ().mNext = mArrowList [arrowIndex + 1];
+				mArrowList [arrowIndex].GetComponentInChildren<ArrowController> ().mNext = mArrowList [arrowIndex + 1];
 			}
 			
-			mArrowList [arrowIndex].GetComponent<ArrowController> ().Start ();
+			mArrowList [arrowIndex].GetComponentInChildren<ArrowController> ().Start ();
 		}
 	}
 	
@@ -74,6 +98,8 @@ public class PlayerControls : MonoBehaviour {
 		if (Input.GetMouseButtonUp (0)) {
 			if (mMouseWasDown && (mLastMousePosition == Input.mousePosition)) {
 				GameObject bullet = GameObject.Instantiate (mPlayerBullet, mBulletSpawn.transform.position, mPlayerGun.transform.rotation) as GameObject;
+				bullet.name = "PlayerBullet";
+				bullet.transform.parent = bulletContainer.transform;
 				bullet.rigidbody2D.AddForce (new Vector2 (Mathf.Sin (angle - (180.0f / 57.2957795f)) * FORCE / 2, Mathf.Cos (angle - (180.0f / 57.2957795f)) * FORCE / 2));
 			}
 			mMouseWasDown = false;
@@ -120,18 +146,24 @@ public class PlayerControls : MonoBehaviour {
 			}
 			if (mMouseDown) {
 				Vector3 mouseVector = new Vector3 (Camera.main.ScreenToWorldPoint (Input.mousePosition).x, Camera.main.ScreenToWorldPoint (Input.mousePosition).y, arrowZLayer);
-				Vector3 mouseGridVector = Globals.VectorToGridVector (mouseVector);
+				Vector3 mouseGridVector  = Globals.VectorToGridVector (mouseVector);
 				Vector3 playerGridVector = Globals.VectorToGridVector (mPlayer.transform.position);
-				Collider2D touched = Physics2D.OverlapPoint (new Vector2 (Camera.main.ScreenToWorldPoint (Input.mousePosition).x, Camera.main.ScreenToWorldPoint (Input.mousePosition).y));
+				Collider2D touched = Physics2D.OverlapPoint (new Vector2(mouseGridVector.x, mouseGridVector.y)); 
 				if (touched) {
 					if (touched.gameObject.layer == 9) {
+
+						Debug.Log("Hit SOmething");
 						return;
 					}
 				}
 				if (mInputList.Count == 0) {
 					if (Globals.IsMiddle (mouseGridVector, playerGridVector)) {
 						mInputList.Add (new Vector3 (mouseGridVector.x, mouseGridVector.y, arrowZLayer));
-						mArrowList.Add (GameObject.Instantiate (mArrowPrefab, mouseGridVector, Quaternion.identity) as GameObject);
+						var arrowTemp = GameObject.Instantiate (mArrowPrefab, mouseGridVector, Quaternion.identity) as GameObject;
+						arrowTemp.name = "PlayerArrow";
+						arrowTemp.transform.parent = arrowContainer.transform;
+
+						mArrowList.Add (arrowTemp);
 						RefreshNodeLinks ();
 						return;
 					}
@@ -154,7 +186,13 @@ public class PlayerControls : MonoBehaviour {
 					if (mInputList.Count > 0) {
 						if (Globals.GridVectorTouchingGridVector (mInputList [mInputList.Count - 1], mouseGridVector)) {
 							mInputList.Add (new Vector3 (mouseGridVector.x, mouseGridVector.y, mouseGridVector.z));
-							mArrowList.Add (GameObject.Instantiate (mArrowPrefab, mouseGridVector, Quaternion.identity) as GameObject);
+
+							var arrowTemp = GameObject.Instantiate (mArrowPrefab, mouseGridVector, Quaternion.identity) as GameObject;
+							arrowTemp.name = "PlayerArrow";
+							arrowTemp.transform.parent = arrowContainer.transform;
+							
+							mArrowList.Add (arrowTemp);
+
 							RefreshNodeLinks ();
 							return;
 						}
@@ -175,6 +213,6 @@ public class PlayerControls : MonoBehaviour {
 	
 	
 	void OnCollisionEnter2D(Collision2D col) {
-		this.rigidbody2D.velocity = Vector3.zero;
+	//	this.rigidbody2D.velocity = Vector3.zero;
 	}
 }

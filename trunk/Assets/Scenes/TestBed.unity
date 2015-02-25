@@ -4850,8 +4850,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b36f4659a68e91546957ddd2d11fc5bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xPosition: -.50332588
-  yPosition: 12.1116724
+  xPosition: -29.5376778
+  yPosition: -.89768064
   adjustX: -9.80000019
   adjustY: -41.0999985
   marker: {fileID: 244072473}
@@ -4995,8 +4995,8 @@ MonoBehaviour:
   - Sounds
   - Tiles
   selectedTab:
-    filePath: C:/Users/Jonathan/Desktop/GridBasedGame/GridBasedGame/trunk/Assets\PlacementAssets\Sounds
-    name: Sounds
+    filePath: C:/Users/Jonathan/Desktop/GridBasedGame/GridBasedGame/trunk/Assets\PlacementAssets\Tiles
+    name: Tiles
     number: 0
     container: {fileID: 0}
 --- !u!4 &975937050
