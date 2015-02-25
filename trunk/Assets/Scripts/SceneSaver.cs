@@ -16,11 +16,17 @@ public class SceneSaver : MonoBehaviour {
 	public GameObject selectedNode = null;
 	public string fileName = "temp";
 	
-	string FilePath() { 
+	public static SceneSaver instance = null;
+	public SceneSaver() {
+		instance = this;
+	}
+	
+	
+	static string FilePath() { 
 		return "Assets" + "/";
 	}
 	
-	void GetOnlyChildren (GameObject root, List<Transform> fixedChildren) {
+	static void GetOnlyChildren (GameObject root, List<Transform> fixedChildren) {
 		var children = root.GetComponentsInChildren<Transform> ();
 		
 		foreach (var child in children) {
@@ -31,13 +37,13 @@ public class SceneSaver : MonoBehaviour {
 	}	
 	
 	//TODO Make Cleaner
-	void SaveSelectedNode () {
-		if (!selectedNode) {
+	public static void SaveSelectedNode () {
+		if (!instance.selectedNode) {
 			return;
 		}
 		
 		var fixedChildren = new List<Transform> ();
-		GetOnlyChildren (selectedNode, fixedChildren);
+		GetOnlyChildren (instance.selectedNode, fixedChildren);
 		AssetNodeData rootNode = new AssetNodeData ("PlacementAssets", Vector3.zero);
 		foreach (var subRoot in fixedChildren) {
 			var subFixedChildren = new List<Transform> ();
@@ -50,14 +56,21 @@ public class SceneSaver : MonoBehaviour {
 			}
 		}
 		XmlSerializer xmlSerializer = new XmlSerializer (typeof(AssetNodeData));
-		FileStream file = new FileStream (FilePath () + fileName + ".txt", FileMode.Create);
+		FileStream file = new FileStream (FilePath () + instance.fileName + ".txt", FileMode.Create);
 		xmlSerializer.Serialize (file, rootNode);
 		file.Close ();
 	}
-
-	void LoadNode () {
+	
+	public static void LoadNode () {
 		XmlSerializer xmlSerializer = new XmlSerializer (typeof(AssetNodeData));
-		FileStream file = new FileStream (FilePath () + fileName + ".txt", FileMode.Open);
+		
+		if (!File.Exists (FilePath () + instance.fileName + ".txt")) {
+			return;
+		}
+		
+		FileStream file = new FileStream (FilePath () + instance.fileName + ".txt", FileMode.Open);
+		
+		
 		AssetNodeData data = xmlSerializer.Deserialize (file) as AssetNodeData;
 		file.Close ();
 		GameObject rootLevel = null;
