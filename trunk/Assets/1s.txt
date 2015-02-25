@@ -1,0 +1,635 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<node xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" text="PlacementAssets">
+  <children>
+    <child text="Decor">
+      <children />
+    </child>
+    <child text="Enemies">
+      <children />
+    </child>
+    <child text="Lights">
+      <children />
+    </child>
+    <child text="Misc">
+      <children>
+        <child text="Tile_Start">
+          <children />
+        </child>
+        <child text="Tile_Finish">
+          <children />
+        </child>
+      </children>
+    </child>
+    <child text="Objects">
+      <children>
+        <child text="Tile_RockWall">
+          <children />
+        </child>
+        <child text="Tile_RockWall">
+          <children />
+        </child>
+        <child text="Tile_RockWall">
+          <children />
+        </child>
+        <child text="Tile_RockWall">
+          <children />
+        </child>
+        <child text="Tile_RockWall">
+          <children />
+        </child>
+        <child text="Tile_RockWall">
+          <children />
+        </child>
+        <child text="Tile_RockWall">
+          <children />
+        </child>
+        <child text="Tile_RockWall">
+          <children />
+        </child>
+        <child text="Tile_RockWall">
+          <children />
+        </child>
+        <child text="Tile_RockWall">
+          <children />
+        </child>
+        <child text="Tile_RockWall">
+          <children />
+        </child>
+        <child text="Tile_RockWall">
+          <children />
+        </child>
+        <child text="Tile_RockWall">
+          <children />
+        </child>
+        <child text="Tile_RockWall">
+          <children />
+        </child>
+        <child text="Tile_RockWall">
+          <children />
+        </child>
+        <child text="Tile_RockWall">
+          <children />
+        </child>
+        <child text="Tile_RockWall">
+          <children />
+        </child>
+        <child text="Tile_RockWall">
+          <children />
+        </child>
+        <child text="Tile_RockWall">
+          <children />
+        </child>
+        <child text="Tile_RockWall">
+          <children />
+        </child>
+        <child text="Tile_RockWall">
+          <children />
+        </child>
+        <child text="Tile_RockWall">
+          <children />
+        </child>
+        <child text="Tile_RockWall">
+          <children />
+        </child>
+        <child text="Tile_RockWall">
+          <children />
+        </child>
+        <child text="Tile_RockWall">
+          <children />
+        </child>
+        <child text="Tile_RockWall">
+          <children />
+        </child>
+      </children>
+    </child>
+    <child text="Sounds">
+      <children />
+    </child>
+    <child text="Tiles">
+      <children>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_CopperFloor">
+          <children />
+        </child>
+        <child text="Tile_CopperFloor">
+          <children />
+        </child>
+        <child text="Tile_CopperFloor">
+          <children />
+        </child>
+        <child text="Tile_CopperFloor">
+          <children />
+        </child>
+        <child text="Tile_CopperFloor">
+          <children />
+        </child>
+        <child text="Tile_CopperFloor">
+          <children />
+        </child>
+        <child text="Tile_CopperFloor">
+          <children />
+        </child>
+        <child text="Tile_CopperFloor">
+          <children />
+        </child>
+        <child text="Tile_CopperFloor">
+          <children />
+        </child>
+        <child text="Tile_CopperFloor">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_CopperFloor">
+          <children />
+        </child>
+        <child text="Tile_CopperFloor">
+          <children />
+        </child>
+        <child text="Tile_MetalFloor">
+          <children />
+        </child>
+        <child text="Tile_MetalFloor">
+          <children />
+        </child>
+        <child text="Tile_MetalFloor">
+          <children />
+        </child>
+        <child text="Tile_MetalFloor">
+          <children />
+        </child>
+        <child text="Tile_MetalFloor">
+          <children />
+        </child>
+        <child text="Tile_MetalFloor">
+          <children />
+        </child>
+        <child text="Tile_MetalFloor">
+          <children />
+        </child>
+        <child text="Tile_MetalFloor">
+          <children />
+        </child>
+        <child text="Tile_MetalFloor">
+          <children />
+        </child>
+        <child text="Tile_MetalFloor">
+          <children />
+        </child>
+        <child text="Tile_MetalFloor">
+          <children />
+        </child>
+        <child text="Tile_MetalFloor">
+          <children />
+        </child>
+        <child text="Tile_MetalFloor">
+          <children />
+        </child>
+        <child text="Tile_MetalFloor">
+          <children />
+        </child>
+        <child text="Tile_MetalFloor">
+          <children />
+        </child>
+        <child text="Tile_CopperFloor">
+          <children />
+        </child>
+        <child text="Tile_CopperWall">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Metal">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Metal">
+          <children />
+        </child>
+        <child text="Tile_Metal">
+          <children />
+        </child>
+        <child text="Tile_MetalFloor">
+          <children />
+        </child>
+        <child text="Tile_MetalFloor">
+          <children />
+        </child>
+        <child text="Tile_MetalFloor">
+          <children />
+        </child>
+        <child text="Tile_MetalFloor">
+          <children />
+        </child>
+        <child text="Tile_MetalFloor">
+          <children />
+        </child>
+        <child text="Tile_MetalFloor">
+          <children />
+        </child>
+        <child text="Tile_MetalFloor">
+          <children />
+        </child>
+        <child text="Tile_MetalFloor">
+          <children />
+        </child>
+        <child text="Tile_MetalFloor">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Metal">
+          <children />
+        </child>
+        <child text="Tile_Metal">
+          <children />
+        </child>
+        <child text="Tile_Metal">
+          <children />
+        </child>
+        <child text="Tile_Metal">
+          <children />
+        </child>
+        <child text="Tile_MetalWall">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_CopperFloor">
+          <children />
+        </child>
+        <child text="Tile_CopperFloor">
+          <children />
+        </child>
+        <child text="Tile_CopperFloor">
+          <children />
+        </child>
+        <child text="Tile_CopperFloor">
+          <children />
+        </child>
+        <child text="Tile_CopperFloor">
+          <children />
+        </child>
+        <child text="Tile_MetalFloor">
+          <children />
+        </child>
+        <child text="Tile_MetalFloor">
+          <children />
+        </child>
+        <child text="Tile_MetalFloor">
+          <children />
+        </child>
+        <child text="Tile_MetalFloor">
+          <children />
+        </child>
+        <child text="Tile_MetalFloor">
+          <children />
+        </child>
+        <child text="Tile_MetalFloor">
+          <children />
+        </child>
+        <child text="Tile_MetalFloor">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_CopperWall">
+          <children />
+        </child>
+        <child text="Tile_Metal">
+          <children />
+        </child>
+        <child text="Tile_Metal">
+          <children />
+        </child>
+        <child text="Tile_Metal">
+          <children />
+        </child>
+        <child text="Tile_Metal">
+          <children />
+        </child>
+        <child text="Tile_Metal">
+          <children />
+        </child>
+        <child text="Tile_Metal">
+          <children />
+        </child>
+        <child text="Tile_Metal">
+          <children />
+        </child>
+        <child text="Tile_Metal">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_CopperWall">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Metal">
+          <children />
+        </child>
+        <child text="Tile_Metal">
+          <children />
+        </child>
+        <child text="Tile_Metal">
+          <children />
+        </child>
+        <child text="Tile_Metal">
+          <children />
+        </child>
+        <child text="Tile_Metal">
+          <children />
+        </child>
+        <child text="Tile_Metal">
+          <children />
+        </child>
+        <child text="Tile_Metal">
+          <children />
+        </child>
+        <child text="Tile_Metal">
+          <children />
+        </child>
+        <child text="Tile_Metal">
+          <children />
+        </child>
+        <child text="Tile_Metal">
+          <children />
+        </child>
+        <child text="Tile_Metal">
+          <children />
+        </child>
+        <child text="Tile_Metal">
+          <children />
+        </child>
+        <child text="Tile_CopperWall">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Metal">
+          <children />
+        </child>
+        <child text="Tile_Metal">
+          <children />
+        </child>
+        <child text="Tile_Metal">
+          <children />
+        </child>
+        <child text="Tile_MetalWall">
+          <children />
+        </child>
+        <child text="Tile_CopperFloor">
+          <children />
+        </child>
+        <child text="Tile_CopperFloor">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_Copper">
+          <children />
+        </child>
+        <child text="Tile_MetalWall">
+          <children />
+        </child>
+        <child text="Tile_MetalWall">
+          <children />
+        </child>
+        <child text="Tile_MetalWall">
+          <children />
+        </child>
+      </children>
+    </child>
+  </children>
+</node>

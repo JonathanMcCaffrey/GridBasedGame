@@ -21064,6 +21064,47 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9dad909ce8d4f0e4690055b3ebeb1168, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!1 &1584733602
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1584733604}
+  - 114: {fileID: 1584733603}
+  m_Layer: 0
+  m_Name: SceneSaverSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1584733603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1584733602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7316dc48e02a13d45bf81369e19ee230, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeToSave: {fileID: 1154166499}
+  fileName: 1
+--- !u!4 &1584733604
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1584733602}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.18712711, y: .173842192, z: -101.945312}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
 --- !u!1 &1588934884
 GameObject:
   m_ObjectHideFlags: 0
@@ -22718,8 +22759,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b36f4659a68e91546957ddd2d11fc5bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xPosition: -31.2340603
-  yPosition: 1.96600044
+  xPosition: 1.77124572
+  yPosition: 3.05786014
   marker: {fileID: 201853102}
   isMarkerActive: 0
 --- !u!114 &1731309910
