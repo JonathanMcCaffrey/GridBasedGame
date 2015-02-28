@@ -95,7 +95,6 @@ public class AssetPlacementPositionSystem : MonoBehaviour {
 	void MoveDebugMarker (Vector3 position) {
 		if (ShouldMoveMarker ()) {
 			marker.transform.localPosition = position;
-			//TODO Set the debug marker to the camera, and find out what your messing up
 		}
 	}
 	

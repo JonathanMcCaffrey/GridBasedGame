@@ -11,8 +11,9 @@ public class FacebookLogin : MonoBehaviour {
 	private static List<object> friends = null;
 	private static Dictionary<string, string> profile = null;
 	private static string userName = null;
-	private static Texture userTexture = null;
+	private static Texture2D userTexture = null;
 
+	//TODO Make this private and access everything via static functions
 	public static FacebookLogin instance = null;
 	void Awake() {
 		if (instance) {
@@ -58,6 +59,7 @@ public class FacebookLogin : MonoBehaviour {
 		profile = FacebookUtils.DeserializeJSONProfile(result.Text);
 		userName = profile["first_name"];
 		friends = FacebookUtils.DeserializeJSONFriends(result.Text);
+
 	}
 	
 	public void OnLoginSelected() {
@@ -75,7 +77,9 @@ public class FacebookLogin : MonoBehaviour {
 			string panelText = "Welcome ";
 			panelText += (!string.IsNullOrEmpty (userName)) ? string.Format ("{0}!", userName) : "Smasher!";
 			if (userTexture != null)
-				GUI.DrawTexture ((new Rect (8, 10, 150, 150)), userTexture);
+				FacebookPortrait.SetImage(userTexture);
+
+			//	GUI.DrawTexture ((new Rect (8, 10, 150, 150)), userTexture);
 		}
 	}
 	
@@ -83,7 +87,7 @@ public class FacebookLogin : MonoBehaviour {
 		CreateDisplayPicture ();
 	}
 	
-	void MyPictureCallback(Texture texture) {
+	void MyPictureCallback(Texture2D texture) {
 		if (texture ==  null) {
 			LoadPictureAPI(FacebookUtils.GetPictureURL("me", 128, 128),MyPictureCallback);
 			return;
@@ -92,7 +96,7 @@ public class FacebookLogin : MonoBehaviour {
 		userTexture = texture;
 	}
 	
-	delegate void LoadPictureCallback (Texture texture);
+	delegate void LoadPictureCallback (Texture2D texture);
 	IEnumerator LoadPictureEnumerator(string url, LoadPictureCallback callback) {
 		WWW www = new WWW(url);
 		yield return www;

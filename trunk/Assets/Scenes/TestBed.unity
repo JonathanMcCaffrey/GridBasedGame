@@ -338,7 +338,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
   m_GravityScale: 0
-  m_FixedAngle: 0
+  m_FixedAngle: 1
   m_IsKinematic: 1
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -352,7 +352,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 72064379}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Size: {x: 1, y: 1}
   m_Center: {x: 0, y: 0}
 --- !u!114 &72064383
@@ -952,7 +952,7 @@ Transform:
   m_GameObject: {fileID: 175897020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11.6499996, y: 2.61999989, z: 0}
-  m_LocalScale: {x: .00329489284, y: .00329489284, z: .00329489284}
+  m_LocalScale: {x: .00510204071, y: .00510204071, z: .00510204071}
   m_Children:
   - {fileID: 1483652037}
   - {fileID: 1310418969}
@@ -1086,11 +1086,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -433.290863
+      value: -216
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -45.1494217
+      value: -73
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1128,6 +1128,10 @@ Prefab:
       propertyPath: m_Name
       value: Button - Rewards - Text
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: baseButton.onButtonClick.Array.data[0].mTarget
+      value: 
+      objectReference: {fileID: 1281928613}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
   m_RootGameObject: {fileID: 2114679833}
@@ -1814,7 +1818,7 @@ MonoBehaviour:
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
   onClick:
-  - mTarget: {fileID: 1424353910}
+  - mTarget: {fileID: 1281928613}
     mMethodName: onClick
     mParameters: []
     oneShot: 0
@@ -2158,7 +2162,7 @@ Transform:
   m_GameObject: {fileID: 377030377}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .00329489284, y: .00329489284, z: .00329489284}
+  m_LocalScale: {x: .00510204071, y: .00510204071, z: .00510204071}
   m_Children:
   - {fileID: 1725843971}
   m_Father: {fileID: 0}
@@ -2894,7 +2898,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
   m_GravityScale: 0
-  m_FixedAngle: 0
+  m_FixedAngle: 1
   m_IsKinematic: 1
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -3084,11 +3088,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -431
+      value: -213
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -121
+      value: -149
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3148,11 +3152,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -433.290863
+      value: -216
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 104.025177
+      value: 76
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3190,6 +3194,10 @@ Prefab:
       propertyPath: m_Name
       value: Button - Settings - Text
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: baseButton.onButtonClick.Array.data[0].mTarget
+      value: 
+      objectReference: {fileID: 1281928613}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
   m_RootGameObject: {fileID: 1303648146}
@@ -3275,11 +3283,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -431
+      value: -213
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 29
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3317,6 +3325,10 @@ Prefab:
       propertyPath: m_Name
       value: Button - Store - Text
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: baseButton.onButtonClick.Array.data[0].mTarget
+      value: 
+      objectReference: {fileID: 1281928613}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
   m_RootGameObject: {fileID: 1424353908}
@@ -3538,7 +3550,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
   m_GravityScale: 0
-  m_FixedAngle: 0
+  m_FixedAngle: 1
   m_IsKinematic: 1
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -3552,7 +3564,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 698157431}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Size: {x: 1, y: 1}
   m_Center: {x: 0, y: 0}
 --- !u!114 &698157434
@@ -4449,7 +4461,7 @@ MonoBehaviour:
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
   onClick:
-  - mTarget: {fileID: 1303648148}
+  - mTarget: {fileID: 1281928613}
     mMethodName: onClick
     mParameters: []
     oneShot: 0
@@ -4850,12 +4862,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b36f4659a68e91546957ddd2d11fc5bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xPosition: -29.5376778
-  yPosition: -.89768064
-  adjustX: -9.80000019
-  adjustY: -41.0999985
+  xPosition: -14.982233
+  yPosition: 2.50312877
   marker: {fileID: 244072473}
-  distance: 500
   isMarkerActive: 0
 --- !u!114 &975937049
 MonoBehaviour:
@@ -5555,7 +5564,7 @@ Transform:
   m_GameObject: {fileID: 1186753207}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11.6850004, y: 0, z: 0}
-  m_LocalScale: {x: .00329489284, y: .00329489284, z: .00329489284}
+  m_LocalScale: {x: .00510204071, y: .00510204071, z: .00510204071}
   m_Children:
   - {fileID: 1638293421}
   - {fileID: 476785542}
@@ -5953,7 +5962,7 @@ Transform:
   m_PrefabInternal: {fileID: 551077049}
   m_GameObject: {fileID: 1281928610}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -431, y: -121, z: 100}
+  m_LocalPosition: {x: -213, y: -149, z: 100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 997485858}
@@ -6077,7 +6086,7 @@ MonoBehaviour:
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
   onClick:
-  - mTarget: {fileID: 2114679835}
+  - mTarget: {fileID: 1281928613}
     mMethodName: onClick
     mParameters: []
     oneShot: 0
@@ -6157,7 +6166,7 @@ Transform:
   m_PrefabInternal: {fileID: 552846533}
   m_GameObject: {fileID: 1303648146}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -433.290863, y: 104.025177, z: 0}
+  m_LocalPosition: {x: -216, y: 76, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 956334078}
@@ -6181,7 +6190,7 @@ MonoBehaviour:
     button: {fileID: 956334077}
     backgroundColor: {r: .22479713, g: .202205896, b: .5, a: 1}
     onButtonClick:
-    - mTarget: {fileID: 1303648148}
+    - mTarget: {fileID: 1281928613}
       mMethodName: onClick
       mParameters: []
       oneShot: 0
@@ -6481,7 +6490,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1360851458}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Size: {x: 1, y: 1}
   m_Center: {x: 0, y: 0}
 --- !u!212 &1360851462
@@ -6638,7 +6647,7 @@ Transform:
   m_PrefabInternal: {fileID: 690055295}
   m_GameObject: {fileID: 1424353908}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -431, y: 29, z: 0}
+  m_LocalPosition: {x: -213, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 336540492}
@@ -6662,7 +6671,7 @@ MonoBehaviour:
     button: {fileID: 336540491}
     backgroundColor: {r: .22479713, g: .202205896, b: .5, a: 1}
     onButtonClick:
-    - mTarget: {fileID: 1424353910}
+    - mTarget: {fileID: 1281928613}
       mMethodName: onClick
       mParameters: []
       oneShot: 0
@@ -7870,7 +7879,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
   m_GravityScale: 0
-  m_FixedAngle: 0
+  m_FixedAngle: 1
   m_IsKinematic: 1
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -7884,7 +7893,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1712235861}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Size: {x: 1, y: 1}
   m_Center: {x: 0, y: 0}
 --- !u!114 &1712235865
@@ -8517,7 +8526,7 @@ MonoBehaviour:
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
   onClick:
-  - mTarget: {fileID: 1794771248}
+  - mTarget: {fileID: 1281928613}
     mMethodName: onClick
     mParameters: []
     oneShot: 0
@@ -8676,7 +8685,7 @@ Transform:
   m_PrefabInternal: {fileID: 2117822472}
   m_GameObject: {fileID: 1794771246}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -436, y: 179, z: 0}
+  m_LocalPosition: {x: -218, y: 151, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1744746972}
@@ -8700,7 +8709,7 @@ MonoBehaviour:
     button: {fileID: 1744746971}
     backgroundColor: {r: .22479713, g: .202205896, b: .5, a: 1}
     onButtonClick:
-    - mTarget: {fileID: 1794771248}
+    - mTarget: {fileID: 1281928613}
       mMethodName: onClick
       mParameters: []
       oneShot: 0
@@ -8805,7 +8814,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1816782283}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Size: {x: 1, y: 1}
   m_Center: {x: 0, y: 0}
 --- !u!212 &1816782287
@@ -9113,8 +9122,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: .850000024, y: .850000024}
-  m_Center: {x: .5, y: .5}
+  m_Size: {x: 1, y: 1}
+  m_Center: {x: 0, y: 0}
 --- !u!50 &1869174223
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -9126,7 +9135,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
   m_GravityScale: 0
-  m_FixedAngle: 0
+  m_FixedAngle: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -9162,7 +9171,7 @@ MonoBehaviour:
   mPlayerBullet: {fileID: 100000, guid: d092240697a03c74f82820f9131d3964, type: 2}
   mBulletSpawn: {fileID: 1436073574}
   mIsOn: 1
-  mArrowPrefab: {fileID: 100006, guid: 387c1b8a8b3110c459dddfd5ca7d26cf, type: 2}
+  mArrowPrefab: {fileID: 100000, guid: a2aa7e6205ca2ae4fb5dbbfec83d4ce1, type: 2}
   mTestPrefab: {fileID: 0}
 --- !u!114 &1869174226
 MonoBehaviour:
@@ -10270,7 +10279,7 @@ Transform:
   m_PrefabInternal: {fileID: 213431233}
   m_GameObject: {fileID: 2114679833}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -433.290863, y: -45.1494217, z: 0}
+  m_LocalPosition: {x: -216, y: -73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1301260958}
@@ -10294,7 +10303,7 @@ MonoBehaviour:
     button: {fileID: 1301260957}
     backgroundColor: {r: .22479713, g: .202205896, b: .5, a: 1}
     onButtonClick:
-    - mTarget: {fileID: 2114679835}
+    - mTarget: {fileID: 1281928613}
       mMethodName: onClick
       mParameters: []
       oneShot: 0
@@ -10309,11 +10318,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -436
+      value: -218
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 179
+      value: 151
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
       propertyPath: m_LocalPosition.z
@@ -10351,6 +10360,10 @@ Prefab:
       propertyPath: m_Name
       value: Button - Play - Text
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: baseButton.onButtonClick.Array.data[0].mTarget
+      value: 
+      objectReference: {fileID: 1281928613}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
   m_RootGameObject: {fileID: 1794771246}

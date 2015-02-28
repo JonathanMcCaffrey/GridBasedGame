@@ -26,9 +26,10 @@ public class AssetPlacementGlobals {
 	public const string IconRenderPath = "/Resources/PlacementIcons/";
 	
 	public const string HotKeysPath = "/" + InstallPath + "AssetPlacement/Editor/AssetPlacementSerializedHotKeys.cs";
-
+	
+	//Where all the asset placement hotkeys will go in top menu
 	public const string CommandPath = "Window/Asset Placement/";
-
+	
 	//Keys used internally
 	public const string SnapUpdate = "AssetPlacement.doSnapUpdate";
 	public const string ShowAll = "AssetPlacement.ShowAll";
@@ -41,7 +42,6 @@ public class AssetPlacementGlobals {
 	public const string SavedHotkey = "AP.SavedHotkey.";
 	public const string ShouldRefreshHotkeys = "AP.ShouldRefreshHotkeys.";
 	
-	
 	public const string PositionMarker = "AP.PositionMarker";
 	
 	public const string CameraRender3D = "AP.CameraRender3D";
@@ -50,8 +50,6 @@ public class AssetPlacementGlobals {
 	public const string LightSubRender3D = "AP.LightSubRender3D";
 	public const string LightSunRender3D = "AP.LightSunRender3D";
 	
-	
-	//Constants used by AssetPlacementSystem
-	public const int HotKeySelectionEnabled = -1; //TODO Delete this
+	public const int HotKeySelectionEnabled = -1; //TODO Delete this key
 	
 }

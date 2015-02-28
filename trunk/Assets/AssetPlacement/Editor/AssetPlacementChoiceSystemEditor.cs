@@ -11,7 +11,7 @@ public class AssetPlacementChoiceSystemUnity : Editor {
 	SerializedProperty selectedTab = null;
 	SerializedProperty shouldResetAssets = null;
 	SerializedProperty shouldResetHotKeys = null;
-
+	
 	void OnEnable() {
 		assetList = serializedObject.FindProperty ("assetList");
 		tabList = serializedObject.FindProperty ("tabList");
@@ -60,28 +60,20 @@ public class AssetPlacementChoiceSystemUnity : Editor {
 				
 				EditorGUILayout.EndVertical ();
 			}
-
-			if(assetList.GetArrayElementAtIndex (index).FindPropertyRelative("gameObject").objectReferenceValue == null) {
-				string fixedPath = assetList.GetArrayElementAtIndex (index).FindPropertyRelative("filePath").stringValue; 
-				fixedPath = fixedPath.Replace('\\', '/');
-
-				var prefab = AssetDatabase.LoadAssetAtPath(fixedPath, typeof(GameObject)) as GameObject;
-				assetList.GetArrayElementAtIndex (index).FindPropertyRelative("gameObject").objectReferenceValue =  prefab;
-			}
 		}
 	}
 	
 	void CreateResetButtons () {
 		GUILayout.BeginHorizontal ();
-
+		
 		if (GUILayout.Button ("Reset Data")) {
 			shouldResetAssets.boolValue = true;
 		}
-
+		
 		if (GUILayout.Button ("Reset Keys")) {
 			shouldResetHotKeys.boolValue = true;
 		}
-
+		
 		GUILayout.EndHorizontal ();
 	}
 	
@@ -91,7 +83,7 @@ public class AssetPlacementChoiceSystemUnity : Editor {
 		
 		var defaultStyle = new GUIStyle ();
 		GUILayout.Label ("Asset Count: " + assetList.arraySize.ToString (), defaultStyle);
-
+		
 		CreateTabSelection ();
 		CreateAssetSelection ();
 		

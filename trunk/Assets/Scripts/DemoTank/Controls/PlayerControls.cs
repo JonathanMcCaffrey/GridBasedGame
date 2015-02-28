@@ -150,9 +150,9 @@ public class PlayerControls : MonoBehaviour {
 				Vector3 playerGridVector = Globals.VectorToGridVector (mPlayer.transform.position);
 				Collider2D touched = Physics2D.OverlapPoint (new Vector2(mouseGridVector.x, mouseGridVector.y)); 
 				if (touched) {
-					if (touched.gameObject.layer == 9) {
+					if (touched.gameObject.layer == 9 || touched.gameObject.layer == 10) {
 
-						Debug.Log("Hit SOmething");
+						Debug.Log("Hit Something");
 						return;
 					}
 				}
