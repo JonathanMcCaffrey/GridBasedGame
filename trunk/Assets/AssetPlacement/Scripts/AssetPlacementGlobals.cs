@@ -39,7 +39,8 @@ public class AssetPlacementGlobals {
 	public const string SelectedKey = "AssetPlacement.SelectedKey";
 	public const string SelectedAssetNumber = "AssetPlacement.SelectedAssetNumber";
 	
-	public const string SavedHotkey = "AP.SavedHotkey.";
+	public const string SavedHotkeyDisplayIndex = "AP.SavedHotkeyDisplayIndex.";
+	public const string SavedHotkeyDisplayName = "AP.SavedHotkeyDisplayName.";
 	public const string ShouldRefreshHotkeys = "AP.ShouldRefreshHotkeys.";
 	
 	public const string PositionMarker = "AP.PositionMarker";
