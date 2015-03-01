@@ -32,7 +32,7 @@ public class AssetPlacementChoiceSystem : MonoBehaviour {
 	public Dictionary<string, GameObject> TabContainerDictionary {
 		get { return tabContainerDictionary; }
 	}
-
+	
 	public static AssetPlacementChoiceSystem instance = null;
 	void Awake() {
 		if (instance && instance != this) {
@@ -70,8 +70,12 @@ public class AssetPlacementChoiceSystem : MonoBehaviour {
 						var prefab = AssetDatabase.LoadAssetAtPath(fixedPath, typeof(GameObject)) as GameObject;
 						assetData.gameObject = prefab;
 						
+						var foundHotKey = EditorPrefs.GetString (AssetPlacementGlobals.SavedHotkeyDisplayName + assetData.name);
+						if(foundHotKey.Length > 0) {
+							foundHotKey = foundHotKey.Replace(" ", string.Empty);
+							assetData.keyCode = (KeyCode)System.Enum.Parse( typeof( KeyCode ), foundHotKey );
+						}
 					}
-					
 				}
 			}
 		}
@@ -217,7 +221,7 @@ public class AssetPlacementChoiceSystem : MonoBehaviour {
 		
 		foreach (var asset in assetList) {
 			if(!keyCodeList.ContainsKey(asset.keyCode)) {
-				var keyString = asset.keyCode.ToString();
+				var keyString = ((KeyCode)asset.keyCode).ToString();
 				var text = 
 					"\n\n\t[MenuItem( AssetPlacementGlobals.CommandPath + \"Hot Keys/" + keyString + " &_" + keyString + "\")]" +
 						"\n\tpublic static void SelectItem" + keyString + "() {" +

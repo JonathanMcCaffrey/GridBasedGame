@@ -94,7 +94,7 @@ MonoBehaviour:
   snapAreaSize: .857142925
   rotIncrement: 22.5
   rotIncrement2: 45
-  keyDown: 1
+  keyDown: 0
   settings: 0
   rotAxis: 0
   autoSnap: 1
@@ -120,8 +120,8 @@ MonoBehaviour:
   lookAtSelect: 0
   oldTransform: {fileID: 0}
   oldSelectedTransform: {fileID: 0}
-  oldSelectedLength: 1
-  oldPosition: {x: -5, y: 1, z: 500}
+  oldSelectedLength: 2
+  oldPosition: {x: 0, y: 0, z: 0}
   oldScale: {x: 1, y: 1, z: 1}
   oldRotation: {x: -0, y: 0, z: 0}
   movToggleKey: 256

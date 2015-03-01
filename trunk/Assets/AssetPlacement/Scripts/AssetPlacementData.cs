@@ -8,6 +8,7 @@ public class AssetPlacementData {
 	public string name = "";
 	public string tab = "";
 	public KeyCode keyCode = KeyCode.None;
+
 	public GameObject gameObject = null;
 
 	public bool shouldRefresh = true;
