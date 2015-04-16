@@ -1,6 +1,6 @@
 //----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2014 Tasharen Entertainment
+// Copyright © 2011-2015 Tasharen Entertainment
 //----------------------------------------------
 
 using UnityEngine;
@@ -109,7 +109,8 @@ public class UIButton : UIButtonColor
 				if (col != null)
 				{
 					col.enabled = value;
-					SetState(value ? State.Normal : State.Disabled, false);
+					UIButton[] buttons = GetComponents<UIButton>();
+					foreach (UIButton btn in buttons) btn.SetState(value ? State.Normal : State.Disabled, false);
 				}
 				else
 				{
@@ -118,7 +119,8 @@ public class UIButton : UIButtonColor
 					if (c2d != null)
 					{
 						c2d.enabled = value;
-						SetState(value ? State.Normal : State.Disabled, false);
+						UIButton[] buttons = GetComponents<UIButton>();
+						foreach (UIButton btn in buttons) btn.SetState(value ? State.Normal : State.Disabled, false);
 					}
 					else enabled = value;
 				}

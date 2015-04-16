@@ -1,6 +1,8 @@
 
 //Code originally taken from FriendsSmash Demo: https://github.com/fbsamples/friendsmash-unity
 
+
+
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,7 +14,7 @@ public class FacebookLogin : MonoBehaviour {
 	private static Dictionary<string, string> profile = null;
 	private static string userName = null;
 	private static Texture2D userTexture = null;
-
+	
 	//TODO Make this private and access everything via static functions
 	public static FacebookLogin instance = null;
 	void Awake() {
@@ -59,7 +61,7 @@ public class FacebookLogin : MonoBehaviour {
 		profile = FacebookUtils.DeserializeJSONProfile(result.Text);
 		userName = profile["first_name"];
 		friends = FacebookUtils.DeserializeJSONFriends(result.Text);
-
+		
 	}
 	
 	public void OnLoginSelected() {
@@ -78,7 +80,7 @@ public class FacebookLogin : MonoBehaviour {
 			panelText += (!string.IsNullOrEmpty (userName)) ? string.Format ("{0}!", userName) : "Smasher!";
 			if (userTexture != null)
 				FacebookPortrait.SetImage(userTexture);
-
+			
 			//	GUI.DrawTexture ((new Rect (8, 10, 150, 150)), userTexture);
 		}
 	}

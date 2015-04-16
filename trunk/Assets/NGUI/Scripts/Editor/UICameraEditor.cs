@@ -1,6 +1,6 @@
 //----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2014 Tasharen Entertainment
+// Copyright © 2011-2015 Tasharen Entertainment
 //----------------------------------------------
 
 using UnityEngine;
@@ -69,6 +69,11 @@ public class UICameraEditor : Editor
 
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("debug"));
 
+			GUILayout.BeginHorizontal();
+			EditorGUILayout.PropertyField(serializedObject.FindProperty("commandClick"), GUILayout.Width(140f));
+			GUILayout.Label("= Right-Click on OSX", GUILayout.MinWidth(30f));
+			GUILayout.EndHorizontal();
+
 			EditorGUI.BeginDisabledGroup(!mouse.boolValue && !touch.boolValue);
 			{
 				EditorGUILayout.PropertyField(serializedObject.FindProperty("allowMultiTouch"));
@@ -76,14 +81,18 @@ public class UICameraEditor : Editor
 			EditorGUI.EndDisabledGroup();
 
 			EditorGUI.BeginDisabledGroup(!mouse.boolValue);
-			{
-				EditorGUILayout.PropertyField(serializedObject.FindProperty("stickyTooltip"));
+			EditorGUILayout.PropertyField(serializedObject.FindProperty("stickyTooltip"));
+			EditorGUI.EndDisabledGroup();
 
-				GUILayout.BeginHorizontal();
-				EditorGUILayout.PropertyField(serializedObject.FindProperty("tooltipDelay"));
-				GUILayout.Label("seconds", GUILayout.MinWidth(60f));
-				GUILayout.EndHorizontal();
-			}
+			GUILayout.BeginHorizontal();
+			EditorGUILayout.PropertyField(serializedObject.FindProperty("longPressTooltip"));
+			GUILayout.EndHorizontal();
+
+			EditorGUI.BeginDisabledGroup(!mouse.boolValue);
+			GUILayout.BeginHorizontal();
+			EditorGUILayout.PropertyField(serializedObject.FindProperty("tooltipDelay"));
+			GUILayout.Label("seconds", GUILayout.MinWidth(60f));
+			GUILayout.EndHorizontal();
 			EditorGUI.EndDisabledGroup();
 
 			GUILayout.BeginHorizontal();

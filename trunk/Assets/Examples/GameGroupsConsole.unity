@@ -160,11 +160,13 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
-  GamerGroupName: Test group
-  GamerGroupDesc: Test group for testing.
-  GamerGroupPrivacy: closed
-  GamerGroupAdmin: 
-  GamerGroupCurrentGroup: 
+  gamerGroupName: Test group
+  gamerGroupDesc: Test group for testing.
+  gamerGroupPrivacy: closed
+  gamerGroupAdmin: 
+  gamerGroupCurrentGroup: 
+  gamerGroupCurrUser: 100000207964286
+  appAccessToken: 409682555812308|1hpK5K5gi2vwk55xh1IB0r5WTpU
 --- !u!4 &368575571
 Transform:
   m_ObjectHideFlags: 0
@@ -176,7 +178,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
 --- !u!1 &744203841
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,11 +245,8 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
   m_HDR: 0
   m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: .0219999999
 --- !u!4 &744203846
 Transform:
   m_ObjectHideFlags: 0
@@ -260,4 +258,3 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1

@@ -169,15 +169,21 @@ public class ConsoleBase : MonoBehaviour
             status = "Login called";
         }
 
-        #if UNITY_IOS || UNITY_ANDROID || UNITY_WP8
         GUI.enabled = FB.IsLoggedIn;
+        if (Button("Get publish_actions"))
+        {
+            CallFBLoginForPublish();
+            status = "Login (for publish_actions) called";
+        }
+
+        #if UNITY_IOS || UNITY_ANDROID || UNITY_WP8
         if (Button("Logout"))
         {
             CallFBLogout();
             status = "Logout called";
         }
-        GUI.enabled = FB.IsInitialized;
         #endif
+        GUI.enabled = FB.IsInitialized;
         GUILayout.EndHorizontal();
     }
 
@@ -185,8 +191,8 @@ public class ConsoleBase : MonoBehaviour
 
     private void CallFBInit()
     {
-		FB.Init (OnInitComplete, OnHideUnity);
-	}
+        FB.Init(OnInitComplete, OnHideUnity);
+    }
 
     private void OnInitComplete()
     {
@@ -204,7 +210,17 @@ public class ConsoleBase : MonoBehaviour
 
     private void CallFBLogin()
     {
-        FB.Login("public_profile,email,user_friends,publish_actions", LoginCallback);
+        FB.Login("public_profile,email,user_friends", LoginCallback);
+    }
+
+    private void CallFBLoginForPublish()
+    {
+        // It is generally good behavior to split asking for read and publish
+        // permissions rather than ask for them all at once.
+        //
+        // In your own game, consider postponing this call until the moment
+        // you actually need it.
+        FB.Login("publish_actions", LoginCallback);
     }
 
     void LoginCallback(FBResult result)

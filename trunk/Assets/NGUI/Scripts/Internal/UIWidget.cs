@@ -1,6 +1,6 @@
 //----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2014 Tasharen Entertainment
+// Copyright © 2011-2015 Tasharen Entertainment
 //----------------------------------------------
 
 using UnityEngine;
@@ -402,6 +402,14 @@ public class UIWidget : UIRect
 	{
 		get
 		{
+			// Experiment with a transform-based depth, uGUI style
+			//if (mDepth == int.MinValue)
+			//{
+			//    int val = cachedTransform.GetSiblingIndex();
+			//    UIWidget pt = parent as UIWidget;
+			//    if (pt != null) val += pt.depth;
+			//    return val;
+			//}
 			return mDepth;
 		}
 		set
@@ -710,7 +718,7 @@ public class UIWidget : UIRect
 		else
 		{
 			UIRect pt = parent;
-			finalAlpha = (parent != null) ? pt.CalculateFinalAlpha(frameID) * mColor.a : mColor.a;
+			finalAlpha = (pt != null) ? pt.CalculateFinalAlpha(frameID) * mColor.a : mColor.a;
 		}
 	}
 
@@ -1202,6 +1210,9 @@ public class UIWidget : UIRect
 
 		// Calculate the new position, width and height
 		Vector3 newPos = new Vector3(Mathf.Lerp(lt, rt, pvt.x), Mathf.Lerp(bt, tt, pvt.y), pos.z);
+		newPos.x = Mathf.Round(newPos.x);
+		newPos.y = Mathf.Round(newPos.y);
+
 		int w = Mathf.FloorToInt(rt - lt + 0.5f);
 		int h = Mathf.FloorToInt(tt - bt + 0.5f);
 
@@ -1309,7 +1320,7 @@ public class UIWidget : UIRect
 	{
 		get
 		{
-#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6
+#if UNITY_4_3 || UNITY_4_5
 			if (showHandlesWithMoveTool)
 			{
 				return UnityEditor.Tools.current == UnityEditor.Tool.Move;

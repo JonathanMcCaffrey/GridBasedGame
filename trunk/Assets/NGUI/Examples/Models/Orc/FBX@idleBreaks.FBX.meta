@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: d9a637e69b9f0a7449ee6b6e158ddd5b
 ModelImporter:
-  serializedVersion: 16
+  serializedVersion: 18
   fileIDToRecycleName:
     100000: Bip01 L Thigh
     100002: Bip01 L Forearm
@@ -170,11 +170,13 @@ ModelImporter:
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
+    keepQuads: 0
     weldVertices: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
+    useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     splitTangentsAcrossUV: 1
@@ -197,3 +199,5 @@ ModelImporter:
   animationType: 1
   additionalBone: 0
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 

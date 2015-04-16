@@ -1,6 +1,6 @@
 //----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2014 Tasharen Entertainment
+// Copyright © 2011-2015 Tasharen Entertainment
 //----------------------------------------------
 
 using UnityEngine;
@@ -88,7 +88,13 @@ public class UIScrollView : MonoBehaviour
 	/// </summary>
 
 	public float momentumAmount = 35f;
-	
+
+	/// <summary>
+	/// Strength of the spring dampening effect.
+	/// </summary>
+
+	public float dampenStrength = 9f;
+
 	/// <summary>
 	/// Horizontal scrollbar used for visualization.
 	/// </summary>
@@ -392,6 +398,8 @@ public class UIScrollView : MonoBehaviour
 
 	public bool RestrictWithinBounds (bool instant, bool horizontal, bool vertical)
 	{
+		if (mPanel == null) return false;
+
 		Bounds b = bounds;
 		Vector3 constraint = mPanel.CalculateConstrainOffset(b.min, b.max);
 
@@ -760,21 +768,18 @@ public class UIScrollView : MonoBehaviour
 					if (onDragStarted != null) onDragStarted();
 				}
 			}
+			else if (centerOnChild)
+			{
+				centerOnChild.Recenter();
+			}
 			else
 			{
-				if (centerOnChild != null)
-				{
-					centerOnChild.Recenter();
-				}
-				else
-				{
-					if (restrictWithinPanel && mPanel.clipping != UIDrawCall.Clipping.None)
-						RestrictWithinBounds(dragEffect == DragEffect.None, canMoveHorizontally, canMoveVertically);
+				if (restrictWithinPanel && mPanel.clipping != UIDrawCall.Clipping.None)
+					RestrictWithinBounds(dragEffect == DragEffect.None, canMoveHorizontally, canMoveVertically);
 
-					if (mDragStarted && onDragFinished != null) onDragFinished();
-					if (!mShouldMove && onStoppedMoving != null)
-						onStoppedMoving();
-				}
+				if (mDragStarted && onDragFinished != null) onDragFinished();
+				if (!mShouldMove && onStoppedMoving != null)
+					onStoppedMoving();
 			}
 		}
 	}
@@ -956,7 +961,7 @@ public class UIScrollView : MonoBehaviour
 				mScroll = NGUIMath.SpringLerp(mScroll, 0f, 20f, delta);
 
 				// Move the scroll view
-				Vector3 offset = NGUIMath.SpringDampen(ref mMomentum, 9f, delta);
+				Vector3 offset = NGUIMath.SpringDampen(ref mMomentum, dampenStrength, delta);
 				MoveAbsolute(offset);
 
 				// Restrict the contents to be within the scroll view's bounds

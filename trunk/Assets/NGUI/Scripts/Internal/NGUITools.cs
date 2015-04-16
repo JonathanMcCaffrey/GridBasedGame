@@ -1,6 +1,6 @@
 //----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2014 Tasharen Entertainment
+// Copyright © 2011-2015 Tasharen Entertainment
 //----------------------------------------------
 
 using UnityEngine;
@@ -71,12 +71,20 @@ static public class NGUITools
 
 	static public AudioSource PlaySound (AudioClip clip, float volume) { return PlaySound(clip, volume, 1f); }
 
+	static float mLastTimestamp = 0f;
+	static AudioClip mLastClip;
+
 	/// <summary>
 	/// Play the specified audio clip with the specified volume and pitch.
 	/// </summary>
 
 	static public AudioSource PlaySound (AudioClip clip, float volume, float pitch)
 	{
+		float time = Time.time;
+		if (mLastClip == clip && mLastTimestamp + 0.1f > time) return null;
+
+		mLastClip = clip;
+		mLastTimestamp = time;
 		volume *= soundVolume;
 
 		if (clip != null && volume > 0.01f)
@@ -113,8 +121,10 @@ static public class NGUITools
 				AudioSource source = mListener.GetComponent<AudioSource>();
 #endif
 				if (source == null) source = mListener.gameObject.AddComponent<AudioSource>();
+#if !UNITY_FLASH
 				source.priority = 50;
 				source.pitch = pitch;
+#endif
 				source.PlayOneShot(clip, volume);
 				return source;
 			}
@@ -763,6 +773,23 @@ static public class NGUITools
 			}
 		}
 
+		// Try to find an existing panel
+		if (root == null)
+		{
+			for (int i = 0, imax = UIPanel.list.Count; i < imax; ++i)
+			{
+				UIPanel p = UIPanel.list[i];
+				GameObject go = p.gameObject;
+
+				if (go.hideFlags == HideFlags.None && go.layer == layer)
+				{
+					trans.parent = p.transform;
+					trans.localScale = Vector3.one;
+					return p;
+				}
+			}
+		}
+
 		// If we are working with a different UI type, we need to treat it as a brand-new one instead
 		if (root != null)
 		{
@@ -1060,6 +1087,8 @@ static public class NGUITools
 	{
 		if (obj != null)
 		{
+			if (obj is Transform) obj = (obj as Transform).gameObject;
+
 			if (Application.isPlaying)
 			{
 				if (obj is GameObject)
@@ -1515,6 +1544,7 @@ static public class NGUITools
 
 			Rect rect = cam.rect;
 			Vector2 size = screenSize;
+
 			float aspect = size.x / size.y;
 			aspect *= rect.width / rect.height;
 			x0 *= aspect;
@@ -1524,6 +1554,12 @@ static public class NGUITools
 			Transform t = cam.transform;
 			Quaternion rot = t.rotation;
 			Vector3 pos = t.position;
+
+			int w = Mathf.RoundToInt(size.x);
+			int h = Mathf.RoundToInt(size.y);
+
+			if ((w & 1) == 1) pos.x -= 1f / size.x;
+			if ((h & 1) == 1) pos.y += 1f / size.y;
 
 			mSides[0] = rot * (new Vector3(x0, 0f, depth)) + pos;
 			mSides[1] = rot * (new Vector3(0f, y1, depth)) + pos;

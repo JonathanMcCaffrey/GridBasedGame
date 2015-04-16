@@ -1,6 +1,7 @@
 
 //Code originally taken from FriendsSmash Demo: https://github.com/fbsamples/friendsmash-unity
 
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,6 +30,7 @@ public class FacebookUtils : ScriptableObject {
     }
 
     public static Dictionary<string, string> DeserializeJSONProfile(string response) {
+
         var responseObject = Json.Deserialize(response) as Dictionary<string, object>;
         object nameH;
         var profile = new Dictionary<string, string>();
@@ -37,6 +39,7 @@ public class FacebookUtils : ScriptableObject {
             profile["first_name"] = (string)nameH;
         }
         return profile;
+
     }
     
     public static List<object> DeserializeScores(string response)  {
@@ -52,7 +55,8 @@ public class FacebookUtils : ScriptableObject {
     }
 
     public static List<object> DeserializeJSONFriends(string response) {
-        var responseObject = Json.Deserialize(response) as Dictionary<string, object>;
+
+	var responseObject = Json.Deserialize(response) as Dictionary<string, object>;
         object friendsH;
         var friends = new List<object>();
         if (responseObject.TryGetValue("invitable_friends", out friendsH)) {
@@ -77,6 +81,5 @@ public class FacebookUtils : ScriptableObject {
         
         return null;
     }
-
 
 }

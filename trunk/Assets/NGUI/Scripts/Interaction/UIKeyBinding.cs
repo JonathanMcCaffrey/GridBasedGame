@@ -1,6 +1,6 @@
 //----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2014 Tasharen Entertainment
+// Copyright © 2011-2015 Tasharen Entertainment
 //----------------------------------------------
 
 using UnityEngine;
@@ -21,10 +21,11 @@ public class UIKeyBinding : MonoBehaviour
 
 	public enum Modifier
 	{
-		None,
+		Any,
 		Shift,
 		Control,
 		Alt,
+		None,
 	}
 
 	/// <summary>
@@ -37,7 +38,7 @@ public class UIKeyBinding : MonoBehaviour
 	/// Modifier key that must be active in order for the binding to trigger.
 	/// </summary>
 
-	public Modifier modifier = Modifier.None;
+	public Modifier modifier = Modifier.Any;
 
 	/// <summary>
 	/// Action to take with the specified key.
@@ -72,7 +73,7 @@ public class UIKeyBinding : MonoBehaviour
 
 	protected virtual bool IsModifierActive ()
 	{
-		if (modifier == Modifier.None) return true;
+		if (modifier == Modifier.Any) return true;
 
 		if (modifier == Modifier.Alt)
 		{
@@ -89,6 +90,14 @@ public class UIKeyBinding : MonoBehaviour
 			if (Input.GetKey(KeyCode.LeftShift) ||
 				Input.GetKey(KeyCode.RightShift)) return true;
 		}
+		else if (modifier == Modifier.None)
+			return
+				!Input.GetKey(KeyCode.LeftAlt) &&
+				!Input.GetKey(KeyCode.RightAlt) &&
+				!Input.GetKey(KeyCode.LeftControl) &&
+				!Input.GetKey(KeyCode.RightControl) &&
+				!Input.GetKey(KeyCode.LeftShift) &&
+				!Input.GetKey(KeyCode.RightShift);
 		return false;
 	}
 
@@ -98,53 +107,53 @@ public class UIKeyBinding : MonoBehaviour
 
 	protected virtual void Update ()
 	{
+		if (UICamera.inputHasFocus) return;
 		if (keyCode == KeyCode.None || !IsModifierActive()) return;
+
+		bool keyDown = Input.GetKeyDown(keyCode);
+		bool keyUp = Input.GetKeyUp(keyCode);
+
+		if (keyDown) mPress = true;
 
 		if (action == Action.PressAndClick || action == Action.All)
 		{
-			if (UICamera.inputHasFocus) return;
-
-			UICamera.currentTouch = UICamera.controller;
-			UICamera.currentScheme = UICamera.ControlScheme.Mouse;
-			UICamera.currentTouch.current = gameObject;
-
-			if (Input.GetKeyDown(keyCode))
+			if (keyDown)
 			{
-				mPress = true;
+				UICamera.currentTouch = UICamera.controller;
+				UICamera.currentScheme = UICamera.ControlScheme.Controller;
+				UICamera.currentTouch.current = gameObject;
 				OnBindingPress(true);
+				UICamera.currentTouch.current = null;
 			}
 
-			if (Input.GetKeyUp(keyCode))
+			if (mPress && keyUp)
 			{
+				UICamera.currentTouch = UICamera.controller;
+				UICamera.currentScheme = UICamera.ControlScheme.Controller;
+				UICamera.currentTouch.current = gameObject;
 				OnBindingPress(false);
-
-				if (mPress)
-				{
-					OnBindingClick();
-					mPress = false;
-				}
+				OnBindingClick();
+				UICamera.currentTouch.current = null;
 			}
-			UICamera.currentTouch.current = null;
 		}
 
 		if (action == Action.Select || action == Action.All)
 		{
-			if (Input.GetKeyUp(keyCode))
+			if (keyUp)
 			{
 				if (mIsInput)
 				{
 					if (!mIgnoreUp && !UICamera.inputHasFocus)
 					{
-						UICamera.selectedObject = gameObject;
+						if (mPress) UICamera.selectedObject = gameObject;
 					}
 					mIgnoreUp = false;
 				}
-				else
-				{
-					UICamera.selectedObject = gameObject;
-				}
+				else if (mPress) UICamera.selectedObject = gameObject;
 			}
 		}
+
+		if (keyUp) mPress = false;
 	}
 
 	protected virtual void OnBindingPress (bool pressed) { UICamera.Notify(gameObject, "OnPress", pressed); }

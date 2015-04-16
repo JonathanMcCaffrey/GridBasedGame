@@ -13,12 +13,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedAppIndex: 0
   appIds:
-  - 377480135757400
+  - 366497496787845
   appLabels:
-  - Test Game
+  - Test App
   cookie: 1
   logging: 1
   status: 1
   xfbml: 0
   frictionlessRequests: 1
-  iosURLSuffix: 'fb377480135757400 '
+  iosURLSuffix: 

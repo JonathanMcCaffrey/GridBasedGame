@@ -1,6 +1,6 @@
 //----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2014 Tasharen Entertainment
+// Copyright © 2011-2015 Tasharen Entertainment
 //----------------------------------------------
 
 using UnityEngine;
@@ -192,6 +192,8 @@ public class UIPopupList : UIWidgetContainer
 	[HideInInspector][SerializeField] List<UILabel> mLabelList = new List<UILabel>();
 	[HideInInspector][SerializeField] float mBgBorder = 0f;
 
+	[System.NonSerialized] GameObject mSelection;
+
 	// Deprecated functionality
 	[HideInInspector][SerializeField] GameObject eventReceiver;
 	[HideInInspector][SerializeField] string functionName = "OnSelectionChange";
@@ -318,6 +320,36 @@ public class UIPopupList : UIWidgetContainer
 	{
 		items.Add(text);
 		itemData.Add(data);
+	}
+
+	/// <summary>
+	/// Remove the specified item.
+	/// </summary>
+
+	public void RemoveItem (string text)
+	{
+		int index = items.IndexOf(text);
+
+		if (index != -1)
+		{
+			items.RemoveAt(index);
+			itemData.RemoveAt(index);
+		}
+	}
+
+	/// <summary>
+	/// Remove the specified item.
+	/// </summary>
+
+	public void RemoveItemByData (object data)
+	{
+		int index = itemData.IndexOf(data);
+
+		if (index != -1)
+		{
+			items.RemoveAt(index);
+			itemData.RemoveAt(index);
+		}
 	}
 
 	/// <summary>
@@ -637,6 +669,9 @@ public class UIPopupList : UIWidgetContainer
 
 	public void Close ()
 	{
+		StopCoroutine("CloseIfUnselected");
+		mSelection = null;
+
 		if (mChild != null)
 		{
 			mLabelList.Clear();
@@ -746,13 +781,11 @@ public class UIPopupList : UIWidgetContainer
 
 	IEnumerator CloseIfUnselected ()
 	{
-		GameObject go = UICamera.selectedObject;
-
 		for (; ; )
 		{
 			yield return null;
 
-			if (UICamera.selectedObject != go)
+			if (UICamera.selectedObject != mSelection)
 			{
 				Close();
 				break;
@@ -794,15 +827,22 @@ public class UIPopupList : UIWidgetContainer
 			t.parent = myTrans.parent;
 			Vector3 pos;
 
-			// Manually triggered popup list on some other game object
-			if (openOn == OpenOn.Manual && UICamera.selectedObject != gameObject)
+			StopCoroutine("CloseIfUnselected");
+
+			if (UICamera.selectedObject == null)
 			{
-				StopCoroutine("CloseIfUnselected");
+				mSelection = gameObject;
+				UICamera.selectedObject = mSelection;
+			}
+			else mSelection = UICamera.selectedObject;
+
+			// Manually triggered popup list on some other game object
+			if (openOn == OpenOn.Manual && mSelection != gameObject)
+			{
 				min = t.parent.InverseTransformPoint(mPanel.anchorCamera.ScreenToWorldPoint(UICamera.lastTouchPosition));
 				max = min;
 				t.localPosition = min;
 				pos = t.position;
-				StartCoroutine("CloseIfUnselected");
 			}
 			else
 			{
@@ -812,6 +852,8 @@ public class UIPopupList : UIWidgetContainer
 				t.localPosition = min;
 				pos = myTrans.position;
 			}
+
+			StartCoroutine("CloseIfUnselected");
 
 			t.localRotation = Quaternion.identity;
 			t.localScale = Vector3.one;
@@ -944,7 +986,7 @@ public class UIPopupList : UIWidgetContainer
 
 			if (position == Position.Auto)
 			{
-				UICamera cam = UICamera.FindCameraForLayer((UICamera.selectedObject ?? gameObject).layer);
+				UICamera cam = UICamera.FindCameraForLayer(mSelection.layer);
 
 				if (cam != null)
 				{
@@ -974,7 +1016,11 @@ public class UIPopupList : UIWidgetContainer
 			max.y = min.y - mBackground.height;
 			max.z = min.z;
 			Vector3 offset = mPanel.CalculateConstrainOffset(min, max);
-			t.localPosition += offset;
+
+			pos = t.localPosition + offset;
+			pos.x = Mathf.Round(pos.x);
+			pos.y = Mathf.Round(pos.y);
+			t.localPosition = pos;
 		}
 		else OnSelect(false);
 	}

@@ -1,6 +1,6 @@
 //----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2014 Tasharen Entertainment
+// Copyright © 2011-2015 Tasharen Entertainment
 //----------------------------------------------
 
 #if !UNITY_3_5
@@ -894,14 +894,14 @@ public class UILabel : UIWidget
 
 					if (usage == 0)
 					{
-#if UNTIY_4_3 || UNITY_4_5 || UNITY_4_6
+#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6
 						mActiveTTF.textureRebuildCallback = null;
 #endif
 						mFontUsage.Remove(mActiveTTF);
 					}
 					else mFontUsage[mActiveTTF] = usage;
 				}
-#if UNTIY_4_3 || UNITY_4_5 || UNITY_4_6
+#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6
 				else mActiveTTF.textureRebuildCallback = null;
 #endif
 			}
@@ -913,7 +913,7 @@ public class UILabel : UIWidget
 				int usage = 0;
 
 				// Font hasn't been used yet? Register a change delegate callback
-#if UNTIY_4_3 || UNITY_4_5 || UNITY_4_6
+#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6
 				if (!mFontUsage.TryGetValue(mActiveTTF, out usage))
 					mActiveTTF.textureRebuildCallback = OnFontTextureChanged;
 #endif
@@ -935,7 +935,7 @@ public class UILabel : UIWidget
 	/// So... queue yet another work-around.
 	/// </summary>
 
-#if UNTIY_4_3 || UNITY_4_5 || UNITY_4_6
+#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6
 	static void OnFontTextureChanged ()
 	{
 		for (int i = 0; i < mList.size; ++i)
@@ -1135,7 +1135,7 @@ public class UILabel : UIWidget
 	}
 #endif
 
-#if !UNTIY_4_3 && !UNITY_4_5 && !UNITY_4_6
+#if !UNITY_4_3 && !UNITY_4_5 && !UNITY_4_6
 	static bool mTexRebuildAdded = false;
 
 	protected override void OnEnable ()
@@ -1370,6 +1370,9 @@ public class UILabel : UIWidget
 
 				minX = Mathf.Max(minX, base.minWidth);
 				minY = Mathf.Max(minY, base.minHeight);
+
+				if ((minX & 1) == 1) ++minX;
+				if ((minY & 1) == 1) ++minY;
 
 				mWidth = Mathf.Max(w, minX);
 				mHeight = Mathf.Max(h, minY);
@@ -1728,9 +1731,9 @@ public class UILabel : UIWidget
 
 		if (QualitySettings.activeColorSpace == ColorSpace.Linear)
 		{
-			col.r = Mathf.Pow(col.r, 2.2f);
-			col.g = Mathf.Pow(col.g, 2.2f);
-			col.b = Mathf.Pow(col.b, 2.2f);
+			col.r = Mathf.GammaToLinearSpace(col.r);
+			col.g = Mathf.GammaToLinearSpace(col.g);
+			col.b = Mathf.GammaToLinearSpace(col.b);
 		}
 
 		string text = processedText;

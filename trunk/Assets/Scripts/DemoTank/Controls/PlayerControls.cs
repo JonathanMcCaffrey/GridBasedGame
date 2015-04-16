@@ -100,7 +100,7 @@ public class PlayerControls : MonoBehaviour {
 				GameObject bullet = GameObject.Instantiate (mPlayerBullet, mBulletSpawn.transform.position, mPlayerGun.transform.rotation) as GameObject;
 				bullet.name = "PlayerBullet";
 				bullet.transform.parent = bulletContainer.transform;
-				bullet.rigidbody2D.AddForce (new Vector2 (Mathf.Sin (angle - (180.0f / 57.2957795f)) * FORCE / 2, Mathf.Cos (angle - (180.0f / 57.2957795f)) * FORCE / 2));
+				bullet.GetComponent<Rigidbody2D>().AddForce (new Vector2 (Mathf.Sin (angle - (180.0f / 57.2957795f)) * FORCE / 2, Mathf.Cos (angle - (180.0f / 57.2957795f)) * FORCE / 2));
 			}
 			mMouseWasDown = false;
 		}
@@ -112,7 +112,7 @@ public class PlayerControls : MonoBehaviour {
 	
 	void UpdateTankMovement () {
 		if (mPlayer && mInputList.Count > 1) {
-			rigidbody2D.velocity = Vector2.zero;
+			GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 			float xDiff = mPlayer.transform.position.x - mInputList [1].x;
 			float yDiff = mPlayer.transform.position.y - mInputList [1].y;
 			float distance = Mathf.Sqrt (xDiff * xDiff + yDiff * yDiff);
@@ -121,19 +121,19 @@ public class PlayerControls : MonoBehaviour {
 				return;
 			}
 			if (mPlayer.transform.position.x < mInputList [1].x) {
-				rigidbody2D.AddForce (new Vector2 (Time.deltaTime * FORCE, 0), ForceMode2D.Force);
+				GetComponent<Rigidbody2D>().AddForce (new Vector2 (Time.deltaTime * FORCE, 0), ForceMode2D.Force);
 				mPlayerBase.transform.rotation = Quaternion.Euler (0, 0, -90);
 			}
 			if (mPlayer.transform.position.x > mInputList [1].x) {
-				rigidbody2D.AddForce (new Vector2 (-Time.deltaTime * FORCE, 0), ForceMode2D.Force);
+				GetComponent<Rigidbody2D>().AddForce (new Vector2 (-Time.deltaTime * FORCE, 0), ForceMode2D.Force);
 				mPlayerBase.transform.rotation = Quaternion.Euler (0, 0, 90);
 			}
 			if (mPlayer.transform.position.y < mInputList [1].y) {
-				rigidbody2D.AddForce (new Vector2 (0, Time.deltaTime * FORCE), ForceMode2D.Force);
+				GetComponent<Rigidbody2D>().AddForce (new Vector2 (0, Time.deltaTime * FORCE), ForceMode2D.Force);
 				mPlayerBase.transform.rotation = Quaternion.Euler (0, 0, 0);
 			}
 			if (mPlayer.transform.position.y > mInputList [1].y) {
-				rigidbody2D.AddForce (new Vector2 (0, -Time.deltaTime * FORCE), ForceMode2D.Force);
+				GetComponent<Rigidbody2D>().AddForce (new Vector2 (0, -Time.deltaTime * FORCE), ForceMode2D.Force);
 				mPlayerBase.transform.rotation = Quaternion.Euler (0, 0, 180);
 			}
 		}
