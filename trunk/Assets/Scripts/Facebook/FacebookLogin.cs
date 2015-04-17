@@ -9,11 +9,32 @@ using System.Collections.Generic;
 using Facebook.MiniJSON;
 using System;
 
+public interface FacebookLoginListener {
+	void onFacebookLoggedIn ();
+}
+
 public class FacebookLogin : MonoBehaviour {
+	
+	
 	private static List<object> friends = null;
 	private static Dictionary<string, string> profile = null;
 	private static string userName = null;
 	private static Texture2D userTexture = null;
+	
+	
+	private List<FacebookLoginListener> listeners = new List<FacebookLoginListener>();
+	
+	public void addListener(FacebookLoginListener listener) {
+		if (!listeners.Contains (listener)) {
+			listeners.Add(listener);
+		}
+	}
+	
+	public void removeListener(FacebookLoginListener listener) {
+		if (listeners.Contains (listener)) {
+			listeners.Remove(listener);
+		}
+	}
 	
 	//TODO Make this private and access everything via static functions
 	public static FacebookLogin instance = null;
@@ -50,6 +71,10 @@ public class FacebookLogin : MonoBehaviour {
 	void OnLoggedIn() {
 		FB.API(queryProfileString, Facebook.HttpMethod.GET, APICallback);
 		LoadPictureAPI(FacebookUtils.GetPictureURL("me", 128, 128),MyPictureCallback);
+		
+		foreach (FacebookLoginListener listener in listeners) {
+			listener.onFacebookLoggedIn();
+		}
 	}
 	
 	void APICallback(FBResult result) {

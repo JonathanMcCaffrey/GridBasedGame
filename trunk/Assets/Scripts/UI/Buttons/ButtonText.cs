@@ -20,7 +20,7 @@ public class ButtonText : MonoBehaviour {
 		Debug.Log ("Button OnClick Not Set");
 	}
 	
-	void RefreshButton () {
+	public void RefreshButton () {
 		if (getLabel().text != text) {
 			getLabel().text = text;
 		}
