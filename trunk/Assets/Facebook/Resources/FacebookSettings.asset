@@ -13,12 +13,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedAppIndex: 0
   appIds:
-  - 366497496787845
+  - 435031190012077
   appLabels:
-  - Test App
+  - Generic Game
   cookie: 1
   logging: 1
   status: 1
   xfbml: 0
   frictionlessRequests: 1
-  iosURLSuffix: 
+  iosURLSuffix: com.JonMcC.GenericGame

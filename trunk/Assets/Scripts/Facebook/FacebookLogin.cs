@@ -14,8 +14,7 @@ public interface FacebookLoginListener {
 }
 
 public class FacebookLogin : MonoBehaviour {
-	
-	
+
 	private static List<object> friends = null;
 	private static Dictionary<string, string> profile = null;
 	private static string userName = null;

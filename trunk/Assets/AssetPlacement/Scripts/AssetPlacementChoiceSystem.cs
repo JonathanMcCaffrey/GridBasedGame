@@ -25,7 +25,7 @@ public class AssetPlacementChoiceSystem : MonoBehaviour {
 	
 	private string folderName = AssetPlacementGlobals.AssetPathPath + "PlacementAssets";
 	private string FolderPath() { 		
-		return Application.dataPath + "\\" + folderName;
+		return Application.dataPath + "/" + folderName;
 	}
 	
 	private Dictionary<string, GameObject> tabContainerDictionary = new Dictionary<string, GameObject> (); 
@@ -58,15 +58,14 @@ public class AssetPlacementChoiceSystem : MonoBehaviour {
 				var filePaths = Directory.GetFiles (tabData.filePath);
 				foreach (string filePath in filePaths) {
 					var name = filePath.Remove (0, FolderPath ().Length + 1);
-					var localPath = "Assets\\" + filePath.Remove (0, FolderPath ().Length - folderName.Length);
+					var localPath = "Assets/" + filePath.Remove (0, FolderPath ().Length - folderName.Length);
 					
 					if (name.EndsWith (searchedExtension)) {
 						var assetData = new AssetPlacementData (localPath, name, tabData.name);
 						assetList.Add (assetData);
 						
 						string fixedPath = localPath; 
-						fixedPath = fixedPath.Replace('\\', '/');
-						
+
 						var prefab = AssetDatabase.LoadAssetAtPath(fixedPath, typeof(GameObject)) as GameObject;
 						assetData.gameObject = prefab;
 						

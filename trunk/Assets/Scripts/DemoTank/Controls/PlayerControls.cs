@@ -20,14 +20,13 @@ public class PlayerControls : MonoBehaviour {
 	public GameObject mTestPrefab = null;
 	
 	private bool mMouseDown = false;
-	
-	float SPEED = 0.8f;
-	float FORCE = 900;
+
+	float FORCE = 1200;
 	
 	private bool mMouseWasDown = false;
 	private Vector3 mLastMousePosition = Vector3.zero;
 
-	private float arrowZLayer = 260;
+	private float arrowZLayer = 500;
 
 	private static GameObject playerControlsContainer = null;
 	private static GameObject bulletContainer = null;
@@ -101,6 +100,9 @@ public class PlayerControls : MonoBehaviour {
 				bullet.name = "PlayerBullet";
 				bullet.transform.parent = bulletContainer.transform;
 				bullet.GetComponent<Rigidbody2D>().AddForce (new Vector2 (Mathf.Sin (angle - (180.0f / 57.2957795f)) * FORCE / 2, Mathf.Cos (angle - (180.0f / 57.2957795f)) * FORCE / 2));
+		
+			//	Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), PlayerObject.instance.gameObject.GetComponent<Collider2D>());
+
 			}
 			mMouseWasDown = false;
 		}
@@ -151,7 +153,6 @@ public class PlayerControls : MonoBehaviour {
 				Collider2D touched = Physics2D.OverlapPoint (new Vector2(mouseGridVector.x, mouseGridVector.y)); 
 				if (touched) {
 					if (touched.gameObject.layer == 9 || touched.gameObject.layer == 10) {
-
 						Debug.Log("Hit Something");
 						return;
 					}
@@ -210,8 +211,7 @@ public class PlayerControls : MonoBehaviour {
 		UpdateTankMovement ();
 		CapturePlayerControls ();
 	}
-	
-	
+
 	void OnCollisionEnter2D(Collision2D col) {
 	//	this.rigidbody2D.velocity = Vector3.zero;
 	}
