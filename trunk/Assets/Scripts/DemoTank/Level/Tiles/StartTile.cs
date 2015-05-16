@@ -27,8 +27,6 @@ public class StartTile : MonoBehaviour {
 				Debug.Log("Error, player doesn't exist");
 			}
 
-			var collider = player.GetComponent<BoxCollider2D>();
-
 			var temp =  new Vector3((int)(this.gameObject.transform.position.x),
 			                        (int)(this.gameObject.transform.position.y),
 			                        250);

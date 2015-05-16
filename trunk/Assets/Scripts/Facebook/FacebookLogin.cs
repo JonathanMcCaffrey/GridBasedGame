@@ -1,7 +1,4 @@
 
-//Code originally taken from FriendsSmash Demo: https://github.com/fbsamples/friendsmash-unity
-
-
 
 using UnityEngine;
 using System.Collections;

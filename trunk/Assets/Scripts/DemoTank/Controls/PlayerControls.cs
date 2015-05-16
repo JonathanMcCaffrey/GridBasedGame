@@ -9,6 +9,8 @@ public class PlayerControls : MonoBehaviour {
 	public GameObject mPlayerGun = null;
 	
 	public GameObject mPlayerBullet = null;
+	public GameObject mPlayerDecoy = null;
+
 	public GameObject mBulletSpawn = null;
 	
 	public bool mIsOn = true;
@@ -37,7 +39,6 @@ public class PlayerControls : MonoBehaviour {
 			playerControlsContainer = new GameObject("PlayerControlsContainer");
 			DontDestroyOnLoad(playerControlsContainer);
 		}
-
 
 		if (!bulletContainer) {
 			bulletContainer = new GameObject("BulletContainer");
@@ -96,13 +97,18 @@ public class PlayerControls : MonoBehaviour {
 		}
 		if (Input.GetMouseButtonUp (0)) {
 			if (mMouseWasDown && (mLastMousePosition == Input.mousePosition)) {
-				GameObject bullet = GameObject.Instantiate (mPlayerBullet, mBulletSpawn.transform.position, mPlayerGun.transform.rotation) as GameObject;
+
+
+
+				GameObject bullet = GameObject.Instantiate (alternativeFire
+				                                             ? mPlayerDecoy : mPlayerBullet, 
+				                                            mBulletSpawn.transform.position, 
+				                                            mPlayerGun.transform.rotation) as GameObject;
 				bullet.name = "PlayerBullet";
 				bullet.transform.parent = bulletContainer.transform;
 				bullet.GetComponent<Rigidbody2D>().AddForce (new Vector2 (Mathf.Sin (angle - (180.0f / 57.2957795f)) * FORCE / 2, Mathf.Cos (angle - (180.0f / 57.2957795f)) * FORCE / 2));
 		
-			//	Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), PlayerObject.instance.gameObject.GetComponent<Collider2D>());
-
+				Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), PlayerObject.instance.gameObject.GetComponent<Collider2D>());
 			}
 			mMouseWasDown = false;
 		}
@@ -152,8 +158,7 @@ public class PlayerControls : MonoBehaviour {
 				Vector3 playerGridVector = Globals.VectorToGridVector (mPlayer.transform.position);
 				Collider2D touched = Physics2D.OverlapPoint (new Vector2(mouseGridVector.x, mouseGridVector.y)); 
 				if (touched) {
-					if (touched.gameObject.layer == 9 || touched.gameObject.layer == 10) {
-						Debug.Log("Hit Something");
+					if (touched.gameObject.layer == Tags.Wall || touched.gameObject.layer == Tags.Breakable) {
 						return;
 					}
 				}
@@ -205,8 +210,17 @@ public class PlayerControls : MonoBehaviour {
 			}
 		}
 	}
-	
+
+	bool alternativeFire = false;
 	void Update () {
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			alternativeFire = true;
+		} 
+
+		if (Input.GetKeyUp (KeyCode.Space)) {
+			alternativeFire = false;
+		} 
+
 		UpdateGunControls(); 
 		UpdateTankMovement ();
 		CapturePlayerControls ();

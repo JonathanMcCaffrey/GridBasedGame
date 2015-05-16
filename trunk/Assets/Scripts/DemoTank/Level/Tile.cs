@@ -33,8 +33,7 @@ public class Tile : MonoBehaviour {
 	
 	public void Start() {
 		TileToGrid ();
-		
-		string textureName = GetComponent<SpriteRenderer> ().sprite.texture.name;
+
 	}
 	
 	public void OnDrawGizmos () {

@@ -558,7 +558,7 @@ void iosFeedRequest(int requestId,
   // Native dialogs do not yet support To: fields, so fall back if we have one.
   shouldDisplayNative = shouldDisplayNative && !(toId && toId[0] != 0);
   if(shouldDisplayNative) {
-    FBLinkShareParams *dialogParams = [[[FBLinkShareParams alloc] init] autorelease];
+    FBLinkShareParams *dialogParams = [[FBLinkShareParams alloc] init];
 
     NSString *strLink = [NSString stringWithUTF8String:link];
     NSURL *linkUrl = [NSURL URLWithString:strLink];
@@ -659,11 +659,7 @@ void iosCallFbApi(int requestId,
 }
 
 void iosFBSettingsPublishInstall(int requestId, const char *appId) {
-  [FBSettings publishInstall:[NSString stringWithUTF8String:appId] withHandler:
-   ^(FBGraphObject *result, NSError *error) {
-     NSString *jsonString = ResponseHelper(result, error);
-     HandleJSONResponse(requestId, error != nil, [jsonString UTF8String]);
-   }];
+  
 }
 
 void iosFBSettingsActivateApp(const char *appId) {

@@ -160,6 +160,7 @@ MonoBehaviour:
   mPlayerBase: {fileID: 100002}
   mPlayerGun: {fileID: 100004}
   mPlayerBullet: {fileID: 100000, guid: d092240697a03c74f82820f9131d3964, type: 2}
+  mPlayerDecoy: {fileID: 105598, guid: d472ba51a1ee5482ba46dd0764f2e6af, type: 2}
   mBulletSpawn: {fileID: 100000}
   mIsOn: 1
   mArrowPrefab: {fileID: 100000, guid: a2aa7e6205ca2ae4fb5dbbfec83d4ce1, type: 2}

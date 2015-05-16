@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -8,8 +10,7 @@ using System;
 
 //TODO Wrap this for mobile
 using System.IO;
-using UnityEditor;
-
+//using UnityEditor;
 
 
 public class SceneSaver : MonoBehaviour {	
@@ -90,13 +91,18 @@ public class SceneSaver : MonoBehaviour {
 			foreach (var childNode in dataNode.children) {
 				//TODO Make cleaner
 				string assetString = "Assets/PlacementAssets/" + dataNode.text + "/" + childNode.text + ".prefab";
-				var asset = AssetDatabase.LoadAssetAtPath (assetString, typeof(GameObject)) as GameObject;
+			
+
+#if UNITY_EDITOR
+				var asset = UnityEditor.AssetDatabase.LoadAssetAtPath (assetString, typeof(GameObject)) as GameObject;
 				if (asset) {
 					var newObject = GameObject.Instantiate (asset) as GameObject;
 					newObject.name = childNode.text;
 					newObject.transform.parent = subLevel.transform;
 					newObject.transform.localPosition = childNode.Position ();
 				}
+#endif
+
 			}
 		}
 	}	
@@ -141,3 +147,4 @@ public class AssetNodeData {
 	}
 }
 
+#endif

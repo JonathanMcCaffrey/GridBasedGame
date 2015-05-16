@@ -8,7 +8,11 @@ public class ButtonFacebook : MonoBehaviour, FacebookLoginListener {
 	public void onClick() {
 		
 		if (isLoggedIn) {
-			FacebookInvite.Invite();
+			FacebookReceive.Given();
+
+			//FacebookSend.Decoy();
+
+		//	FacebookInvite.Invite();
 		} else {
 			FacebookLogin.instance.addListener (this);			
 			FacebookLogin.instance.OnLoginSelected ();

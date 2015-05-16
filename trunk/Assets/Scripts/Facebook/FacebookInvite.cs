@@ -5,58 +5,22 @@ using Facebook.MiniJSON;
 
 public class FacebookInvite : MonoBehaviour {
 	
-	public static void Invite()                                                                                              
+	public static void Friend()                                                                                              
 	{
-		SendGift ();
-
-		return;
-
 		FB.AppRequest(
-			"Come join me in this game!",
+			"Friend, come join me in this generic game!",
 			null,
 			null,
 			null,
 			null,
 			"data",
 			"Game",
-			appRequestCallback);
-
-
-
+			requestCallback);
+		
 	}
+	
+	static void requestCallback (FBResult result)                                                                              
+	{           
 
-	public static void SendGift()                                                                                              
-	{
-		FB.AppRequest ("Take this Gift",
-		              Facebook.OGActionType.Send,
-		              "Gift",
-		              null,
-		              "Gift",
-		              "Send Gift",
-		              appRequestCallback);
-		             
-		
-	}   
-
-	public static void AskForGift()                                                                                              
-	{
-		FB.AppRequest ("Need a Gift",
-		               Facebook.OGActionType.AskFor,
-		               "Gift",
-		               null,
-		               "Gift",
-		               "Ask for Gift",
-		               appRequestCallback);
-		
-		
-	}   
-
-
-	static void appRequestCallback (FBResult result)                                                                              
-	{                                                                                                                              
-		if (result != null)                                                                                                        
-		{                                                                                                                          
-			
-		}                                                                                                                          
 	}  
 }
