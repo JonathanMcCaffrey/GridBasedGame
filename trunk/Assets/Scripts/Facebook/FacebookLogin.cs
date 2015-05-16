@@ -12,7 +12,6 @@ public interface FacebookLoginListener {
 
 public class FacebookLogin : MonoBehaviour {
 
-	private static List<object> friends = null;
 	private static Dictionary<string, string> profile = null;
 	private static string userName = null;
 	private static Texture2D userTexture = null;
@@ -81,7 +80,7 @@ public class FacebookLogin : MonoBehaviour {
 		
 		profile = FacebookUtils.DeserializeJSONProfile(result.Text);
 		userName = profile["first_name"];
-		friends = FacebookUtils.DeserializeJSONFriends(result.Text);
+		FacebookFriends.list = FacebookUtils.DeserializeJSONFriends(result.Text);
 		
 	}
 	

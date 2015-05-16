@@ -244,6 +244,7 @@
     <Compile Include="Assets\Scripts\DemoTank\Panels\LevelSelect.cs" />
     <Compile Include="Assets\Scripts\DemoTank\Systems\CameraScript.cs" />
     <Compile Include="Assets\Scripts\DemoTank\Tags.cs" />
+    <Compile Include="Assets\Scripts\DemoTank\Values.cs" />
     <Compile Include="Assets\Scripts\Facebook\FacebookDelete.cs" />
     <Compile Include="Assets\Scripts\Facebook\FacebookFriendList.cs" />
     <Compile Include="Assets\Scripts\Facebook\FacebookInvite.cs" />
@@ -253,6 +254,8 @@
     <Compile Include="Assets\Scripts\Facebook\FacebookSend.cs" />
     <Compile Include="Assets\Scripts\Facebook\FacebookUtils.cs" />
     <Compile Include="Assets\Scripts\Facebook\FacebookValue.cs" />
+    <Compile Include="Assets\Scripts\Inventory\Inventory.cs" />
+    <Compile Include="Assets\Scripts\Inventory\ItemData.cs" />
     <Compile Include="Assets\Scripts\SceneSaver.cs" />
     <Compile Include="Assets\Scripts\UI\Buttons\Actions\ButtonFacebook.cs" />
     <Compile Include="Assets\Scripts\UI\Buttons\Actions\ButtonPlayGame.cs" />

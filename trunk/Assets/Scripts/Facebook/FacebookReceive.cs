@@ -34,8 +34,7 @@ public class FacebookReceive : MonoBehaviour {
 		request.Headers.Add("Authorization", authToken);
 
 		request.BeginGetResponse((IAsyncResult x) => {
-			using (HttpWebResponse response = (HttpWebResponse)request.EndGetResponse(x))
-			{
+			using (HttpWebResponse response = (HttpWebResponse)request.EndGetResponse(x)) {
 				string test = x.ToString();
 				
 				StreamReader reader = new StreamReader(response.GetResponseStream());

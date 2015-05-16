@@ -9,4 +9,5 @@ public static class Tags {
 	public const int Player = 11;
 	public const int Enemy = 12;
 	public const int Item = 13;
+
 }

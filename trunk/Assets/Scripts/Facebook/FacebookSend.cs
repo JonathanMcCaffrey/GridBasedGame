@@ -4,10 +4,8 @@ using System.Collections;
 using Facebook.MiniJSON;
 
 public class FacebookSend : MonoBehaviour {
-	
-	
+
 	public static void Decoy() {
-		
 		FB.AppRequest ("Take this Decoy in Generic Game.",
 		               Facebook.OGActionType.Send,
 		               FacebookValue.Decoy,

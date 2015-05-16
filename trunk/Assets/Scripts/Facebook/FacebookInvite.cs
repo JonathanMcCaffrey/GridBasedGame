@@ -5,8 +5,7 @@ using Facebook.MiniJSON;
 
 public class FacebookInvite : MonoBehaviour {
 	
-	public static void Friend()                                                                                              
-	{
+	public static void Friend() {
 		FB.AppRequest(
 			"Friend, come join me in this generic game!",
 			null,
@@ -19,8 +18,7 @@ public class FacebookInvite : MonoBehaviour {
 		
 	}
 	
-	static void requestCallback (FBResult result)                                                                              
-	{           
+	static void requestCallback (FBResult result) {           
 
 	}  
 }
