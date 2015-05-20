@@ -7,7 +7,8 @@ using Facebook.MiniJSON;
 using System;
 
 public interface FacebookLoginListener {
-	void onFacebookLoggedIn ();
+	void onFacebookLogIn ();
+	void onFacebookLogOut ();
 }
 
 public class FacebookLogin : MonoBehaviour {
@@ -68,7 +69,7 @@ public class FacebookLogin : MonoBehaviour {
 		LoadPictureAPI(FacebookUtils.GetPictureURL("me", 128, 128),MyPictureCallback);
 		
 		foreach (FacebookLoginListener listener in listeners) {
-			listener.onFacebookLoggedIn();
+			listener.onFacebookLogIn();
 		}
 	}
 	

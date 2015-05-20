@@ -245,6 +245,7 @@
     <Compile Include="Assets\Scripts\DemoTank\Systems\CameraScript.cs" />
     <Compile Include="Assets\Scripts\DemoTank\Tags.cs" />
     <Compile Include="Assets\Scripts\DemoTank\Values.cs" />
+    <Compile Include="Assets\Scripts\Event\FacebookListener.cs" />
     <Compile Include="Assets\Scripts\Facebook\FacebookDelete.cs" />
     <Compile Include="Assets\Scripts\Facebook\FacebookFriendList.cs" />
     <Compile Include="Assets\Scripts\Facebook\FacebookInvite.cs" />
@@ -257,9 +258,13 @@
     <Compile Include="Assets\Scripts\Inventory\Inventory.cs" />
     <Compile Include="Assets\Scripts\Inventory\ItemData.cs" />
     <Compile Include="Assets\Scripts\SceneSaver.cs" />
-    <Compile Include="Assets\Scripts\UI\Buttons\Actions\ButtonFacebook.cs" />
     <Compile Include="Assets\Scripts\UI\Buttons\Actions\ButtonPlayGame.cs" />
-    <Compile Include="Assets\Scripts\UI\Buttons\ButtonDefault.cs" />
+    <Compile Include="Assets\Scripts\UI\Buttons\Actions\Facebook\Ask.cs" />
+    <Compile Include="Assets\Scripts\UI\Buttons\Actions\Facebook\BaseButton.cs" />
+    <Compile Include="Assets\Scripts\UI\Buttons\Actions\Facebook\ButtonDefault.cs" />
+    <Compile Include="Assets\Scripts\UI\Buttons\Actions\Facebook\Give.cs" />
+    <Compile Include="Assets\Scripts\UI\Buttons\Actions\Facebook\Invite.cs" />
+    <Compile Include="Assets\Scripts\UI\Buttons\Actions\Facebook\LogInOrOut.cs" />
     <Compile Include="Assets\Scripts\UI\Buttons\ButtonIcon.cs" />
     <Compile Include="Assets\Scripts\UI\Buttons\ButtonText.cs" />
     <Compile Include="Assets\Scripts\UI\Images\FacebookPortrait.cs" />

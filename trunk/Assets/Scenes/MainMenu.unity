@@ -121,6 +121,7 @@ Transform:
   - {fileID: 183505440}
   - {fileID: 2114679834}
   - {fileID: 325615167}
+  - {fileID: 1197512158}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!54 &175897022
@@ -260,11 +261,11 @@ Prefab:
     - target: {fileID: 11400000, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
       propertyPath: baseButton.onButtonClick.Array.data[0].mTarget
       value: 
-      objectReference: {fileID: 1281928613}
+      objectReference: {fileID: 0}
     - target: {fileID: 11400006, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
       propertyPath: onClick.Array.data[0].mTarget
       value: 
-      objectReference: {fileID: 1281928613}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
   m_IsPrefabParent: 0
@@ -326,7 +327,7 @@ Prefab:
     - target: {fileID: 11400000, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
       propertyPath: baseButton.onButtonClick.Array.data[0].mTarget
       value: 
-      objectReference: {fileID: 1281928613}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
   m_IsPrefabParent: 0
@@ -428,6 +429,208 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efc389eed02fbf0408e9d7a2eb909741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &350617205
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1197512158}
+    m_Modifications:
+    - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 145
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: m_Name
+      value: Button - Give - Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: text
+      value: Give
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: mText
+      value: Give
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: baseButton.backgroundColor.r
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: baseButton.backgroundColor.g
+      value: .202205896
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: baseButton.backgroundColor.b
+      value: .202205896
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &350617206 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+  m_PrefabInternal: {fileID: 350617205}
+--- !u!1001 &388750716
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1197512158}
+    m_Modifications:
+    - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 145
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -147
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: m_Name
+      value: Button - Invite - Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: text
+      value: Invite
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: mText
+      value: Invite
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: baseButton.backgroundColor.r
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: baseButton.backgroundColor.b
+      value: .202205896
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &388750717 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+  m_PrefabInternal: {fileID: 388750716}
+--- !u!1001 &488650524
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1197512158}
+    m_Modifications:
+    - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 145
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -74
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: m_Name
+      value: Button - Ask - Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: text
+      value: Ask
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: mText
+      value: Ask
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: baseButton.backgroundColor.r
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+      propertyPath: baseButton.backgroundColor.b
+      value: .202205896
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &488650525 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
+  m_PrefabInternal: {fileID: 488650524}
 --- !u!1001 &551077049
 Prefab:
   m_ObjectHideFlags: 0
@@ -490,6 +693,36 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1197512157
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1197512158}
+  m_Layer: 9
+  m_Name: Facebook Options Container
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1197512158
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1197512157}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 350617206}
+  - {fileID: 488650525}
+  - {fileID: 388750717}
+  m_Father: {fileID: 175897021}
+  m_RootOrder: 6
 --- !u!1 &1281928610 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100002, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
@@ -506,7 +739,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1281928610}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f81d08e2029289f49980d12e2729c5fc, type: 3}
+  m_Script: {fileID: 11500000, guid: 293fa89fb6133467f901c2ce9e0473ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1483652036
@@ -711,7 +944,7 @@ Prefab:
     - target: {fileID: 11400000, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
       propertyPath: baseButton.onButtonClick.Array.data[0].mTarget
       value: 
-      objectReference: {fileID: 1281928613}
+      objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 9ed34d159dbf3e849a8ad8d2ece19fcd, type: 2}
       propertyPath: baseButton.disableModifiedControls
       value: 0
