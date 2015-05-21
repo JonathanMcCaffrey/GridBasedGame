@@ -10,7 +10,7 @@ namespace FacebookUI {
 			public void onClick() {
 				
 				if (isLoggedIn) {
-					FacebookSend.Decoy();
+					Facebook.Send.Decoy();
 				} 
 			}
 		}

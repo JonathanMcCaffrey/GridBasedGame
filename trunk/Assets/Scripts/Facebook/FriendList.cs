@@ -5,9 +5,11 @@ using System.Collections.Generic;
 using Facebook.MiniJSON;
 using System;
 
-public class FacebookFriends : MonoBehaviour {
+namespace Facebook {
 	
-	public static List<object> list = null;
-	
-
+	public class FriendList : MonoBehaviour {
+		
+		public static List<object> list = null;
+		
+	}
 }

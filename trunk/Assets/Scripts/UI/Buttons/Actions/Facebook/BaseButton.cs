@@ -5,12 +5,14 @@ namespace FacebookUI {
 	
 	namespace Button {
 		
-		public abstract class BaseButton : MonoBehaviour, FacebookLoginListener {
+		public class BaseButton : MonoBehaviour, Facebook.LoginListener {
 			
 			protected bool isLoggedIn = false;
 			
-			public void Start() {
+			public virtual void Start() {
 				gameObject.SetActive (false);
+				
+				Facebook.Login.instance.addListener (this);
 			}
 			
 			public virtual void onClick() {

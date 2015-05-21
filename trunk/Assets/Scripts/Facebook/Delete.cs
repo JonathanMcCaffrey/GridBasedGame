@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Net;
 using System.IO;
@@ -9,11 +9,12 @@ using System.Net;
 using System.Text;
 using System.Runtime.Serialization;
 
+namespace Facebook {
 
-public class FacebookDelete : MonoBehaviour {
+public class Delete : MonoBehaviour {
 
-	public static void Item(FacebookItem item) {
-		HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create (FacebookValue.Url + item.id);
+	public static void Item(Item item) {
+		HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create (Value.Url + item.id);
 		request.Method = "DELETE";
 		
 		string authToken = "Bearer" + " " + FB.AccessToken;
@@ -35,5 +36,5 @@ public class FacebookDelete : MonoBehaviour {
 	}
 
 	
-	
+	}
 }

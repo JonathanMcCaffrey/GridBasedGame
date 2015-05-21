@@ -6,24 +6,21 @@ namespace FacebookUI {
 	namespace Button {
 		
 		public class LogInOrOut : BaseButton {
-
+			
 			public void Start() {
-
+				Facebook.Login.instance.addListener (this);
 			}
-
+			
 			
 			public void onClick() {
 				if (isLoggedIn) {
-					FacebookReceive.Given();
-					
-				} else {
-					FacebookLogin.instance.addListener (this);			
-					FacebookLogin.instance.OnLoginSelected ();
+					Facebook.Login.instance.OnLogoutSelected();
+				} else {		
+					Facebook.Login.instance.OnLoginSelected ();
 				}
-				
 			}
 			
-			public void onFacebookLogIn ()
+			public override void onFacebookLogIn ()
 			{
 				isLoggedIn = true;
 				
@@ -31,7 +28,7 @@ namespace FacebookUI {
 				this.gameObject.GetComponentInParent<ButtonText> ().RefreshButton ();
 			}
 			
-			public void onFacebookLogOut ()
+			public override void onFacebookLogOut ()
 			{
 				isLoggedIn = false;
 				
