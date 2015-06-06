@@ -1,0 +1,23 @@
+
+Asset Placement System is for easily creating and placing assets within the unity editor via hotkeys. 
+- Ask Jon for Questions on this.
+
+[Setup]
+- Windows/AssetPlacement 
+- Set hotkeys in AssetPlacementSystem
+- Click 'Reset Assets' button in AssetPlacementSystem to refresh loaded assets.
+- Click 'Reset Hotkeys' to generate a new Hotkey file that matches current key choices. //TODO No longer needed?
+
+[Notes]
+- Asset selection Hotkeys only work for the currently selected tab
+- Reseting the hotkeys will not work right away. 
+-- Build and refresh twice, and use buttons in the meantime.
+
+[HotKeys]
+Note: Currently Use Shift instead of Alt on Mac.
+
+Alt+E Select AssetPlacementSystem. //TODO doesn't appear to be working
+Alt+E Toggle Auto Snap if using AutoGridSnap. //TODO I assume this works
+Alt+D Create the selected asset at mouse position.
+
+Alt+[Your Custom Button]  All other hotkeys
