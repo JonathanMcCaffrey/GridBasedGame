@@ -8,9 +8,20 @@ namespace FacebookUI {
 		public class LogInOrOut : BaseButton {
 			
 			public void Start() {
+				isLoggedIn = FB.IsLoggedIn;
+				
+				if (isLoggedIn) {
+					onFacebookLogIn();
+				} else {		
+					onFacebookLogOut();
+				}
+				
 				Facebook.Login.instance.addListener (this);
 			}
 			
+			public void OnDestroy() {
+				Facebook.Login.instance.removeListener (this);
+			}
 			
 			public void onClick() {
 				if (isLoggedIn) {
@@ -20,7 +31,7 @@ namespace FacebookUI {
 				}
 			}
 			
-			public override void onFacebookLogIn ()
+			public override void onFacebookLogIn()
 			{
 				isLoggedIn = true;
 				
@@ -28,7 +39,7 @@ namespace FacebookUI {
 				this.gameObject.GetComponentInParent<ButtonText> ().RefreshButton ();
 			}
 			
-			public override void onFacebookLogOut ()
+			public override void onFacebookLogOut()
 			{
 				isLoggedIn = false;
 				

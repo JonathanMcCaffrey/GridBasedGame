@@ -23,10 +23,6 @@ public class StartTile : MonoBehaviour {
 
 			player.name = "Player";
 
-			if(!player.GetComponent<PlayerObject>()) {
-				Debug.Log("Error, player doesn't exist");
-			}
-
 			var temp =  new Vector3((int)(this.gameObject.transform.position.x),
 			                        (int)(this.gameObject.transform.position.y),
 			                        250);

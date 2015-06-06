@@ -23,7 +23,7 @@ public class PlayerControls : MonoBehaviour {
 	
 	private bool mMouseDown = false;
 
-	float FORCE = 1200;
+	float FORCE = 2111;
 	
 	private bool mMouseWasDown = false;
 	private Vector3 mLastMousePosition = Vector3.zero;

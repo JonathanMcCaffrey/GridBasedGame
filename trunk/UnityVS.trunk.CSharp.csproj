@@ -276,6 +276,9 @@
     <Compile Include="Assets\Scripts\UI\Buttons\Actions\Facebook\Give.cs" />
     <Compile Include="Assets\Scripts\UI\Buttons\Actions\Facebook\Invite.cs" />
     <Compile Include="Assets\Scripts\UI\Buttons\Actions\Facebook\LogInOrOut.cs" />
+    <Compile Include="Assets\Scripts\UI\Buttons\Actions\Main\Achievements.cs" />
+    <Compile Include="Assets\Scripts\UI\Buttons\Actions\Main\Items.cs" />
+    <Compile Include="Assets\Scripts\UI\Buttons\Actions\Main\Play.cs" />
     <Compile Include="Assets\Scripts\UI\Buttons\ButtonIcon.cs" />
     <Compile Include="Assets\Scripts\UI\Buttons\ButtonText.cs" />
     <Compile Include="Assets\Scripts\UI\Images\FacebookPortrait.cs" />

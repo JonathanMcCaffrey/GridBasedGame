@@ -131,9 +131,13 @@ namespace Facebook {
 			
 			userTexture = texture;
 			
+			RefreshPortrait ();
+		}
+
+		public void RefreshPortrait() {
 			FacebookPortrait.SetImage (userTexture);
 		}
-		
+
 		delegate void LoadPictureCallback (Texture2D texture);
 		IEnumerator LoadPictureEnumerator(string url, LoadPictureCallback callback) {
 			WWW www = new WWW(url);

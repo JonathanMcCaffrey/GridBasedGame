@@ -8,4 +8,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Widgets.unity
   - enabled: 1
-    path: Assets/Scenes/TestBed.unity
+    path: Assets/Scenes/MainMenu.unity
+  - enabled: 1
+    path: Assets/Scenes/3.unity

@@ -6,7 +6,7 @@ public class FacebookPortrait : MonoBehaviour, Facebook.LoginListener {
 	private UITexture image = null;
 	
 	public static FacebookPortrait instance = null;
-
+	
 	public void Start() {
 		if (instance) {
 			Destroy (gameObject);
@@ -16,11 +16,21 @@ public class FacebookPortrait : MonoBehaviour, Facebook.LoginListener {
 			
 			image = GetComponent<UITexture>();
 			
-			gameObject.SetActive (false);
+			if (FB.IsLoggedIn) {
+				gameObject.SetActive (true);
+				Facebook.Login.instance.RefreshPortrait();
+			} else {
+				gameObject.SetActive (false);
+			}
 		}
-
+		
 		Facebook.Login.instance.addListener(this);
-
+		
+	}
+	
+	public void OnDestroy() {
+		instance = null;
+		Facebook.Login.instance.removeListener(this);
 	}
 	
 	public static void SetImage(Texture2D image) {
@@ -29,16 +39,13 @@ public class FacebookPortrait : MonoBehaviour, Facebook.LoginListener {
 		}
 	}
 	
-	public virtual void onFacebookLogIn ()
-	{
+	public virtual void onFacebookLogIn() {
 		gameObject.SetActive (true);
 		
 		gameObject.transform.localScale = Vector3.one;
-		
 	}
 	
-	public virtual void onFacebookLogOut ()
-	{
+	public virtual void onFacebookLogOut() {
 		gameObject.SetActive (false);
 		
 		gameObject.transform.localScale = Vector3.zero;
