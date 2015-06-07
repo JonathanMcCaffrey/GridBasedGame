@@ -10,7 +10,7 @@ namespace FacebookUI {
 			public void onClick() {
 
 				if (isLoggedIn) {
-					Facebook.Ask.Decoy();
+					Facebook.Ask.GenericItem();
 
 				} 
 				
