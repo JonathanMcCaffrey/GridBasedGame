@@ -7,22 +7,22 @@ namespace Facebook {
 	
 	public class Ask : MonoBehaviour {
 		
-		public static void Decoy() {
-			FB.AppRequest ("Give a Decoy in Generic Game.",
+		public static void GenericItem() {
+			FB.AppRequest ("Need a Generic Item in Generic Game.",
 			               Facebook.OGActionType.AskFor,
-			               Value.Decoy,
+			               Value.GenericItem,
 			               null,
 			               null,
 			               1,
 			               "generic-data",
 			               "Ask Decoy",
-			               sendDecoyCallback);
+			               askCallback);
 			
 		}
 		
-		static void sendDecoyCallback (FBResult result) {                                                                                                                              
+		static void askCallback (FBResult result) {                                                                                                                              
 			if (result != null) {       
-				Debug.Log("Test");
+				//TODO Show feedback dialog that item was asked
 			}                                                                                                                          
 		}  
 	}
