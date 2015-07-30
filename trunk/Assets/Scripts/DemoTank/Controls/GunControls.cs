@@ -11,7 +11,7 @@ public class GunControls : MonoBehaviour {
 
 	public GameObject mBulletSpawn = null;
 
-	float FORCE = 2111;
+	float FORCE = 800;
 
 
 	private bool mMouseWasDown = false;
@@ -47,7 +47,7 @@ public class GunControls : MonoBehaviour {
 				                                            mGun.transform.rotation) as GameObject;
 				bullet.name = "PlayerBullet";
 				bullet.transform.parent = bulletContainer.transform;
-				bullet.GetComponent<Rigidbody2D>().AddForce (new Vector2 (Mathf.Sin (angle - (180.0f / 57.2957795f)) * FORCE / 2, Mathf.Cos (angle - (180.0f / 57.2957795f)) * FORCE / 2));
+				bullet.GetComponent<Rigidbody2D>().AddForce (new Vector2 (Mathf.Sin (angle - (180.0f / 57.2957795f)) * FORCE, Mathf.Cos (angle - (180.0f / 57.2957795f)) * FORCE));
 		
 				Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), PlayerObject.instance.gameObject.GetComponent<Collider2D>());
 			}

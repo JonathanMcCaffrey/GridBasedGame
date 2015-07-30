@@ -10,7 +10,7 @@ public class GridControls : MonoBehaviour {
 	
 	private bool mMouseDown = false;
 	
-	float FORCE = 2111;
+	float FORCE = 40;
 	
 	private bool mMouseWasDown = false;
 	private Vector3 mLastMousePosition = Vector3.zero;
@@ -77,19 +77,19 @@ public class GridControls : MonoBehaviour {
 				return;
 			}
 			if (transform.position.x < mInputList [1].x) {
-				GetComponent<Rigidbody2D>().AddForce (new Vector2 (Time.deltaTime * FORCE, 0), ForceMode2D.Force);
+				GetComponent<Rigidbody2D>().AddForce (new Vector2 (FORCE, 0), ForceMode2D.Force);
 				transform.rotation = Quaternion.Euler (0, 0, -90);
 			}
 			if (transform.position.x > mInputList [1].x) {
-				GetComponent<Rigidbody2D>().AddForce (new Vector2 (-Time.deltaTime * FORCE, 0), ForceMode2D.Force);
+				GetComponent<Rigidbody2D>().AddForce (new Vector2 (-FORCE, 0), ForceMode2D.Force);
 				transform.rotation = Quaternion.Euler (0, 0, 90);
 			}
 			if (transform.position.y < mInputList [1].y) {
-				GetComponent<Rigidbody2D>().AddForce (new Vector2 (0, Time.deltaTime * FORCE), ForceMode2D.Force);
+				GetComponent<Rigidbody2D>().AddForce (new Vector2 (0, FORCE), ForceMode2D.Force);
 				transform.rotation = Quaternion.Euler (0, 0, 0);
 			}
 			if (transform.position.y > mInputList [1].y) {
-				GetComponent<Rigidbody2D>().AddForce (new Vector2 (0, -Time.deltaTime * FORCE), ForceMode2D.Force);
+				GetComponent<Rigidbody2D>().AddForce (new Vector2 (0, -FORCE), ForceMode2D.Force);
 				transform.rotation = Quaternion.Euler (0, 0, 180);
 			}
 		}
