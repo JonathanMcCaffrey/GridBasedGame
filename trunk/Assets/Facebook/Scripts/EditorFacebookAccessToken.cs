@@ -1,6 +1,4 @@
-﻿#if UNITY_EDITOR
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Facebook;
 using UnityEngine;
@@ -102,5 +100,3 @@ public class EditorFacebookAccessToken : MonoBehaviour
         }
     }
 }
-
-#endif

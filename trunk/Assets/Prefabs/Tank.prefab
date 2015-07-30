@@ -59,6 +59,8 @@ GameObject:
   - 114: {fileID: 11400000}
   - 50: {fileID: 5000000}
   - 114: {fileID: 11400002}
+  - 114: {fileID: 11453554}
+  - 114: {fileID: 11404866}
   m_Layer: 11
   m_Name: Tank
   m_TagString: Player
@@ -111,7 +113,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.8630791, y: -2.17774224, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -119,6 +121,7 @@ Transform:
   m_RootOrder: 0
 --- !u!50 &5000000
 Rigidbody2D:
+  serializedVersion: 2
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -127,11 +130,11 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
   m_GravityScale: 0
-  m_FixedAngle: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!61 &6100000
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -156,15 +159,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faf6a588b6a228b4ab7e674cf6f28b20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mPlayer: {fileID: 100006}
-  mPlayerBase: {fileID: 100002}
-  mPlayerGun: {fileID: 100004}
-  mPlayerBullet: {fileID: 100000, guid: d092240697a03c74f82820f9131d3964, type: 2}
-  mPlayerDecoy: {fileID: 105598, guid: d472ba51a1ee5482ba46dd0764f2e6af, type: 2}
-  mBulletSpawn: {fileID: 100000}
-  mIsOn: 1
-  mArrowPrefab: {fileID: 100000, guid: a2aa7e6205ca2ae4fb5dbbfec83d4ce1, type: 2}
-  mTestPrefab: {fileID: 0}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -176,6 +170,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6decd2009aa9e604d80d46a940873b64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11404866
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c74d095519e04e07a245738f131092d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mGun: {fileID: 100004}
+  mBullet: {fileID: 100000, guid: d092240697a03c74f82820f9131d3964, type: 2}
+  mDecoy: {fileID: 105598, guid: d472ba51a1ee5482ba46dd0764f2e6af, type: 2}
+  mBulletSpawn: {fileID: 100000}
+--- !u!114 &11453554
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a8ba32aba8ec4f509d4e418273b9b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mArrowPrefab: {fileID: 100000, guid: a2aa7e6205ca2ae4fb5dbbfec83d4ce1, type: 2}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -89,7 +89,7 @@ namespace Facebook {
 		
 		public void OnLoginSelected() {
 			if (!FB.IsLoggedIn && FB.IsInitialized) {
-				FB.Login ("public_profile,user_friends,email,publish_actions", LoginCallback);
+				FB.Login ("public_profile,user_friends,email,publish_actions, photos", LoginCallback);
 			}
 			
 			if (!FB.IsInitialized) {

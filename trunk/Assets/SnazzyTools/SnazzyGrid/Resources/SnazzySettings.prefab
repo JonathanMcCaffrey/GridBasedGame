@@ -121,7 +121,7 @@ MonoBehaviour:
   oldTransform: {fileID: 0}
   oldSelectedTransform: {fileID: 0}
   oldSelectedLength: 1
-  oldPosition: {x: -10, y: 2, z: 0}
+  oldPosition: {x: -8, y: 6, z: 721.849976}
   oldScale: {x: 1, y: 1, z: 1}
   oldRotation: {x: -0, y: 0, z: 0}
   movToggleKey: 256

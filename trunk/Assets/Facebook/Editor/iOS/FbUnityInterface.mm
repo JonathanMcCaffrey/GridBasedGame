@@ -175,6 +175,7 @@ frictionlessRequests:(bool)_frictionlessRequests
       break;
 
     case FBSessionStateOpenTokenExtended: {
+      // this case is for both refreshing access token and requesting new permissions
       [msgData setObject:session.accessTokenData.accessToken forKey:@"access_token"];
       [msgData setObject:[NSString stringWithFormat:@"%ld", (long)session.accessTokenData.expirationDate.timeIntervalSince1970] forKey:@"expiration_timestamp"];
       [FbUnityInterface sendMessageToUnity:"OnAccessTokenRefresh" userData:msgData];
@@ -197,19 +198,24 @@ frictionlessRequests:(bool)_frictionlessRequests
       permissions = [scopeStr componentsSeparatedByString:@","];
     }
 
-    self.session = [[FBSession alloc] initWithAppID:nil
-                                               permissions:permissions
-                                           defaultAudience:FBSessionDefaultAudienceFriends
-                                           urlSchemeSuffix:nil
+    if (self.session == nil || ![self.session isOpen]) {
+      self.session = [[FBSession alloc] initWithAppID:nil
+                                        permissions:permissions
+                                        defaultAudience:FBSessionDefaultAudienceFriends
+                                        urlSchemeSuffix:nil
                                         tokenCacheStrategy:nil];
-
-
-  [self.session openWithBehavior:FBSessionLoginBehaviorWithFallbackToWebView
-          completionHandler:^(FBSession *session,
-                              FBSessionState state,
-                              NSError *error) {
-    [self handleSessionChange:session state:state error:error];
-  }];
+      [self.session openWithBehavior:FBSessionLoginBehaviorWithFallbackToWebView
+                    completionHandler:^(FBSession *session,
+                                        FBSessionState state,
+                                        NSError *error) {
+                        [self handleSessionChange:session state:state error:error];
+                     }];
+    } else {
+      // this works correctly for publish permissions too
+      [self.session requestNewReadPermissions:permissions completionHandler:^(FBSession *session, NSError *error) {
+          [self handleSessionChange:session state:session.state error:error];
+        }];
+    }
 }
 
 -(void)logout {
@@ -309,6 +315,8 @@ void HandleDictionaryResponse(int requestId, bool isError, NSDictionary *srcDict
          *stop = true;
        } else { //otherwise c# land doesn't care about this key
          [dict removeObjectForKey:key];
+         //add "posted", so the response not cancelled later in case we don't have a post ID
+         [dict setObject:[NSNumber numberWithBool:YES] forKey:@"posted"];
        }
      }
 
@@ -558,7 +566,7 @@ void iosFeedRequest(int requestId,
   // Native dialogs do not yet support To: fields, so fall back if we have one.
   shouldDisplayNative = shouldDisplayNative && !(toId && toId[0] != 0);
   if(shouldDisplayNative) {
-    FBLinkShareParams *dialogParams = [[FBLinkShareParams alloc] init];
+    FBLinkShareParams *dialogParams = [[[FBLinkShareParams alloc] init] autorelease];
 
     NSString *strLink = [NSString stringWithUTF8String:link];
     NSURL *linkUrl = [NSURL URLWithString:strLink];
@@ -659,7 +667,11 @@ void iosCallFbApi(int requestId,
 }
 
 void iosFBSettingsPublishInstall(int requestId, const char *appId) {
-  
+  [FBSettings publishInstall:[NSString stringWithUTF8String:appId] withHandler:
+   ^(FBGraphObject *result, NSError *error) {
+     NSString *jsonString = ResponseHelper(result, error);
+     HandleJSONResponse(requestId, error != nil, [jsonString UTF8String]);
+   }];
 }
 
 void iosFBSettingsActivateApp(const char *appId) {
