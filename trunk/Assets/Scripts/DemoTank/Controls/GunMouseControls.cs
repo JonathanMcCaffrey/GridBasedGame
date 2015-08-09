@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 //using UnityEditor;
 
-public class GunControls : MonoBehaviour {
+public class GunMouseControls : MonoBehaviour {
 	public GameObject mGun = null;
 	
 	public GameObject mBullet = null;
@@ -11,7 +11,7 @@ public class GunControls : MonoBehaviour {
 
 	public GameObject mBulletSpawn = null;
 
-	float FORCE = 800;
+	float FORCE = 400;
 
 
 	private bool mMouseWasDown = false;
