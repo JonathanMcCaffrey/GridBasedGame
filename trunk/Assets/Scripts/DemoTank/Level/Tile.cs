@@ -43,14 +43,7 @@ public class Tile : MonoBehaviour {
 	public TileData GenerateData() {
 		return new TileData (this);
 	}
-	
-	void OnMouseDown() {
-		if (EditorControls.instance && EditorControls.instance.mIsOn) {
-			if (this.mEditorType != EditorType.Button) {
-				Destroy (this.gameObject);
-			}
-		}
-	}
+
 }
 [Serializable]
 public class TileData {
