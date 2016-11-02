@@ -38,9 +38,7 @@ public class GunMouseControls : MonoBehaviour {
 		}
 		if (Input.GetMouseButtonUp (0)) {
 			if (mMouseWasDown && (mLastMousePosition == Input.mousePosition)) {
-
-
-
+				
 				GameObject bullet = GameObject.Instantiate (alternativeFire
 				                                             ? mDecoy : mBullet, 
 				                                            mBulletSpawn.transform.position, 

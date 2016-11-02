@@ -21,10 +21,10 @@ public class Turret : MonoBehaviour {
 		}
 
 	}
-	
+
 	void OnCollisionEnter2D(Collision2D col) {
 		CollisionLogic ();
-		}
+	}
 
 	void OnTriggerEnter2D(Collider2D col) {
 		health = -4;
@@ -33,8 +33,7 @@ public class Turret : MonoBehaviour {
 	}
 
 	int health = 4;
-	void CollisionLogic ()
-	{
+	void CollisionLogic () {
 		if (isActive) {
 			health--;
 
