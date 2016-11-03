@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public interface IFire  {
-	void fire ();
+public interface ITapFire  {
+	void tapFire ();
 }
