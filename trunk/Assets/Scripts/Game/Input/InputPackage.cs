@@ -3,7 +3,14 @@ using System.Collections;
 
 public class InputPackage {
 	private Vector3 mousePosition;
+	public Vector3 getMousePosition() {
+		return mousePosition;
+	}
+
 	private InputEventType inputEventType;
+	public InputEventType getInputEventType() {
+		return inputEventType;
+	}
 
 	public InputPackage() {
 	
