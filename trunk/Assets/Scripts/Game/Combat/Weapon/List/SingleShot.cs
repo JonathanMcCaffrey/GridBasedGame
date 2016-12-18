@@ -16,8 +16,8 @@ public class SingleShot : MonoBehaviour, ITapFire {
 
 	}
 
-	public void tapFire() {
-		ProjectileFactory.fireProjectile (weaponProperties);
+	public void tapFire(TargetProperties targetProperties) {
+		ProjectileFactory.fireProjectile (weaponProperties, targetProperties);
 
 	}
 }

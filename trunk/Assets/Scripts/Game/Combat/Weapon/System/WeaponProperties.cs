@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/*
+ * Contains information of weapon
+ * 
+ */
 public class WeaponProperties : MonoBehaviour {
 
 	private float damage = 1;
@@ -61,7 +65,7 @@ public class WeaponProperties : MonoBehaviour {
 		return this;
 	}
 
-	public Texture2D getModelPath() {
+	public string getModelPath() {
 		return modelPath;
 	}
 	public WeaponProperties setModelPath(string modelPath) {

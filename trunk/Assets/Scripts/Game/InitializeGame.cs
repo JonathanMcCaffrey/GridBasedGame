@@ -37,5 +37,7 @@ public class InitializeGame : MonoBehaviour {
 	Transform addNewLayer(string withLayerName, Transform toTransform) {
 		GameObject newLayer = new GameObject (withLayerName);
 		newLayer.transform.parent = toTransform;
+
+		return newLayer.transform;
 	}
 }

@@ -10,13 +10,11 @@ public class TargetProperties : MonoBehaviour {
 	private Vector3 targetPosition; //< Target position of a projectile
 	private AllegianceType allegianceType; //< Targets that the projectile cannot hit
 
-	//List<Beziers> //< Positions bullet will Bezier to
-	//etc.
 
 	public Vector3 getStartPosition() {
 		return startPosition;
 	}
-	public WeaponProperties setStartPosition(Vector3 startPosition) {
+	public TargetProperties setStartPosition(Vector3 startPosition) {
 		this.startPosition = startPosition; 
 		return this;
 	}
@@ -24,7 +22,7 @@ public class TargetProperties : MonoBehaviour {
 	public Vector3 getTargetPosition() {
 		return targetPosition;
 	}
-	public WeaponProperties setTargetPosition(Vector3 targetPosition) {
+	public TargetProperties setTargetPosition(Vector3 targetPosition) {
 		this.targetPosition = targetPosition; 
 		return this;
 	}
@@ -32,7 +30,7 @@ public class TargetProperties : MonoBehaviour {
 	public AllegianceType getAllegianceType() {
 		return allegianceType;
 	}
-	public WeaponProperties setAllegianceType(AllegianceType allegianceType) {
+	public TargetProperties setAllegianceType(AllegianceType allegianceType) {
 		this.allegianceType = allegianceType; 
 		return this;
 	}

@@ -2,5 +2,5 @@
 using System.Collections;
 
 public interface ITapFire  {
-	void tapFire ();
+	void tapFire (TargetProperties targetProperties);
 }

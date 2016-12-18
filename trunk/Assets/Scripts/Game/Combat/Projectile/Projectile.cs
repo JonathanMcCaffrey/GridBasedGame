@@ -8,8 +8,7 @@ public class Projectile : MonoBehaviour {
 
 
 	public static void SetProjectile(WeaponProperties weaponProperties, TargetProperties targetProperties, GameObject projectileObject) {
-
-		Projectile projectile = new Projectile ();
+		
 		projectileObject.AddComponent<Projectile> ();
 
 		projectileObject.AddComponent<SpriteRenderer> ();
@@ -17,7 +16,7 @@ public class Projectile : MonoBehaviour {
 
 
 		//TODO Make this a model
-		Sprite sprite = Resources.Load<Sprite>(weaponProperties.getModelPath (), typeof(Sprite)) as Sprite;
+		Sprite sprite = Resources.Load(weaponProperties.getModelPath (), typeof(Sprite)) as Sprite;
 		spriteRenderer.sprite = sprite;
 
 		projectileObject.AddComponent<BoxCollider2D> ();
