@@ -1,4 +1,6 @@
-﻿#if UNITY_EDITOR
+﻿// Deprecated
+
+#if UNITY_EDITOR
 
 using UnityEngine;
 using System.Collections;

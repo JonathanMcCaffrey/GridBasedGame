@@ -1,3 +1,5 @@
+// Deprecated
+
 using UnityEngine;
 using System.Collections;
 

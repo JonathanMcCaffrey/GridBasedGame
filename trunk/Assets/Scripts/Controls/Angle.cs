@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿// Deprecated
+
+using UnityEngine;
 using System.Collections;
 
 public class Angle : MonoBehaviour {
