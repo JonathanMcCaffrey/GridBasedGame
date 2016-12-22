@@ -8,7 +8,7 @@ public class WeaponControls : MonoBehaviour, InputEventListener {
 
 	public void Start() {
 		//TODO Add weapons to the player
-		weaponSystems = GameObject.Find ("player").GetComponents<WeaponSystem>();
+		weaponSystems = GameObject.Find (Player.NAME).GetComponents<WeaponSystem>();
 
 		InputEvents.Add (this);
 	}

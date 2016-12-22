@@ -18,9 +18,11 @@ public class Projectile : MonoBehaviour {
 		Sprite sprite = Resources.Load(weaponProperties.getModelPath (), typeof(Sprite)) as Sprite;
 		spriteRenderer.sprite = sprite;
 
-		projectileObject.AddComponent<BoxCollider2D> ();
-		projectileObject.GetComponent<BoxCollider2D>().size = new Vector2(sprite.rect.width, sprite.rect.height);
-		projectileObject.AddComponent<Rigidbody2D> ();
+		BoxCollider2D boxCollider2D = projectileObject.AddComponent<BoxCollider2D> ();
+		boxCollider2D.size = new Vector2(1, 1);
+
+		Rigidbody2D rigidbody2D = projectileObject.AddComponent<Rigidbody2D> ();
+		rigidbody2D.gravityScale = 0;
 
 		projectileObject.GetComponent <Projectile> ().Initialize (weaponProperties, targetProperties);
 
@@ -33,7 +35,9 @@ public class Projectile : MonoBehaviour {
 
 		gameObject.transform.position = targetProperties.getStartPosition ();
 
-		gameObject.GetComponent<Rigidbody2D> ().AddRelativeForce (targetProperties.getTargetPosition () - targetProperties.getStartPosition (), ForceMode2D.Force);
+		Vector2 test = Vector3.Normalize (targetProperties.getTargetPosition () - targetProperties.getStartPosition ());
+
+//		gameObject.GetComponent<Rigidbody2D> ().AddForce (test);
 	}
 
 	// Update is called once per frame
@@ -43,7 +47,7 @@ public class Projectile : MonoBehaviour {
 			Cleanup ();
 		}
 
-		gameObject.GetComponent<Rigidbody2D> ().AddRelativeForce (targetProperties.getProjectileDirection());
+	gameObject.GetComponent<Rigidbody2D> ().AddRelativeForce (targetProperties.getProjectileDirection());
 
 	}
 

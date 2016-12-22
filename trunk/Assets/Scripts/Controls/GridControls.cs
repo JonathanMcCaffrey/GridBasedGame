@@ -1,4 +1,3 @@
-// Deprecated
 
 using UnityEngine;
 using System.Collections;
@@ -8,17 +7,16 @@ public class GridControls : MonoBehaviour {
 	private List<Vector3> inputList = new List<Vector3>();
 	private List<GameObject> arrowList = new List<GameObject>();
 
-	//public GameObject mArrowPrefab = null;
-
 	private bool mouseDown = false;
 
 	const float FORCE = 40;
-
 
 	private float arrowZLayer = 500;
 
 	private GameObject playerControlsContainer = null;
 	private GameObject arrowContainer = null;
+
+	//TODO Slide and/or scale the first node with the player, to create a more smooth animation
 
 	void Awake() {
 
@@ -103,6 +101,8 @@ public class GridControls : MonoBehaviour {
 		arrowList.Add (arrowTemp);
 
 		arrowTemp.transform.position = point;
+		arrowTemp.transform.position = new Vector3(point.x, point.y, arrowZLayer);
+
 		RefreshNodeLinks ();
 	}
 

@@ -3,11 +3,13 @@ using System.Collections;
 
 public class InputSystem : MonoBehaviour {
 
-	private CaptureTap captureTap;
+	private CaptureTap captureTap = new CaptureTap();
 
 	void Update () {
 	
 		InputPackage inputPackage = new InputPackage();
+
+		//TODO Convert to world position, and get direction from player
 		inputPackage.setMousePosition (Input.mousePosition);
 
 

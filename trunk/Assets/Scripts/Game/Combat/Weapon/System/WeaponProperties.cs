@@ -15,7 +15,7 @@ public class WeaponProperties {
 	private float rangeDropOff = 10;
 
 	//TODO Make this be a 3D model
-	private string modelPath = "Textures/DemoTank/ProjectileBullet";
+	private string modelPath = "Textures/DemoTank/Projectile_Bullet";
 
 	public float getDamage() {
 		return damage;

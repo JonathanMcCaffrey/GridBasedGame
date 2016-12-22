@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-
+	public const string NAME = "Player";
 
 	//Deprecated. Remove this static
 	public static Player instance;
@@ -12,7 +12,7 @@ public class Player : MonoBehaviour {
 	}
 
 	public static GameObject Create() {
-		GameObject player = new GameObject ("Player");
+		GameObject player = new GameObject (NAME);
 
 		player.AddComponent<Player> ().InitializePlayer();
 
@@ -39,6 +39,8 @@ public class Player : MonoBehaviour {
 		weaponSystem.addTapFire (new SingleShot ());
 		weaponSystem.addTapFire (new SingleShot ());
 		weaponSystem.addTapFire (new SingleShot ());
+
+		gameObject.AddComponent<WeaponControls> ();
 
 	}
 }
