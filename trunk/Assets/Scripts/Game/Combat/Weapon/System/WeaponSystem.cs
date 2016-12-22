@@ -9,7 +9,7 @@ public class WeaponSystem : MonoBehaviour {
 
 	public GameEntity owner;
 
-	private List<ITapFire> tapFires = new List<ITapFire>();
+	public List<ITapFire> tapFires = new List<ITapFire>();
 
 	public WeaponSystem addTapFire(ITapFire tapFire) {
 		tapFires.Add (tapFire);

@@ -51,9 +51,9 @@ public class Turret : MonoBehaviour {
 		}
 	}
 
-	float FORCE = 600;
+//	float FORCE = 600;
 
-	float currentTime = 0;
+//	float currentTime = 0;
 
 	float currentAngle = int.MinValue;
 	void Update () {

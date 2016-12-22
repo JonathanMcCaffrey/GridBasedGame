@@ -49,7 +49,7 @@ public class GunMouseControls : MonoBehaviour {
 				bullet.transform.parent = bulletContainer.transform;
 				bullet.GetComponent<Rigidbody2D>().AddForce (new Vector2 (Mathf.Sin (angle - (180.0f / 57.2957795f)) * FORCE, Mathf.Cos (angle - (180.0f / 57.2957795f)) * FORCE));
 		
-				Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), PlayerObject.instance.gameObject.GetComponent<Collider2D>());
+				Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), Player.instance.gameObject.GetComponent<Collider2D>());
 			}
 			mMouseWasDown = false;
 		}

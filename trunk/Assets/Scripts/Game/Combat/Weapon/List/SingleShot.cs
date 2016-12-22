@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SingleShot : MonoBehaviour, ITapFire {
-	public WeaponProperties weaponProperties;
+public class SingleShot : EquippableItem, ITapFire {
 
+	private WeaponProperties weaponProperties = new WeaponProperties();
+	public WeaponProperties getWeaponProperties() {
+		return weaponProperties;
+	}
 
 	public SingleShot() {
 		weaponProperties
@@ -13,11 +16,9 @@ public class SingleShot : MonoBehaviour, ITapFire {
 			.setFiringSpeed (1)
 			.setMaxRange (10)
 			.setRangeDropOff (10);
-
 	}
 
 	public void tapFire(TargetProperties targetProperties) {
 		ProjectileFactory.fireProjectile (weaponProperties, targetProperties);
-
 	}
 }

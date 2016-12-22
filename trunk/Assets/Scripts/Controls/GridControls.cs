@@ -5,92 +5,89 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class GridControls : MonoBehaviour {
-	private List<Vector3> mInputList = new List<Vector3>();
-	private List<GameObject> mArrowList = new List<GameObject>();
-	
-	public GameObject mArrowPrefab = null;
-	
-	private bool mMouseDown = false;
-	
-	float FORCE = 40;
-	
-	private bool mMouseWasDown = false;
-	private Vector3 mLastMousePosition = Vector3.zero;
-	
+	private List<Vector3> inputList = new List<Vector3>();
+	private List<GameObject> arrowList = new List<GameObject>();
+
+	//public GameObject mArrowPrefab = null;
+
+	private bool mouseDown = false;
+
+	const float FORCE = 40;
+
+
 	private float arrowZLayer = 500;
-	
-	private static GameObject playerControlsContainer = null;
-	private static GameObject arrowContainer = null;
-	
+
+	private GameObject playerControlsContainer = null;
+	private GameObject arrowContainer = null;
+
 	void Awake() {
-		if (!playerControlsContainer) {
-			playerControlsContainer = new GameObject("PlayerControlsContainer");
-			DontDestroyOnLoad(playerControlsContainer);
-		}
-		
-		if (!arrowContainer) {
-			arrowContainer = new GameObject("ArrowContainer");
-		}
-		
+
+		playerControlsContainer = new GameObject("PlayerControlsContainer");
+		DontDestroyOnLoad(playerControlsContainer);
+
+
+		arrowContainer = new GameObject("ArrowContainer");
+
+
 		arrowContainer.transform.parent = playerControlsContainer.transform;	
 	}
-	
+
 	void RemovePoint() {
-		if (mInputList.Count > 0) {
-			
-			transform.position = new Vector3 (mInputList [1].x, mInputList [1].y, transform.position.z);
-			mInputList.RemoveAt (0);
-			if (mArrowList [0]) {
-				Destroy (mArrowList [0]);
+		if (inputList.Count > 0) {
+
+			transform.position = new Vector3 (inputList [1].x, inputList [1].y, transform.position.z);
+			inputList.RemoveAt (0);
+			if (arrowList [0]) {
+				Destroy (arrowList [0]);
 			}
-			mArrowList [0] = null;
-			mArrowList.RemoveAt (0);
+			arrowList [0] = null;
+			arrowList.RemoveAt (0);
 			RefreshNodeLinks ();
 		}
 	}
-	
+
 	void RefreshNodeLinks() {
-		for (int arrowIndex = 0; arrowIndex < mArrowList.Count; arrowIndex++) {
-			if ((arrowIndex - 1 < 0) && mArrowList [arrowIndex]) {
-				mArrowList [arrowIndex].GetComponentInChildren<ArrowController> ().mPrev = null;
+		for (int arrowIndex = 0; arrowIndex < arrowList.Count; arrowIndex++) {
+			if ((arrowIndex - 1 < 0) && arrowList [arrowIndex]) {
+				arrowList [arrowIndex].GetComponentInChildren<ArrowController> ().prev = null;
 			}
-			else if((arrowIndex - 1 >= 0) && mArrowList [arrowIndex - 1]) {
-				mArrowList [arrowIndex].GetComponentInChildren<ArrowController> ().mPrev = mArrowList [arrowIndex - 1];
+			else if((arrowIndex - 1 >= 0) && arrowList [arrowIndex - 1]) {
+				arrowList [arrowIndex].GetComponentInChildren<ArrowController> ().prev = arrowList [arrowIndex - 1];
 			}
-			if ((arrowIndex + 1 >= mArrowList.Count) && mArrowList [arrowIndex]) {
-				mArrowList [arrowIndex].GetComponentInChildren<ArrowController> ().mNext = null;
+			if ((arrowIndex + 1 >= arrowList.Count) && arrowList [arrowIndex]) {
+				arrowList [arrowIndex].GetComponentInChildren<ArrowController> ().next = null;
 			}
-			else if((arrowIndex + 1 <= mArrowList.Count) && mArrowList [arrowIndex + 1]) {
-				mArrowList [arrowIndex].GetComponentInChildren<ArrowController> ().mNext = mArrowList [arrowIndex + 1];
+			else if((arrowIndex + 1 <= arrowList.Count) && arrowList [arrowIndex + 1]) {
+				arrowList [arrowIndex].GetComponentInChildren<ArrowController> ().next = arrowList [arrowIndex + 1];
 			}
-			
-			mArrowList [arrowIndex].GetComponentInChildren<ArrowController> ().Start ();
+
+			arrowList [arrowIndex].GetComponentInChildren<ArrowController> ().Start ();
 		}
 	}
-	
+
 	void UpdateMovement () {
-		if (mInputList.Count > 1) {
+		if (inputList.Count > 1) {
 			GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-			float xDiff = transform.position.x - mInputList [1].x;
-			float yDiff = transform.position.y - mInputList [1].y;
+			float xDiff = transform.position.x - inputList [1].x;
+			float yDiff = transform.position.y - inputList [1].y;
 			float distance = Mathf.Sqrt (xDiff * xDiff + yDiff * yDiff);
 			if (distance < 0.1f) {
 				RemovePoint ();
 				return;
 			}
-			if (transform.position.x < mInputList [1].x) {
+			if (transform.position.x < inputList [1].x) {
 				GetComponent<Rigidbody2D>().AddForce (new Vector2 (FORCE, 0), ForceMode2D.Force);
 				transform.rotation = Quaternion.Euler (0, 0, -90);
 			}
-			if (transform.position.x > mInputList [1].x) {
+			if (transform.position.x > inputList [1].x) {
 				GetComponent<Rigidbody2D>().AddForce (new Vector2 (-FORCE, 0), ForceMode2D.Force);
 				transform.rotation = Quaternion.Euler (0, 0, 90);
 			}
-			if (transform.position.y < mInputList [1].y) {
+			if (transform.position.y < inputList [1].y) {
 				GetComponent<Rigidbody2D>().AddForce (new Vector2 (0, FORCE), ForceMode2D.Force);
 				transform.rotation = Quaternion.Euler (0, 0, 0);
 			}
-			if (transform.position.y > mInputList [1].y) {
+			if (transform.position.y > inputList [1].y) {
 				GetComponent<Rigidbody2D>().AddForce (new Vector2 (0, -FORCE), ForceMode2D.Force);
 				transform.rotation = Quaternion.Euler (0, 0, 180);
 			}
@@ -98,52 +95,55 @@ public class GridControls : MonoBehaviour {
 	}
 
 	void CreateArrow (Vector2 point) {
-		mInputList.Add (point);
-		var arrowTemp = GameObject.Instantiate (mArrowPrefab, new Vector3(point.x, point.y, arrowZLayer), Quaternion.identity) as GameObject;
+		inputList.Add (point);
+
+		var arrowTemp = ArrowController.Create ();
 		arrowTemp.name = "PlayerArrow";
 		arrowTemp.transform.parent = arrowContainer.transform;
-		mArrowList.Add (arrowTemp);
+		arrowList.Add (arrowTemp);
+
+		arrowTemp.transform.position = point;
 		RefreshNodeLinks ();
 	}
-	
+
 	void CapturePlayerControls () {
 		if (Input.GetMouseButtonDown (0)) {
-			mMouseDown = true;
+			mouseDown = true;
 		}
-		if (mMouseDown) {
+		if (mouseDown) {
 			Vector2 mouseVector = new Vector2 (Camera.main.ScreenToWorldPoint (Input.mousePosition).x, Camera.main.ScreenToWorldPoint (Input.mousePosition).y);
 			Vector2 mouseGridVector  =  Globals.Round (mouseVector);
 			Vector2 playerGridVector = Globals.Round (transform.position);
-			
+
 			Collider2D touched = Physics2D.OverlapPoint (new Vector2(mouseGridVector.x, mouseGridVector.y)); 
 			if (touched) {
 				if (touched.gameObject.layer == Tags.Wall || touched.gameObject.layer == Tags.Breakable) {
 					return;
 				}
 			}
-			if (mInputList.Count == 0) {
+			if (inputList.Count == 0) {
 				if (Globals.IsMiddle (mouseGridVector, playerGridVector)) {
 					CreateArrow (mouseGridVector);		
 					return;
 				}
 			}
 			else {
-				for (int inputIndex = 0; inputIndex < mInputList.Count; inputIndex++) {
-					if (Globals.IsMiddle (mouseGridVector, mInputList [inputIndex])) {
-						if (inputIndex < mInputList.Count - 1 && inputIndex > 1) {
-							for (int arrowIndex = inputIndex; arrowIndex < mArrowList.Count; arrowIndex++) {
-								Destroy (mArrowList [arrowIndex]);
-								mArrowList [arrowIndex] = null;
+				for (int inputIndex = 0; inputIndex < inputList.Count; inputIndex++) {
+					if (Globals.IsMiddle (mouseGridVector, inputList [inputIndex])) {
+						if (inputIndex < inputList.Count - 1 && inputIndex > 1) {
+							for (int arrowIndex = inputIndex; arrowIndex < arrowList.Count; arrowIndex++) {
+								Destroy (arrowList [arrowIndex]);
+								arrowList [arrowIndex] = null;
 							}
-							mInputList.RemoveRange (inputIndex, mInputList.Count - inputIndex);
-							mArrowList.RemoveRange (inputIndex, mArrowList.Count - inputIndex);
+							inputList.RemoveRange (inputIndex, inputList.Count - inputIndex);
+							arrowList.RemoveRange (inputIndex, arrowList.Count - inputIndex);
 							RefreshNodeLinks ();
 							return;
 						}
 					}
 				}
-				if (mInputList.Count > 0) {
-					if (Globals.GridVectorTouchingGridVector (mInputList [mInputList.Count - 1], mouseGridVector)) {
+				if (inputList.Count > 0) {
+					if (Globals.GridVectorTouchingGridVector (inputList [inputList.Count - 1], mouseGridVector)) {
 						CreateArrow (mouseGridVector);
 						return;
 					}
@@ -151,11 +151,11 @@ public class GridControls : MonoBehaviour {
 			}
 		}
 		if (Input.GetMouseButtonUp (0)) {
-			mMouseDown = false;
+			mouseDown = false;
 		}
-		
+
 	}
-	
+
 	void Update () {
 		UpdateMovement ();
 		CapturePlayerControls ();

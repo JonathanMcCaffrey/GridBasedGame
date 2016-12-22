@@ -10,7 +10,6 @@ public class Projectile : MonoBehaviour {
 	public static void SetProjectile(WeaponProperties weaponProperties, TargetProperties targetProperties, GameObject projectileObject) {
 		
 		projectileObject.AddComponent<Projectile> ();
-
 		projectileObject.AddComponent<SpriteRenderer> ();
 		SpriteRenderer spriteRenderer = projectileObject.GetComponent<SpriteRenderer> ();
 

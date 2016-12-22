@@ -5,11 +5,11 @@ public class CameraScript : MonoBehaviour {
 	
 	public GameObject mainPlayer = null;
 
-	float cameraZLayer = 0;
+	float cameraZLayer = -100;
 
 	void FollowPlayerCamera () {
-		if (mainPlayer == null && PlayerObject.instance) {
-			mainPlayer = PlayerObject.instance.gameObject;
+		if (mainPlayer == null && Player.instance) {
+			mainPlayer = Player.instance.gameObject;
 		}
 		
 		if (mainPlayer) {

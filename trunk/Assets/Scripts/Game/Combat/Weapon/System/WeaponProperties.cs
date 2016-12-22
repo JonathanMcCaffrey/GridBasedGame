@@ -5,7 +5,7 @@ using System.Collections;
  * Contains information of weapon
  * 
  */
-public class WeaponProperties : MonoBehaviour {
+public class WeaponProperties {
 
 	private float damage = 1;
 	private float reload = 0;

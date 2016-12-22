@@ -490,7 +490,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 472592, guid: b5f89eae5ad604c3b838ef1a4b807069, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 472592, guid: b5f89eae5ad604c3b838ef1a4b807069, type: 2}
       propertyPath: m_LocalRotation.x
@@ -8716,7 +8716,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a8ba32aba8ec4f509d4e418273b9b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mArrowPrefab: {fileID: 100000, guid: a2aa7e6205ca2ae4fb5dbbfec83d4ce1, type: 2}
 --- !u!114 &1463354331
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ using System.Collections;
 /**
  * Information on where a projectile is going
  */
-public class TargetProperties : MonoBehaviour {
+public class TargetProperties {
 
 	private Vector3 startPosition; //< Start position of a projectile
 	private Vector3 targetPosition; //< Target position of a projectile

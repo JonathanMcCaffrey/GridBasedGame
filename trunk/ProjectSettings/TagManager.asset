@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - IconTextureCanvas
+  - Arrow
   layers:
   - Default
   - TransparentFX
